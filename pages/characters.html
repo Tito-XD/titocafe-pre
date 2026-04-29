@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>角色介绍 | 头头咖啡屋 Tito's Cafe</title>
+  <meta name="description" content="认识头头咖啡屋的所有角色——Tito、TigerZ、Frank、Kayu、TON、Diandian和TigerBoo！">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="icon" href="../assets/images/Tito Avatar (Transparent).png" type="image/png">
+  <style>
+    /* Characters Page Specific Styles */
+    .char-nav {
+      display: flex;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+      margin-bottom: var(--space-xl);
+      position: sticky;
+      top: 80px;
+      background: rgba(255,253,247,0.95);
+      backdrop-filter: blur(10px);
+      padding: var(--space-md) 0;
+      z-index: 100;
+    }
+    .char-nav-btn {
+      padding: 0.5em 1.2em;
+      border-radius: 100px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      background: var(--cream);
+      color: var(--text-secondary);
+      border: 2px solid transparent;
+    }
+    .char-nav-btn:hover,
+    .char-nav-btn.active {
+      background: var(--coffee-mid);
+      color: white;
+      border-color: var(--coffee-mid);
+    }
+    .char-profile {
+      display: none;
+      animation: fadeInUp 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .char-profile.active {
+      display: block;
+    }
+    .char-profile-inner {
+      display: grid;
+      grid-template-columns: 380px 1fr;
+      gap: var(--space-xl);
+      align-items: start;
+      margin-bottom: var(--space-2xl);
+    }
+    .char-portrait {
+      position: sticky;
+      top: 100px;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+      background: var(--cream);
+    }
+    .char-portrait img {
+      width: 100%;
+      display: block;
+    }
+    .char-info h2 {
+      font-size: 2.2rem;
+      margin-bottom: 0.1em;
+    }
+    .char-info .char-subtitle {
+      font-size: 1rem;
+      color: var(--text-muted);
+      margin-bottom: var(--space-md);
+    }
+    .char-personality {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: var(--space-lg);
+    }
+    .char-tag {
+      padding: 0.3em 0.8em;
+      border-radius: 100px;
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+    .char-bio {
+      color: var(--text-secondary);
+      line-height: 1.9;
+      margin-bottom: var(--space-lg);
+    }
+    .char-extra-gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-sm);
+      margin-top: var(--space-lg);
+    }
+    .char-extra-gallery img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .char-extra-gallery img:hover {
+      transform: scale(1.05);
+    }
+    .char-diandian-section {
+      background: var(--cream);
+      border-radius: 24px;
+      padding: var(--space-lg);
+      margin-top: var(--space-lg);
+    }
+    .diandian-profile {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: var(--space-lg);
+      align-items: center;
+    }
+    .diandian-img {
+      width: 100%;
+      border-radius: 20px;
+      overflow: hidden;
+      background: white;
+      padding: var(--space-sm);
+    }
+    .diandian-img img {
+      width: 100%;
+      border-radius: 16px;
+    }
+    @media (max-width: 900px) {
+      .char-profile-inner {
+        grid-template-columns: 1fr;
+      }
+      .char-portrait {
+        position: static;
+        max-width: 350px;
+        margin: 0 auto;
+      }
+      .diandian-profile {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar scrolled">
+    <div class="navbar-inner">
+      <a href="../index.html" class="nav-logo">
+        <img src="../assets/images/Tito Avatar (Transparent).png" alt="Tito">
+        <div class="nav-logo-text">
+          <span class="nav-logo-title">头头咖啡屋</span>
+          <span class="nav-logo-subtitle">Tito's Cafe</span>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="../index.html">首页</a></li>
+        <li><a href="characters.html" class="active">角色</a></li>
+        <li><a href="shop.html">周边</a></li>
+        <li><a href="gallery.html">画廊</a></li>
+        <li><a href="about.html">关于</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <h1>☕ 角色介绍</h1>
+    <p>头头咖啡屋的每一位成员，都有自己的性格、故事和魅力。<br>来认识一下他们吧！</p>
+  </div>
+
+  <div class="container" style="padding:var(--space-xl) 0;">
+
+    <!-- Character Navigation -->
+    <div class="char-nav" id="charNav">
+      <button class="char-nav-btn active" onclick="showChar('tito', this)">🐺 Tito</button>
+      <button class="char-nav-btn" onclick="showChar('tigerz', this)">🐯 TigerZ</button>
+      <button class="char-nav-btn" onclick="showChar('frank', this)">🐯 Frank</button>
+      <button class="char-nav-btn" onclick="showChar('kayu', this)">🐻 Kayu</button>
+      <button class="char-nav-btn" onclick="showChar('ton', this)">🐺 TON</button>
+      <button class="char-nav-btn" onclick="showChar('diandian', this)">🐱 Diandian</button>
+      <button class="char-nav-btn" onclick="showChar('tigerboo', this)">🎮 TigerBoo</button>
+    </div>
+
+    <!-- ============ TITO ============ -->
+    <div class="char-profile active" id="char-tito">
+      <div class="char-profile-inner">
+        <div class="char-portrait">
+          <img src="../assets/images/Tito Sketch Set (Clean BG).png" alt="Tito Sketch Set">
+        </div>
+        <div class="char-info">
+          <h2>🐺 Tito <small style="font-weight:400; color:var(--text-muted);">/ 头头</small></h2>
+          <p class="char-subtitle">灰蓝狼 · 咖啡屋店长 · INFP</p>
+          <div class="char-personality">
+            <span class="char-tag" style="background:#E8F0F5; color:#5A7D99;">温柔</span>
+            <span class="char-tag" style="background:#F0E8F5; color:#7A5A99;">细腻</span>
+            <span class="char-tag" style="background:#F5F0E8; color:#997A5A;">咖啡控</span>
+            <span class="char-tag" style="background:#E8F5EF; color:#5A997A;">倾听者</span>
+          </div>
+          <div class="char-stats">
+            <div class="char-stat"><div class="stat-label">身高</div><div class="stat-value">178 cm</div></div>
+            <div class="char-stat"><div class="stat-label">生日</div><div class="stat-value">11.30</div></div>
+            <div class="char-stat"><div class="stat-label">血型</div><div class="stat-value">B型</div></div>
+          </div>
+          <div class="char-bio">
+            <p>头头咖啡屋的店长，一只温柔的灰蓝狼。平时话不多，但煮咖啡的手艺无人能敌。喜欢在角落里观察大家，默默记住每个人的喜好。</p>
+            <p>偶尔会露出调皮的一面——特别是和朋友在一起的时候。梦想是让咖啡屋成为每个路过旅人的温暖驿站。"路上辛苦了，喝点什么？"是他的口头禅。</p>
+            <p>最喜欢的食物是提拉米苏，最讨厌的是香菜（但从来不直接说）。</p>
+          </div>
+          <a href="../pages/shop.html" class="btn btn-primary">查看 Tito 周边 →</a>
+
+          <div class="char-extra-gallery">
+            <img src="../assets/images/Tito Stand (Transparent).png" alt="Tito Stand" onclick="openLightbox(this.src, this.alt)">
+            <img src="../assets/images/Tito Strike Chibi (Transparent).png" alt="Tito Strike Chibi" onclick="openLightbox(this.src, this.alt)">
+            <img src="../assets/images/Tito in Palm Sticker (Transparent).png" alt="Tito Palm" onclick="openLightbox(this.src, this.alt)">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ TIGERZ ============ -->
+    <div class="char-profile" id="char-tigerz">
+      <div class="char-profile-inner">
+        <div class="char-portrait">
+          <img src="../assets/images/TigerZ Sketch Set (Clean BG).png" alt="TigerZ Sketch Set">
+        </div>
+        <div class="char-info">
+          <h2>🐯 TigerZ</h2>
+          <p class="char-subtitle">浅蓝虎 · 游戏玩家 · ENFP</p>
+          <div class="char-personality">
+            <span class="char-tag" style="background:#E8F4FC; color:#3A7ABD;">活力满满</span>
+            <span class="char-tag" style="background:#FCF4E8; color:#BD8A3A;">游戏宅</span>
+            <span class="char-tag" style="background:#E8FCF4; color:#3ABD7A;">乐观</span>
+            <span class="char-tag" style="background:#FCE8F4; color:#BD3A8A;">社交达人</span>
+          </div>
+          <div class="char-stats">
+            <div class="char-stat"><div class="stat-label">身高</div><div class="stat-value">185 cm</div></div>
+            <div class="char-stat"><div class="stat-label">生日</div><div class="stat-value">06.18</div></div>
+            <div class="char-stat"><div class="stat-label">擅长</div><div class="stat-value">FPS游戏</div></div>
+          </div>
+          <div class="char-bio">
+            <p>TigerZ是一只充满活力的浅蓝老虎，咖啡屋的常客兼"气氛担当"。每次来都带着一台游戏机，是店内"游戏角"的发起人。</p>
+            <p>性格开朗外向，和谁都能聊得来。游戏打得很好，但最擅长的是把大家都拉来一起玩。他的游戏吉祥物TigerBoo也是咖啡屋的人气角色。</p>
+            <p>和Tito是老朋友了，经常来"蹭咖啡"，但其实每次都偷偷扫码付款。</p>
+          </div>
+          <a href="../pages/shop.html" class="btn btn-accent">查看 TigerZ 周边 →</a>
+
+          <div class="char-extra-gallery">
+            <img src="../assets/images/TigerZ Stand (Transparent).png" alt="TigerZ Stand" onclick="openLightbox(this.src, this.alt)">
+            <img src="../assets/images/TigerZ Gaming Chibi (Transparent).png" alt="TigerZ Gaming" onclick="openLightbox(this.src, this.alt)">
+            <img src="../assets/images/Summer Walk Sticker (with Tito TigerZ) (Transparent).png" alt="Summer Walk" onclick="openLightbox(this.src, this.alt)">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ FRANK ============ -->
+    <div class="char-profile" id="char-frank">
+      <div class="char-profile-inner">
+        <div class="char-portrait">
+          <img src="../assets/images/Frank Sketch Set.png" alt="Frank Sketch Set">
+        </div>
+        <div class="char-info">
+          <h2>🐯 Frank</h2>
+          <p class="char-subtitle">橘色老虎 · 画师 · ISTJ</p>
+          <div class="char-personality">
+            <span class="char-tag" style="background:#FFF0E0; color:#CC6600;">认真</span>
+            <span class="char-tag" style="background:#F0F0F0; color:#666;">完美主义</span>
+            <span class="char-tag" style="background:#FFF8E0; color:#998A00;">咖啡成瘾</span>
+            <span class="char-tag" style="background:#E0F0FF; color:#0066CC;">深夜创作者</span>
+          </div>
+          <div class="char-stats">
+            <div class="char-stat"><div class="stat-label">身高</div><div class="stat-value">180 cm</div></div>
+            <div class="char-stat"><div class="stat-label">生日</div><div class="stat-value">03.14</div></div>
+            <div class="char-stat"><div class="stat-label">工具</div><div class="stat-value">数位板</div></div>
+          </div>
+          <div class="char-bio">
+            <p>Frank是一只橘色老虎，职业画师，也是咖啡屋的"驻店画家"。如果你在角落里看到一个眉头紧锁、一边喝咖啡一边疯狂涂鸦的身影，那就是他了。</p>
+            <p>对自己的作品要求极高，经常画出"我不想画了！"的表情包（见贴纸墙），但最后还是会默默把画完成。作品风格细腻温暖，和表面看起来不太一样。</p>
+            <p>和Kayu是好朋友，经常一起出现在咖啡屋的沙发区，一个画画，一个发呆。</p>
+          </div>
+          <a href="../pages/shop.html" class="btn" style="background:#FF8C42; color:white;">查看 Frank 周边 →</a>
+
+          <div class="char-extra-gallery">
+            <img src="../assets/images/Frank Stand (Transparent).png" alt="Frank Stand" onclick="openLightbox(this.src, this.alt)">
+            <img src="../assets/images/Frank Drawing Chibi (Transparent).png" alt="Frank Drawing" onclick="openLightbox(this.src, this.alt)">
+            <img src="../assets/images/Frank Do Not Want to Draw Sticker (Transparent).png" alt="Frank No Draw" onclick="openLightbox(this.src, this.alt)">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ KAYU ============ -->
+    <div class="char-profile" id="char-kayu">
+      <div class="char-profile-inner">
+        <div class="char-portrait">
+          <img src="../assets/images/Kayu Sketch Set (Clean BG).png" alt="Kayu Sketch Set">
+        </div>
+        <div class="char-info">
+          <h2>🐻 Kayu</h2>
+          <p class="char-subtitle">白色熊 · 温柔大块头 · ISFP</p>
+          <div class="char-personality">
+            <span class="char-tag" style="background:#F0F0F0; color:#555;">温柔</span>
+            <span class="char-tag" style="background:#FFF8E0; color:#997A00;">吃货</span>
+            <span class="char-tag" style="background:#E8F5F0; color:#2D7A5A;">安静</span>
+            <span class="char-tag" style="background:#F5E8F0; color:#7A2D5A;">抱枕专业户</span>
+          </div>
+          <div class="char-stats">
+            <div class="char-stat"><div class="stat-label">身高</div><div class="stat-value">195 cm</div></div>
+            <div class="char-stat"><div class="stat-label">生日</div><div class="stat-value">09.22</div></div>
+            <div class="char-stat"><div class="stat-label">最爱</div><div class="stat-value">甜点</div></div>
+          </div>
+          <div class="char-bio">
+            <p>Kayu是一只巨大的白色熊，外表看起来有点严肃，实际上是个超级温柔的"大抱枕"。他是咖啡屋的常客，每次来都点最甜的拿铁和最丰富的甜点。</p>
+            <p>话不多，但每次说话都很温暖。喜欢坐在咖啡屋最大的沙发上，有时候朋友累了就直接靠在他身上睡着了——他自己也说不清这是第几次当"人肉靠垫"了。</p>
+            <p>有一个以他为主题的抱枕周边（没错，他自己知道，而且觉得很不好意思）。</p>
+          </div>
+          <a href="../pages/shop.html" class="btn" style="background:#888; color:white;">查看 Kayu 周边 →</a>
+
+          <div class="char-extra-gallery">
+            <img src="../assets/images/Kayu Stand (Transparent).png" alt="Kayu Stand" onclick="openLightbox(this.src, this.alt)">
+            <img src="../assets/images/Kayu Yeah! Chibi (Transparent).png" alt="Kayu Yeah!" onclick="openLightbox(this.src, this.alt)">
+            <img src="../assets/images/Kayu Tail-draw Sticker (Transparent).png" alt="Kayu Tail" onclick="openLightbox(this.src, this.alt)">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ TON ============ -->
+    <div class="char-profile" id="char-ton">
+      <div class="char-profile-inner">
+        <div class="char-portrait">
+          <img src="../assets/images/TON Sketch Set (Clean BG).png" alt="TON Sketch Set">
+        </div>
+        <div class="char-info">
+          <h2>🐺 TON</h2>
+          <p class="char-subtitle">茶色狼 · 音乐爱好者 · INFJ</p>
+          <div class="char-personality">
+            <span class="char-tag" style="background:#F5E8D8; color:#8A5A3A;">文艺</span>
+            <span class="char-tag" style="background:#E8EEF5; color:#3A5A8A;">吉他手</span>
+            <span class="char-tag" style="background:#F0E8F5; color:#5A3A8A;">深谋远虑</span>
+            <span class="char-tag" style="background:#E8F5F0; color:#2D7A5A;">猫奴</span>
+          </div>
+          <div class="char-stats">
+            <div class="char-stat"><div class="stat-label">身高</div><div class="stat-value">183 cm</div></div>
+            <div class="char-stat"><div class="stat-label">生日</div><div class="stat-value">07.07</div></div>
+            <div class="char-stat"><div class="stat-label">宠物</div><div class="stat-value">Diandian</div></div>
+          </div>
+          <div class="char-bio">
+            <p>TON是一只茶色狼，音乐爱好者，偶尔在咖啡屋的角落里弹吉他。他的音乐风格温柔而有点忧郁，和咖啡屋的氛围意外地搭。</p>
+            <p>是Diandian（点点）的铲屎官。表面上是一本正经的大人，实际上手机壁纸全是自家猫咪的照片。每次提到Diandian，眼神都会不自觉地柔软下来。</p>
+            <p>和Tito是老朋友，两人经常深夜在咖啡屋打烊后一起聊天，内容从音乐到人生，无所不谈。</p>
+          </div>
+          <a href="../pages/shop.html" class="btn" style="background:#A0522D; color:white;">查看 TON 周边 →</a>
+
+          <div class="char-extra-gallery">
+            <img src="../assets/images/TON Stand (Transparent).png" alt="TON Stand" onclick="openLightbox(this.src, this.alt)">
+            <img src="../assets/images/TON Playing Guitar Sticker (Transparent).png" alt="TON Guitar" onclick="openLightbox(this.src, this.alt)">
+            <img src="../assets/images/TON with Diandian (Pet Cat) Sticker (Transparent).png" alt="TON & Diandian" onclick="openLightbox(this.src, this.alt)">
+          </div>
+
+          <!-- Diandian Section -->
+          <div class="char-diandian-section">
+            <h3>🐱 关于 Diandian（点点）</h3>
+            <p style="color:var(--text-secondary); margin:0.5em 0 1em;">
+              TON养的一只小黑猫，咖啡屋的"非正式吉祥物"。喜欢趴在柜台上看着客人，偶尔会偷喝Tito做的奶泡。
+            </p>
+            <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:var(--space-sm);">
+              <img src="../assets/images/TON with Diandian (Pet Cat) Sticker (Transparent).png" alt="Diandian" style="width:100%; border-radius:12px; background:white; padding:10px;">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ DIANDIAN ============ -->
+    <div class="char-profile" id="char-diandian">
+      <div class="char-profile-inner">
+        <div class="char-portrait">
+          <img src="../assets/images/TON with Diandian (Pet Cat) Sticker (Transparent).png" alt="Diandian" style="padding:20px; background:var(--cream);">
+        </div>
+        <div class="char-info">
+          <h2>🐱 Diandian <small style="font-weight:400; color:var(--text-muted);">/ 点点</small></h2>
+          <p class="char-subtitle">小黑猫 · TON的宠物 · 咖啡屋非正式吉祥物</p>
+          <div class="char-personality">
+            <span class="char-tag" style="background:#E8E8E8; color:#555;">傲娇</span>
+            <span class="char-tag" style="background:#FFF0E8; color:#CC6600;">奶泡爱好者</span>
+            <span class="char-tag" style="background:#E8F5FF; color:#0066CC;">柜台巡逻员</span>
+          </div>
+          <div class="char-stats">
+            <div class="char-stat"><div class="stat-label">年龄</div><div class="stat-value">3岁</div></div>
+            <div class="char-stat"><div class="stat-label">最爱</div><div class="stat-value">奶泡</div></div>
+            <div class="char-stat"><div class="stat-label">最讨厌</div><div class="stat-value">洗澡</div></div>
+          </div>
+          <div class="char-bio">
+            <p>Diandian是一只小黑猫，TON的宠物，但基本上把所有人都当成了自己的仆人。</p>
+            <p>最喜欢趴在咖啡屋的柜台上，用一种"你们这些两脚兽"的眼神看着客人。Tito私下说，Diandian是他见过最有气质的猫。</p>
+            <p>有一个不为人知的秘密——它其实很喜欢被摸下巴，但绝对不会主动表现出来。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ TIGERBOO ============ -->
+    <div class="char-profile" id="char-tigerboo">
+      <div class="char-profile-inner">
+        <div class="char-portrait">
+          <img src="../assets/images/TigerZ TigerBoo Sticker (Game Mascot NETA Mascot) (Transparent).png" alt="TigerBoo" style="padding:20px;">
+        </div>
+        <div class="char-info">
+          <h2>🎮 TigerBoo</h2>
+          <p class="char-subtitle">TigerZ的游戏内吉祥物 · 虚拟角色</p>
+          <div class="char-personality">
+            <span class="char-tag" style="background:#E8F4FC; color:#3A7ABD;">元气</span>
+            <span class="char-tag" style="background:#FCF4E8; color:#BD8A3A;">游戏宅</span>
+            <span class="char-tag" style="background:#FCE8F4; color:#BD3A8A;">可爱的存在</span>
+          </div>
+          <div class="char-bio">
+            <p>TigerBoo是TigerZ在游戏里设计的吉祥物角色，一只小巧可爱的老虎形象。因为太受欢迎，被做成了一系列周边。</p>
+            <p>在设定里，TigerBoo是TigerZ的"游戏分身"——比本人更勇敢、更开朗，永远充满正能量。很多粉丝说，看到TigerBoo就觉得心情变好了。</p>
+            <p>目前TigerBoo有自己的贴纸包、毛绒挂件和限定版手办。</p>
+          </div>
+          <div class="char-extra-gallery">
+            <img src="../assets/images/TigerZ TigerBoo Sticker (Game Mascot NETA Mascot) (Transparent) (Seperate).png" alt="TigerBoo Separate" onclick="openLightbox(this.src, this.alt)" style="background:var(--cream); padding:10px; border-radius:12px;">
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-col" style="margin-right:var(--space-xl);">
+        <div class="footer-brand">☕ 头头咖啡屋</div>
+        <div class="footer-social" style="margin-top:var(--space-md);">
+          <a href="https://tito.cafe" title="官网" target="_blank">🌐</a>
+          <a href="#">𝕏</a>
+          <a href="#">B</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>导航</h4>
+        <a href="../index.html">首页</a>
+        <a href="characters.html">角色介绍</a>
+        <a href="shop.html">周边商店</a>
+        <a href="gallery.html">作品画廊</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>
+    function showChar(charId, btn) {
+      // Hide all
+      document.querySelectorAll('.char-profile').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.char-nav-btn').forEach(el => el.classList.remove('active'));
+      // Show target
+      const target = document.getElementById('char-' + charId);
+      if (target) target.classList.add('active');
+      if (btn) btn.classList.add('active');
+      // Update URL hash
+      window.location.hash = charId;
+    }
+
+    // On page load, check hash
+    window.addEventListener('DOMContentLoaded', () => {
+      const hash = window.location.hash.replace('#', '');
+      if (hash && document.getElementById('char-' + hash)) {
+        const btn = document.querySelector(`.char-nav-btn[onclick*="${hash}"]`);
+        showChar(hash, btn);
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>关于我们 | 头头咖啡屋 Tito's Cafe</title>
+  <meta name="description" content="头头咖啡屋的故事——一间属于Furry角色和朋友的温暖咖啡屋。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="icon" href="../assets/images/Tito Avatar (Transparent).png" type="image/png">
+  <style>
+    .about-hero {
+      padding: calc(80px + var(--space-2xl)) 0 var(--space-xl);
+      background: linear-gradient(170deg, var(--cream) 0%, var(--white-warm) 100%);
+      text-align: center;
+    }
+    .about-hero h1 { font-size: clamp(2rem,4vw,3.5rem); margin-bottom:0.3em; }
+    .about-hero .hero-quote {
+      font-family: var(--font-accent);
+      font-size: 1.3rem;
+      color: var(--coffee-mid);
+      font-style: italic;
+      max-width: 600px;
+      margin: 0 auto var(--space-md);
+      line-height: 1.7;
+    }
+
+    /* Timeline */
+    .timeline {
+      max-width: 800px;
+      margin: var(--space-2xl) auto;
+      position: relative;
+      padding-left: 60px;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 20px;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(to bottom, var(--tito-blue), var(--coffee-light), var(--frank-orange));
+      border-radius: 2px;
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: var(--space-xl);
+      animation: fadeInUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -48px;
+      top: 8px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--coffee-mid);
+      border: 3px solid var(--cream);
+      box-shadow: 0 0 0 3px var(--coffee-mid);
+    }
+    .timeline-year {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--coffee-mid);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.3em;
+    }
+    .timeline-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.5em;
+    }
+    .timeline-desc {
+      color: var(--text-secondary);
+      line-height: 1.8;
+    }
+
+    /* Philosophy */
+    .philosophy-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: var(--space-lg);
+      margin-top: var(--space-xl);
+    }
+    .philosophy-card {
+      background: white;
+      border-radius: 20px;
+      padding: var(--space-lg);
+      box-shadow: var(--shadow-soft);
+      transition: all 0.3s ease;
+    }
+    .philosophy-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+    }
+    .philosophy-icon {
+      font-size: 2.5rem;
+      margin-bottom: var(--space-sm);
+    }
+    .philosophy-card h3 {
+      font-size: 1.15rem;
+      margin-bottom: 0.5em;
+    }
+    .philosophy-card p {
+      color: var(--text-secondary);
+      line-height: 1.8;
+      font-size: 0.95rem;
+    }
+
+    /* Credits */
+    .credits-section {
+      background: var(--cream);
+      border-radius: 24px;
+      padding: var(--space-xl);
+      margin-top: var(--space-2xl);
+    }
+    .credits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: var(--space-md);
+      margin-top: var(--space-lg);
+    }
+    .credit-item {
+      background: white;
+      padding: var(--space-md);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      box-shadow: 0 2px 8px rgba(60,36,21,0.05);
+    }
+    .credit-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+      background: var(--cream);
+    }
+    .credit-avatar img { width:100%; height:100%; object-fit:cover; }
+    .credit-name { font-weight:600; font-size:0.95rem; }
+    .credit-role { font-size:0.8rem; color:var(--text-muted); }
+
+    /* Contact CTA */
+    .contact-cta {
+      text-align: center;
+      padding: var(--space-2xl) 0;
+    }
+    .contact-cta h2 { font-size: 2rem; margin-bottom:0.5em; }
+    .contact-cta p { color:var(--text-secondary); margin-bottom:var(--space-lg); }
+    .contact-links {
+      display: flex;
+      gap: var(--space-md);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar scrolled">
+    <div class="navbar-inner">
+      <a href="../index.html" class="nav-logo">
+        <img src="../assets/images/Tito Avatar (Transparent).png" alt="Tito">
+        <div class="nav-logo-text">
+          <span class="nav-logo-title">头头咖啡屋</span>
+          <span class="nav-logo-subtitle">Tito's Cafe</span>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="../index.html">首页</a></li>
+        <li><a href="characters.html">角色</a></li>
+        <li><a href="shop.html">周边</a></li>
+        <li><a href="gallery.html">画廊</a></li>
+        <li><a href="about.html" class="active">关于</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- About Hero -->
+  <div class="about-hero">
+    <div class="container">
+      <h1>☕ 关于头头咖啡屋</h1>
+      <p class="hero-quote">
+        "每一杯咖啡都有它的温度，<br>
+        每一个角色都有他的灵魂。"
+      </p>
+      <p style="color:var(--text-secondary); max-width:650px; margin:0 auto; line-height:1.8;">
+        这是一家只存在于想象中的咖啡屋——<br>
+        但里面的温暖，是真实的。
+      </p>
+    </div>
+  </div>
+
+  <!-- Our Story -->
+  <div class="section">
+    <div class="container">
+      <span class="section-label">Our Story</span>
+      <h2 class="section-title">咖啡屋的诞生</h2>
+
+      <div style="max-width:750px; margin:0 auto;">
+        <p style="color:var(--text-secondary); line-height:2; margin-bottom:var(--space-lg); font-size:1.05rem;">
+          "头头咖啡屋"最初只是一个小小的念头——如果有一间咖啡屋，可以让所有Furry角色聚在一起，
+          分享故事、交换微笑、享受一个安静的下午，那该多好。
+        </p>
+        <p style="color:var(--text-secondary); line-height:2; margin-bottom:var(--space-lg); font-size:1.05rem;">
+          于是，Tito（头头）出现了。他是一只灰蓝狼，温柔、细腻，煮得一手好咖啡。
+          他开这间咖啡屋，不是为了赚钱，而是为了给每一个路过的旅人——无论是人类还是Furry——
+          提供一个可以坐下来、喘口气的地方。
+        </p>
+        <p style="color:var(--text-secondary); line-height:2; margin-bottom:var(--space-lg); font-size:1.05rem;">
+          慢慢地，TigerZ带着他的游戏机来了，Frank带着他的画板来了，
+          Kayu带着他的好胃口来了，TON带着他的吉他来了……
+          咖啡屋变得越来越热闹，也越来越温暖。
+        </p>
+        <p style="color:var(--text-secondary); line-height:2; margin-bottom:var(--space-lg); font-size:1.05rem;">
+          现在，我们想把这份温暖做成周边、做成作品，送到你的手里。
+          希望每一个拿到这些作品的人，都能感受到——有人在认真地爱你，认真地对待这个世界。
+        </p>
+      </div>
+
+      <!-- Timeline -->
+      <div class="timeline">
+        <div class="timeline-item" style="animation-delay:0.1s;">
+          <div class="timeline-year">2022 · 起点</div>
+          <div class="timeline-title">☕ Tito 的诞生</div>
+          <div class="timeline-desc">头头（Tito）作为原创角色第一次出现在画纸上。灰蓝狼的形象，温柔的眼神——他从此有了生命。</div>
+        </div>
+
+        <div class="timeline-item" style="animation-delay:0.2s;">
+          <div class="timeline-year">2023 · 扩展</div>
+          <div class="timeline-title">🐯 TigerZ & Frank 加入</div>
+          <div class="timeline-desc">TigerZ和Frank陆续加入这个温暖的世界。咖啡屋开始有了"常客"，故事变得越来越丰富。</div>
+        </div>
+
+        <div class="timeline-item" style="animation-delay:0.3s;">
+          <div class="timeline-year">2024 · 壮大</div>
+          <div class="timeline-title">🐻 Kayu & TON 到来</div>
+          <div class="timeline-desc">Kayu和TON的加入让咖啡屋更加完整。白熊的温柔、茶色狼的文艺——每个人都有自己的味道。</div>
+        </div>
+
+        <div class="timeline-item" style="animation-delay:0.4s;">
+          <div class="timeline-year">2024 · 第一次周边</div>
+          <div class="timeline-title">🛍️ 头头咖啡屋周边企划启动</div>
+          <div class="timeline-desc">第一批复刻立牌和贴纸制作完成。看到大家收到周边时的笑容，是我们最大的动力。</div>
+        </div>
+
+        <div class="timeline-item" style="animation-delay:0.5s;">
+          <div class="timeline-year">2025 · 现在</div>
+          <div class="timeline-title">🌐 网站上线 & 更多计划</div>
+          <div class="timeline-desc">头头咖啡屋官网正式上线！未来还会有更多角色、更多周边、更多故事。感谢你成为这个故事的一部分。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Philosophy -->
+  <div class="section" style="background:var(--cream);">
+    <div class="container">
+      <span class="section-label">Philosophy</span>
+      <h2 class="section-title">我们的理念</h2>
+
+      <div class="philosophy-grid">
+        <div class="philosophy-card">
+          <div class="philosophy-icon">☕</div>
+          <h3>温度第一</h3>
+          <p>每一件作品都像一杯刚煮好的咖啡——有温度，有用心。我们不追求流水线式的完美，我们追求的是"有人认真做过"的痕迹。</p>
+        </div>
+
+        <div class="philosophy-card">
+          <div class="philosophy-icon">🐾</div>
+          <h3>角色为先</h3>
+          <p>每个角色都有自己的性格、故事和灵魂。周边不只是商品，而是让这些角色走进你生活的桥梁。</p>
+        </div>
+
+        <div class="philosophy-card">
+          <div class="philosophy-icon">🎨</div>
+          <h3>品质不妥协</h3>
+          <p>从画稿到实物，每个环节都认真对待。我们宁愿少做一批，也不愿意把不满意的东西交到你手里。</p>
+        </div>
+
+        <div class="philosophy-card">
+          <div class="philosophy-icon">💛</div>
+          <h3>社区优先</h3>
+          <p>咖啡屋不只是一家店，它是一个社区。我们珍惜每一位支持者，每一份反馈，每一个温暖的消息。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="section">
+    <div class="container" style="max-width:800px;">
+      <span class="section-label">FAQ</span>
+      <h2 class="section-title">常见问题</h2>
+
+      <div style="display:flex; flex-direction:column; gap:var(--space-md);">
+        <details style="background:white; border-radius:16px; padding:var(--space-md) var(--space-lg); box-shadow:var(--shadow-soft); cursor:pointer;">
+          <summary style="font-weight:600; font-size:1.05rem; cursor:pointer;">周边一般多久发货？</summary>
+          <p style="color:var(--text-secondary); line-height:1.8; margin-top:var(--space-sm);">现货商品一般3-5个工作日内发货。预订商品会在商品页面标注预计发货时间，请留意商品说明。</p>
+        </details>
+
+        <details style="background:white; border-radius:16px; padding:var(--space-md) var(--space-lg); box-shadow:var(--shadow-soft); cursor:pointer;">
+          <summary style="font-weight:600; font-size:1.05rem; cursor:pointer;">可以定制周边吗？</summary>
+          <p style="color:var(--text-secondary); line-height:1.8; margin-top:var(--space-sm);">目前不接受个人定制，但我们会定期发起周边投票，欢迎大家参与决定下一次的周边主题！</p>
+        </details>
+
+        <details style="background:white; border-radius:16px; padding:var(--space-md) var(--space-lg); box-shadow:var(--shadow-soft); cursor:pointer;">
+          <summary style="font-weight:600; font-size:1.05rem; cursor:pointer;">海外可以配送吗？</summary>
+          <p style="color:var(--text-secondary); line-height:1.8; margin-top:var(--space-sm);">可以！我们支持全球配送。海外运费会根据地区另行计算，下单前可以先联系我们确认。</p>
+        </details>
+
+        <details style="background:white; border-radius:16px; padding:var(--space-md) var(--space-lg); box-shadow:var(--shadow-soft); cursor:pointer;">
+          <summary style="font-weight:600; font-size:1.05rem; cursor:pointer;">如何获取最新消息？</summary>
+          <p style="color:var(--text-secondary); line-height:1.8; margin-top:var(--space-sm);">可以关注我们的 Twitter/X、Bilibili 和小红书账号，每次新周边和 new 作品都会在上面第一时间公布！</p>
+        </details>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact CTA -->
+  <div class="contact-cta">
+    <div class="container">
+      <h2>想说点什么？</h2>
+      <p>无论是建议、合作还是单纯想打招呼，<br>都欢迎随时联系我们 ☕</p>
+      <div class="contact-links">
+        <a href="mailto:hello@tito.cafe" class="btn btn-primary">📧 发邮件</a>
+        <a href="https://tito.cafe" target="_blank" class="btn btn-outline">🌐 访问官网</a>
+        <a href="../index.html" class="btn btn-accent">☕ 回到首页</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-col" style="margin-right:var(--space-xl);">
+        <div class="footer-brand">☕ 头头咖啡屋</div>
+        <div class="footer-social" style="margin-top:var(--space-md);">
+          <a href="https://tito.cafe" target="_blank">🌐</a>
+          <a href="#">𝕏</a>
+          <a href="#">B</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>导航</h4>
+        <a href="../index.html">首页</a>
+        <a href="characters.html">角色介绍</a>
+        <a href="shop.html">周边商店</a>
+        <a href="gallery.html">作品画廊</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2024 头头咖啡屋 Tito's Cafe.</span>
+      <span>用 ❤️ 和 ☕ 制作</span>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

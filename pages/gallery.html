@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>作品画廊 | 头头咖啡屋 Tito's Cafe</title>
+  <meta name="description" content="欣赏头头咖啡屋的原创Furry插画作品——日常、节日、团赏、漫画。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="icon" href="../assets/images/Tito Avatar (Transparent).png" type="image/png">
+  <style>
+    .gallery-hero {
+      padding: calc(80px + var(--space-xl)) 0 var(--space-lg);
+      background: linear-gradient(170deg, var(--cream) 0%, var(--white-warm) 100%);
+      text-align: center;
+    }
+    .gallery-hero h1 { font-size: clamp(2rem,4vw,3.5rem); margin-bottom:0.3em; }
+
+    /* Gallery Tabs */
+    .gallery-tabs {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+      margin-bottom: var(--space-xl);
+    }
+    .gallery-tab {
+      padding: 0.5em 1.5em;
+      border-radius: 100px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      background: var(--cream);
+      color: var(--text-secondary);
+      border: 2px solid transparent;
+    }
+    .gallery-tab:hover,
+    .gallery-tab.active {
+      background: var(--coffee-mid);
+      color: white;
+      border-color: var(--coffee-mid);
+    }
+
+    /* Masonry-style Gallery */
+    .gallery-masonry {
+      columns: 3;
+      column-gap: var(--space-md);
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .gallery-masonry-item {
+      break-inside: avoid;
+      margin-bottom: var(--space-md);
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .gallery-masonry-item:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-hover);
+    }
+    .gallery-masonry-item img {
+      width: 100%;
+      display: block;
+      transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .gallery-masonry-item:hover img {
+      transform: scale(1.05);
+    }
+    .gallery-masonry-item .g-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(60,36,21,0.7) 0%, transparent 60%);
+      display: flex;
+      align-items: flex-end;
+      padding: var(--space-md);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .gallery-masonry-item:hover .g-overlay {
+      opacity: 1;
+    }
+    .g-overlay span {
+      color: white;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    /* Lightbox */
+    .lightbox-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(20,10,5,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 5000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-lg);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+    .lightbox-overlay.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .lightbox-overlay img {
+      max-width: 90vw;
+      max-height: 88vh;
+      object-fit: contain;
+      border-radius: 12px;
+      box-shadow: 0 16px 64px rgba(0,0,0,0.5);
+    }
+    .lightbox-close {
+      position: fixed;
+      top: 20px;
+      right: 24px;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.15);
+      color: white;
+      font-size: 1.3rem;
+      cursor: pointer;
+      z-index: 5001;
+      transition: background 0.2s ease;
+    }
+    .lightbox-close:hover { background: rgba(255,255,255,0.25); }
+    .lightbox-caption {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255,253,247,0.95);
+      backdrop-filter: blur(10px);
+      padding: 0.6em 1.5em;
+      border-radius: 100px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--coffee-dark);
+      z-index: 5001;
+    }
+
+    @media (max-width: 1024px) {
+      .gallery-masonry { columns: 2; }
+    }
+    @media (max-width: 600px) {
+      .gallery-masonry { columns: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar scrolled">
+    <div class="navbar-inner">
+      <a href="../index.html" class="nav-logo">
+        <img src="../assets/images/Tito Avatar (Transparent).png" alt="Tito">
+        <div class="nav-logo-text">
+          <span class="nav-logo-title">头头咖啡屋</span>
+          <span class="nav-logo-subtitle">Tito's Cafe</span>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="../index.html">首页</a></li>
+        <li><a href="characters.html">角色</a></li>
+        <li><a href="shop.html">周边</a></li>
+        <li><a href="gallery.html" class="active">画廊</a></li>
+        <li><a href="about.html">关于</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Gallery Hero -->
+  <div class="gallery-hero">
+    <div class="container">
+      <h1>🎨 作品画廊</h1>
+      <p style="color:var(--text-secondary); font-size:1.05rem; max-width:600px; margin:0 auto;">
+        日常、节日、团赏、小漫画……<br>
+        每一次创作，都是一个温暖的小故事。
+      </p>
+    </div>
+  </div>
+
+  <!-- Gallery Content -->
+  <div class="section" style="padding-top:0;">
+    <div class="container">
+
+      <!-- Tabs -->
+      <div class="gallery-tabs">
+        <button class="gallery-tab active" onclick="filterGallery('all', this)">全部</button>
+        <button class="gallery-tab" onclick="filterGallery('daily', this)">日常</button>
+        <button class="gallery-tab" onclick="filterGallery('celebration', this)">庆祝</button>
+        <button class="gallery-tab" onclick="filterGallery('comic', this)">漫画</button>
+        <button class="gallery-tab" onclick="filterGallery('photo', this)">拍立得</button>
+      </div>
+
+      <!-- Masonry Gallery -->
+      <div class="gallery-masonry" id="galleryMasonry">
+
+        <div class="gallery-masonry-item" data-category="celebration" onclick="openLightbox('../assets/images/HBD Celebration (with Tito and TigerZ).png', '生日庆祝 — Tito & TigerZ')">
+          <img src="../assets/images/HBD Celebration (with Tito and TigerZ).png" alt="HBD Celebration">
+          <div class="g-overlay"><span>🎂 生日庆祝 · Tito & TigerZ</span></div>
+        </div>
+
+        <div class="gallery-masonry-item" data-category="photo" onclick="openLightbox('../assets/images/Saturday Photo (with Tito TigerZ Kayu).jpg', '周六拍照日')">
+          <img src="../assets/images/Saturday Photo (with Tito TigerZ Kayu).jpg" alt="Saturday Photo">
+          <div class="g-overlay"><span>📸 周六拍照日 · Tito TigerZ Kayu</span></div>
+        </div>
+
+        <div class="gallery-masonry-item" data-category="photo" onclick="openLightbox('../assets/images/Saturday Photo Smile (with Tito TigerZ Kayu).jpg', '周末笑容')">
+          <img src="../assets/images/Saturday Photo Smile (with Tito TigerZ Kayu).jpg" alt="Saturday Photo Smile">
+          <div class="g-overlay"><span>😊 周末笑容 · Tito TigerZ Kayu</span></div>
+        </div>
+
+        <div class="gallery-masonry-item" data-category="comic" onclick="openLightbox('../assets/images/Little Comic (with Tito TigerZ Frank Kayu and TSURU herself).png', '四格漫画')">
+          <img src="../assets/images/Little Comic (with Tito TigerZ Frank Kayu and TSURU herself).png" alt="Little Comic">
+          <div class="g-overlay"><span>📝 四格漫画 · 大家的一天</span></div>
+        </div>
+
+        <div class="gallery-masonry-item" data-category="photo" onclick="openLightbox('../assets/images/Selfie Photo (with Kayu & Frank) (filter).png', '自拍时刻')">
+          <img src="../assets/images/Selfie Photo (with Kayu & Frank) (filter).png" alt="Selfie Photo">
+          <div class="g-overlay"><span>🤳 自拍时刻 · Kayu & Frank</span></div>
+        </div>
+
+        <div class="gallery-masonry-item" data-category="daily" onclick="openLightbox('../assets/images/Yummy! Photo Drawn (filter).jpg', '美食时刻')">
+          <img src="../assets/images/Yummy! Photo Drawn (filter).jpg" alt="Yummy Photo">
+          <div class="g-overlay"><span>🍰 美食时刻 · 今天的甜点</span></div>
+        </div>
+
+        <div class="gallery-masonry-item" data-category="daily" onclick="openLightbox('../assets/images/Doraemon! Photo (with Tito TigerZ TON).png', '哆啦A梦！')">
+          <img src="../assets/images/Doraemon! Photo (with Tito TigerZ TON).png" alt="Doraemon Photo">
+          <div class="g-overlay"><span>🔵 哆啦A梦！· Tito TigerZ TON</span></div>
+        </div>
+
+        <div class="gallery-masonry-item" data-category="celebration" onclick="openLightbox('../assets/images/Chinese Opera Style Outfit Design (with Tito TigerZ).png', '戏曲风服装设计')">
+          <img src="../assets/images/Chinese Opera Style Outfit Design (with Tito TigerZ).png" alt="Chinese Opera Style">
+          <div class="g-overlay"><span>🎭 戏曲风服装设计 · Tito & TigerZ</span></div>
+        </div>
+
+        <div class="gallery-masonry-item" data-category="daily" onclick="openLightbox('../assets/images/Tito Sketch Set (Clean BG).png', 'Tito 设定集')">
+          <img src="../assets/images/Tito Sketch Set (Clean BG).png" alt="Tito Sketch Set">
+          <div class="g-overlay"><span>✏️ Tito 设定集</span></div>
+        </div>
+
+        <div class="gallery-masonry-item" data-category="daily" onclick="openLightbox('../assets/images/Frank Sketch Set.png', 'Frank 设定集')">
+          <img src="../assets/images/Frank Sketch Set.png" alt="Frank Sketch Set">
+          <div class="g-overlay"><span>✏️ Frank 设定集</span></div>
+        </div>
+
+        <div class="gallery-masonry-item" data-category="daily" onclick="openLightbox('../assets/images/Kayu Sketch Set (Clean BG).png', 'Kayu 设定集')">
+          <img src="../assets/images/Kayu Sketch Set (Clean BG).png" alt="Kayu Sketch Set">
+          <div class="g-overlay"><span>✏️ Kayu 设定集</span></div>
+        </div>
+
+        <div class="gallery-masonry-item" data-category="daily" onclick="openLightbox('../assets/images/TigerZ Sketch Set (Clean BG).png', 'TigerZ 设定集')">
+          <img src="../assets/images/TigerZ Sketch Set (Clean BG).png" alt="TigerZ Sketch Set">
+          <div class="g-overlay"><span>✏️ TigerZ 设定集</span></div>
+        </div>
+
+        <div class="gallery-masonry-item" data-category="daily" onclick="openLightbox('../assets/images/TON Sketch Set (Clean BG).png', 'TON 设定集')">
+          <img src="../assets/images/TON Sketch Set (Clean BG).png" alt="TON Sketch Set">
+          <div class="g-overlay"><span>✏️ TON 设定集</span></div>
+        </div>
+
+        <div class="gallery-masonry-item" data-category="daily" onclick="openLightbox('../assets/images/TON Sketch Set with Zacian (Clean BG).png', 'TON & Zacian')">
+          <img src="../assets/images/TON Sketch Set with Zacian (Clean BG).png" alt="TON & Zacian">
+          <div class="g-overlay"><span>⚔️ TON & Zacian</span></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-col" style="margin-right:var(--space-xl);">
+        <div class="footer-brand">☕ 头头咖啡屋</div>
+      </div>
+      <div class="footer-col">
+        <h4>导航</h4>
+        <a href="../index.html">首页</a>
+        <a href="characters.html">角色介绍</a>
+        <a href="shop.html">周边商店</a>
+        <a href="gallery.html">作品画廊</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lightbox -->
+  <div class="lightbox-overlay" id="lightbox" onclick="closeLightbox(event)">
+    <img id="lightboxImg" src="" alt="">
+  </div>
+  <div class="lightbox-close" id="lightboxClose" onclick="closeLightbox()">✕</div>
+  <div class="lightbox-caption" id="lightboxCaption"></div>
+
+  <script src="../js/main.js"></script>
+  <script>
+    function filterGallery(category, btn) {
+      const items = document.querySelectorAll('.gallery-masonry-item');
+      const btns = document.querySelectorAll('.gallery-tab');
+      btns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      items.forEach(item => {
+        if (category === 'all' || item.dataset.category === category) {
+          item.style.display = '';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+
+    function openLightbox(src, caption) {
+      const lb = document.getElementById('lightbox');
+      document.getElementById('lightboxImg').src = src;
+      document.getElementById('lightboxCaption').textContent = caption;
+      lb.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox(e) {
+      if (e && e.target !== e.currentTarget) return;
+      document.getElementById('lightbox').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>周边商店 | 头头咖啡屋 Tito's Cafe</title>
+  <meta name="description" content="头头咖啡屋原创Furry周边商店——立牌、贴纸、挂件、徽章等精美周边。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="icon" href="../assets/images/Tito Avatar (Transparent).png" type="image/png">
+  <style>
+    .shop-hero {
+      padding: calc(80px + var(--space-xl)) 0 var(--space-lg);
+      background: linear-gradient(170deg, var(--cream) 0%, var(--white-warm) 100%);
+      text-align: center;
+    }
+    .shop-hero h1 { font-size: clamp(2rem,4vw,3.5rem); margin-bottom:0.3em; }
+    .shop-hero p { color:var(--text-secondary); font-size:1.05rem; max-width:600px; margin:0 auto; }
+
+    /* Enhanced Merch Cards for Shop Page */
+    .shop-merch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: var(--space-lg);
+    }
+    .shop-merch-card {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+      transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+      cursor: pointer;
+      position: relative;
+    }
+    .shop-merch-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-hover);
+    }
+    .shop-merch-img {
+      width: 100%;
+      aspect-ratio: 1;
+      background: var(--cream);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+    .shop-merch-img img {
+      width: 75%;
+      height: 75%;
+      object-fit: contain;
+      transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .shop-merch-card:hover .shop-merch-img img {
+      transform: scale(1.1);
+    }
+    .shop-merch-badges {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      display: flex;
+      gap: 6px;
+    }
+    .shop-merch-badge {
+      padding: 0.3em 0.8em;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: white;
+    }
+    .badge-new { background: #FF6B6B; }
+    .badge-hot { background: #FF8C42; }
+    .badge-limited { background: #9B59B6; }
+
+    .shop-merch-info {
+      padding: var(--space-md);
+    }
+    .shop-merch-char-tag {
+      display: inline-block;
+      padding: 0.2em 0.6em;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-bottom: 0.5em;
+    }
+    .tag-tito { background: #E8F0F5; color: #5A7D99; }
+    .tag-tigerz { background: #E8F4FC; color: #3A7ABD; }
+    .tag-frank { background: #FFF0E0; color: #CC6600; }
+    .tag-kayu { background: #F0F0F0; color: #666; }
+    .tag-ton { background: #F5E8D8; color: #8A5A3A; }
+
+    .shop-merch-name {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.3em;
+    }
+    .shop-merch-price-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .shop-merch-price {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--coffee-mid);
+    }
+    .shop-merch-cart-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: var(--coffee-mid);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      transition: all 0.25s ease;
+    }
+    .shop-merch-cart-btn:hover {
+      background: var(--coffee-dark);
+      transform: scale(1.1);
+    }
+
+    /* Shop Filters */
+    .shop-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      margin-bottom: var(--space-xl);
+    }
+    .shop-results {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    /* Cart Sidebar */
+    .cart-sidebar {
+      position: fixed;
+      top: 0;
+      right: -400px;
+      width: 380px;
+      height: 100vh;
+      background: white;
+      box-shadow: -8px 0 32px rgba(60,36,21,0.1);
+      z-index: 3000;
+      transition: right 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+      display: flex;
+      flex-direction: column;
+    }
+    .cart-sidebar.open { right: 0; }
+    .cart-header {
+      padding: var(--space-lg);
+      border-bottom: 1px solid var(--border-light);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .cart-header h3 { font-size: 1.2rem; }
+    .cart-close { cursor:pointer; font-size:1.3rem; color:var(--text-muted); }
+    .cart-items {
+      flex: 1;
+      overflow-y: auto;
+      padding: var(--space-md);
+    }
+    .cart-item {
+      display: flex;
+      gap: var(--space-md);
+      padding: var(--space-md) 0;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .cart-item-img {
+      width: 70px;
+      height: 70px;
+      background: var(--cream);
+      border-radius: 12px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .cart-item-img img { width:100%; height:100%; object-fit:contain; }
+    .cart-item-info { flex:1; }
+    .cart-item-name { font-size:0.9rem; font-weight:600; margin-bottom:0.3em; }
+    .cart-item-price { font-size:1rem; font-weight:700; color:var(--coffee-mid); }
+    .cart-footer {
+      padding: var(--space-lg);
+      border-top: 1px solid var(--border-light);
+    }
+    .cart-total {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: var(--space-md);
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+    .cart-checkout {
+      width: 100%;
+      padding: 1em;
+      border-radius: 12px;
+      background: var(--coffee-mid);
+      color: white;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+    .cart-checkout:hover { background: var(--coffee-dark); }
+
+    /* Cart floating button */
+    .cart-float {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--coffee-mid);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      box-shadow: 0 8px 24px rgba(107,66,38,0.35);
+      z-index: 2000;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .cart-float:hover { transform: scale(1.1); }
+    .cart-float-count {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #FF6B6B;
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    @media (max-width: 768px) {
+      .cart-sidebar { width: 100%; right: -100%; }
+      .shop-merch-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar scrolled">
+    <div class="navbar-inner">
+      <a href="../index.html" class="nav-logo">
+        <img src="../assets/images/Tito Avatar (Transparent).png" alt="Tito">
+        <div class="nav-logo-text">
+          <span class="nav-logo-title">头头咖啡屋</span>
+          <span class="nav-logo-subtitle">Tito's Cafe</span>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="../index.html">首页</a></li>
+        <li><a href="characters.html">角色</a></li>
+        <li><a href="shop.html" class="active">周边</a></li>
+        <li><a href="gallery.html">画廊</a></li>
+        <li><a href="about.html">关于</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Shop Hero -->
+  <div class="shop-hero">
+    <div class="container">
+      <h1>🛍️ 周边商店</h1>
+      <p>原创Furry角色周边，每一件都像亲手冲的咖啡——有温度，值得等待。<br>支持全球配送，国内包邮。</p>
+    </div>
+  </div>
+
+  <!-- Shop Main -->
+  <div class="section" style="padding-top:0;">
+    <div class="container">
+
+      <!-- Filters -->
+      <div class="shop-toolbar">
+        <div class="shop-filters">
+          <button class="shop-filter-btn active" onclick="filterShop('all', this)">全部</button>
+          <button class="shop-filter-btn" onclick="filterShop('stand', this)">立牌</button>
+          <button class="shop-filter-btn" onclick="filterShop('sticker', this)">贴纸</button>
+          <button class="shop-filter-btn" onclick="filterShop('acrylic', this)">亚克力</button>
+          <button class="shop-filter-btn" onclick="filterShop('badge', this)">徽章</button>
+          <button class="shop-filter-btn" onclick="filterShop('plush', this)">毛绒</button>
+        </div>
+        <div class="shop-results">共 <span id="shopCount">12</span> 件商品</div>
+      </div>
+
+      <!-- Merch Grid -->
+      <div class="shop-merch-grid" id="shopGrid">
+
+        <!-- Tito Stand -->
+        <div class="shop-merch-card" data-category="stand" onclick="openModal('modal-tito-stand')">
+          <div class="shop-merch-img">
+            <div class="shop-merch-badges">
+              <span class="shop-merch-badge badge-new">新品</span>
+            </div>
+            <img src="../assets/images/Tito Stand (Transparent).png" alt="Tito Stand">
+          </div>
+          <div class="shop-merch-info">
+            <span class="shop-merch-char-tag tag-tito">Tito 灰蓝狼</span>
+            <div class="shop-merch-name">Tito 亚克力立牌</div>
+            <div class="shop-merch-price-row">
+              <span class="shop-merch-price">¥88</span>
+              <button class="shop-merch-cart-btn" onclick="event.stopPropagation();addToCart('Tito 亚克力立牌',88,'../assets/images/Tito Stand (Transparent).png')">🛒</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- TigerZ Gaming Chibi Sticker -->
+        <div class="shop-merch-card" data-category="sticker" onclick="openModal('modal-tigerz-chibi')">
+          <div class="shop-merch-img">
+            <div class="shop-merch-badges">
+              <span class="shop-merch-badge badge-hot">热门</span>
+            </div>
+            <img src="../assets/images/TigerZ Gaming Chibi (Transparent).png" alt="TigerZ Gaming Chibi">
+          </div>
+          <div class="shop-merch-info">
+            <span class="shop-merch-char-tag tag-tigerz">TigerZ 浅蓝虎</span>
+            <div class="shop-merch-name">TigerZ 游戏Chibi贴纸包</div>
+            <div class="shop-merch-price-row">
+              <span class="shop-merch-price">¥28</span>
+              <button class="shop-merch-cart-btn" onclick="event.stopPropagation();addToCart('TigerZ 游戏Chibi贴纸包',28,'../assets/images/TigerZ Gaming Chibi (Transparent).png')">🛒</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kayu Yeah Acrylic -->
+        <div class="shop-merch-card" data-category="acrylic" onclick="openModal('modal-kayu-yeah')">
+          <div class="shop-merch-img">
+            <img src="../assets/images/Kayu Yeah! Chibi (Transparent).png" alt="Kayu Yeah!">
+          </div>
+          <div class="shop-merch-info">
+            <span class="shop-merch-char-tag tag-kayu">Kayu 白熊</span>
+            <div class="shop-merch-name">Kayu Yeah! 亚克力挂件</div>
+            <div class="shop-merch-price-row">
+              <span class="shop-merch-price">¥45</span>
+              <button class="shop-merch-cart-btn" onclick="event.stopPropagation();addToCart('Kayu Yeah! 亚克力挂件',45,'../assets/images/Kayu Yeah! Chibi (Transparent).png')">🛒</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- TON Guitar Badge -->
+        <div class="shop-merch-card" data-category="badge" onclick="openModal('modal-ton-guitar')">
+          <div class="shop-merch-img">
+            <div class="shop-merch-badges">
+              <span class="shop-merch-badge badge-limited">限量</span>
+            </div>
+            <img src="../assets/images/TON Playing Guitar Sticker (Transparent).png" alt="TON Guitar">
+          </div>
+          <div class="shop-merch-info">
+            <span class="shop-merch-char-tag tag-ton">TON 茶色狼</span>
+            <div class="shop-merch-name">TON 弹吉他徽章套装</div>
+            <div class="shop-merch-price-row">
+              <span class="shop-merch-price">¥58</span>
+              <button class="shop-merch-cart-btn" onclick="event.stopPropagation();addToCart('TON 弹吉他徽章套装',58,'../assets/images/TON Playing Guitar Sticker (Transparent).png')">🛒</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Frank Stand -->
+        <div class="shop-merch-card" data-category="stand" onclick="openModal('modal-frank-stand')">
+          <div class="shop-merch-img">
+            <img src="../assets/images/Frank Stand (Transparent).png" alt="Frank Stand">
+          </div>
+          <div class="shop-merch-info">
+            <span class="shop-merch-char-tag tag-frank">Frank 橘虎</span>
+            <div class="shop-merch-name">Frank 画师立牌</div>
+            <div class="shop-merch-price-row">
+              <span class="shop-merch-price">¥88</span>
+              <button class="shop-merch-cart-btn" onclick="event.stopPropagation();addToCart('Frank 画师立牌',88,'../assets/images/Frank Stand (Transparent).png')">🛒</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kayu Stand -->
+        <div class="shop-merch-card" data-category="stand" onclick="openModal('modal-kayu-stand')">
+          <div class="shop-merch-img">
+            <img src="../assets/images/Kayu Stand (Transparent).png" alt="Kayu Stand">
+          </div>
+          <div class="shop-merch-info">
+            <span class="shop-merch-char-tag tag-kayu">Kayu 白熊</span>
+            <div class="shop-merch-name">Kayu 温柔立牌</div>
+            <div class="shop-merch-price-row">
+              <span class="shop-merch-price">¥88</span>
+              <button class="shop-merch-cart-btn" onclick="event.stopPropagation();addToCart('Kayu 温柔立牌',88,'../assets/images/Kayu Stand (Transparent).png')">🛒</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- TON Stand -->
+        <div class="shop-merch-card" data-category="stand" onclick="openModal('modal-ton-stand')">
+          <div class="shop-merch-img">
+            <img src="../assets/images/TON Stand (Transparent).png" alt="TON Stand">
+          </div>
+          <div class="shop-merch-info">
+            <span class="shop-merch-char-tag tag-ton">TON 茶色狼</span>
+            <div class="shop-merch-name">TON 文艺立牌</div>
+            <div class="shop-merch-price-row">
+              <span class="shop-merch-price">¥88</span>
+              <button class="shop-merch-cart-btn" onclick="event.stopPropagation();addToCart('TON 文艺立牌',88,'../assets/images/TON Stand (Transparent).png')">🛒</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- TigerBoo Plush -->
+        <div class="shop-merch-card" data-category="plush" onclick="openModal('modal-tigerboo-plush')">
+          <div class="shop-merch-img">
+            <div class="shop-merch-badges">
+              <span class="shop-merch-badge badge-hot">热门</span>
+              <span class="shop-merch-badge badge-limited">限量</span>
+            </div>
+            <img src="../assets/images/TigerZ TigerBoo Sticker (Game Mascot NETA Mascot) (Transparent).png" alt="TigerBoo">
+          </div>
+          <div class="shop-merch-info">
+            <span class="shop-merch-char-tag tag-tigerz">TigerBoo</span>
+            <div class="shop-merch-name">TigerBoo 毛绒挂件</div>
+            <div class="shop-merch-price-row">
+              <span class="shop-merch-price">¥68</span>
+              <button class="shop-merch-cart-btn" onclick="event.stopPropagation();addToCart('TigerBoo 毛绒挂件',68,'../assets/images/TigerZ TigerBoo Sticker (Game Mascot NETA Mascot) (Transparent).png')">🛒</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tito Strike Chibi Sticker -->
+        <div class="shop-merch-card" data-category="sticker" onclick="openModal('modal-tito-strike')">
+          <div class="shop-merch-img">
+            <img src="../assets/images/Tito Strike Chibi (Transparent).png" alt="Tito Strike">
+          </div>
+          <div class="shop-merch-info">
+            <span class="shop-merch-char-tag tag-tito">Tito 灰蓝狼</span>
+            <div class="shop-merch-name">Tito Strike Chibi 贴纸</div>
+            <div class="shop-merch-price-row">
+              <span class="shop-merch-price">¥25</span>
+              <button class="shop-merch-cart-btn" onclick="event.stopPropagation();addToCart('Tito Strike Chibi 贴纸',25,'../assets/images/Tito Strike Chibi (Transparent).png')">🛒</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Frank Sketch Sticker -->
+        <div class="shop-merch-card" data-category="sticker" onclick="openModal('modal-frank-no')">
+          <div class="shop-merch-img">
+            <img src="../assets/images/Frank NOOOO Sticker (Transparent).png" alt="Frank NOOOO">
+          </div>
+          <div class="shop-merch-info">
+            <span class="shop-merch-char-tag tag-frank">Frank 橘虎</span>
+            <div class="shop-merch-name">Frank NOOOO 表情贴纸</div>
+            <div class="shop-merch-price-row">
+              <span class="shop-merch-price">¥22</span>
+              <button class="shop-merch-cart-btn" onclick="event.stopPropagation();addToCart('Frank NOOOO 表情贴纸',22,'../assets/images/Frank NOOOO Sticker (Transparent).png')">🛒</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Summer Walk Sticker -->
+        <div class="shop-merch-card" data-category="sticker" onclick="openModal('modal-summer-walk')">
+          <div class="shop-merch-img">
+            <img src="../assets/images/Summer Walk Sticker (with Tito TigerZ) (Transparent).png" alt="Summer Walk">
+          </div>
+          <div class="shop-merch-info">
+            <span class="shop-merch-char-tag tag-tito">Tito & TigerZ</span>
+            <div class="shop-merch-name">夏日散步 双人贴纸</div>
+            <div class="shop-merch-price-row">
+              <span class="shop-merch-price">¥32</span>
+              <button class="shop-merch-cart-btn" onclick="event.stopPropagation();addToCart('夏日散步 双人贴纸',32,'../assets/images/Summer Walk Sticker (with Tito TigerZ) (Transparent).png')">🛒</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-col" style="margin-right:var(--space-xl);">
+        <div class="footer-brand">☕ 头头咖啡屋</div>
+      </div>
+      <div class="footer-col">
+        <h4>导航</h4>
+        <a href="../index.html">首页</a>
+        <a href="characters.html">角色介绍</a>
+        <a href="shop.html">周边商店</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Cart Floating Button -->
+  <div class="cart-float" id="cartFloat" onclick="toggleCart()">
+    🛒
+    <div class="cart-float-count" id="cartCount" style="display:none;">0</div>
+  </div>
+
+  <!-- Cart Sidebar -->
+  <div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h3>🛒 购物车</h3>
+      <span class="cart-close" onclick="toggleCart()">✕</span>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <p style="color:var(--text-muted); text-align:center; padding:2rem 0;">购物车是空的 ☕<br>去逛逛周边吧！</p>
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>合计</span>
+        <span id="cartTotal">¥0</span>
+      </div>
+      <button class="cart-checkout" onclick="checkout()">结算</button>
+    </div>
+  </div>
+
+  <!-- Modals (reuse from main page, plus new ones) -->
+  <div class="modal-overlay" id="modal-tito-stand">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('modal-tito-stand')">✕</button>
+      <div class="modal-img"><img src="../assets/images/Tito Stand (Transparent).png"></div>
+      <h3 class="modal-title">Tito 亚克力立牌</h3>
+      <div class="modal-price">¥88</div>
+      <p class="modal-desc">店长Tito的精致立牌，约15cm高，采用高质量亚克力材质。灰蓝狼的温柔微笑，放在桌面上每天都能看到。</p>
+      <button class="modal-add-btn" onclick="addToCart('Tito 亚克力立牌',88,'../assets/images/Tito Stand (Transparent).png'); closeModal('modal-tito-stand');">加入购物车</button>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="modal-tigerz-chibi">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('modal-tigerz-chibi')">✕</button>
+      <div class="modal-img"><img src="../assets/images/TigerZ Gaming Chibi (Transparent).png"></div>
+      <h3 class="modal-title">TigerZ 游戏Chibi 贴纸包</h3>
+      <div class="modal-price">¥28</div>
+      <p class="modal-desc">TigerZ打游戏时的可爱Chibi造型贴纸，防水材质，适合装饰笔记本、手机壳等。一套6张，元气满满！</p>
+      <button class="modal-add-btn" onclick="addToCart('TigerZ 游戏Chibi贴纸包',28,'../assets/images/TigerZ Gaming Chibi (Transparent).png'); closeModal('modal-tigerz-chibi');">加入购物车</button>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="modal-kayu-yeah">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('modal-kayu-yeah')">✕</button>
+      <div class="modal-img"><img src="../assets/images/Kayu Yeah! Chibi (Transparent).png"></div>
+      <h3 class="modal-title">Kayu Yeah! Chibi 亚克力挂件</h3>
+      <div class="modal-price">¥45</div>
+      <p class="modal-desc">Kayu举双手Yeah的可爱瞬间！亚克力挂件，可挂在包包或手机上，每天都有好心情 🐻</p>
+      <button class="modal-add-btn" onclick="addToCart('Kayu Yeah! Chibi 亚克力挂件',45,'../assets/images/Kayu Yeah! Chibi (Transparent).png'); closeModal('modal-kayu-yeah');">加入购物车</button>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="modal-ton-guitar">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('modal-ton-guitar')">✕</button>
+      <div class="modal-img"><img src="../assets/images/TON Playing Guitar Sticker (Transparent).png"></div>
+      <h3 class="modal-title">TON 弹吉他 徽章套装</h3>
+      <div class="modal-price">¥58</div>
+      <p class="modal-desc">TON弹吉他时的徽章套装，限量100套。包含3枚金属徽章，精致礼盒包装。文艺狼的音乐灵魂！</p>
+      <button class="modal-add-btn" onclick="addToCart('TON 弹吉他 徽章套装',58,'../assets/images/TON Playing Guitar Sticker (Transparent).png'); closeModal('modal-ton-guitar');">加入购物车</button>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="modal-tito-strike">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('modal-tito-strike')">✕</button>
+      <div class="modal-img"><img src="../assets/images/Tito Strike Chibi (Transparent).png"></div>
+      <h3 class="modal-title">Tito Strike Chibi 贴纸</h3>
+      <div class="modal-price">¥25</div>
+      <p class="modal-desc">Tito招牌Strike表情的贴纸！Q版Chibi风格，防水材质，一套4张。店长的可爱暴击！</p>
+      <button class="modal-add-btn" onclick="addToCart('Tito Strike Chibi 贴纸',25,'../assets/images/Tito Strike Chibi (Transparent).png'); closeModal('modal-tito-strike');">加入购物车</button>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="modal-frank-no">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('modal-frank-no')">✕</button>
+      <div class="modal-img"><img src="../assets/images/Frank NOOOO Sticker (Transparent).png"></div>
+      <h3 class="modal-title">Frank NOOOO 表情贴纸</h3>
+      <div class="modal-price">¥22</div>
+      <p class="modal-desc">Frank"我不想画了！"的经典表情贴纸，每个画师都懂的瞬间 😂 一套4张，防水材质。</p>
+      <button class="modal-add-btn" onclick="addToCart('Frank NOOOO 表情贴纸',22,'../assets/images/Frank NOOOO Sticker (Transparent).png'); closeModal('modal-frank-no');">加入购物车</button>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="modal-summer-walk">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('modal-summer-walk')">✕</button>
+      <div class="modal-img"><img src="../assets/images/Summer Walk Sticker (with Tito TigerZ) (Transparent).png"></div>
+      <h3 class="modal-title">夏日散步 双人贴纸</h3>
+      <div class="modal-price">¥32</div>
+      <p class="modal-desc">Tito和TigerZ一起散步的夏日贴纸，温暖又治愈。一套5张，防水材质，适合装饰手账和笔记本。</p>
+      <button class="modal-add-btn" onclick="addToCart('夏日散步 双人贴纸',32,'../assets/images/Summer Walk Sticker (with Tito TigerZ) (Transparent).png'); closeModal('modal-summer-walk');">加入购物车</button>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="modal-frank-stand">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('modal-frank-stand')">✕</button>
+      <div class="modal-img"><img src="../assets/images/Frank Stand (Transparent).png"></div>
+      <h3 class="modal-title">Frank 画师立牌</h3>
+      <div class="modal-price">¥88</div>
+      <p class="modal-desc">Frank专注画画的瞬间，立牌尺寸约15cm，精致还原画师认真的脸。放在桌上提醒自己：别摸鱼了！</p>
+      <button class="modal-add-btn" onclick="addToCart('Frank 画师立牌',88,'../assets/images/Frank Stand (Transparent).png'); closeModal('modal-frank-stand');">加入购物车</button>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="modal-kayu-stand">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('modal-kayu-stand')">✕</button>
+      <div class="modal-img"><img src="../assets/images/Kayu Stand (Transparent).png"></div>
+      <h3 class="modal-title">Kayu 温柔立牌</h3>
+      <div class="modal-price">¥88</div>
+      <p class="modal-desc">Kayu安静微笑的立牌，白色大熊的温柔气质扑面而来。放在沙发旁边的桌上，仿佛他在陪你发呆。</p>
+      <button class="modal-add-btn" onclick="addToCart('Kayu 温柔立牌',88,'../assets/images/Kayu Stand (Transparent).png'); closeModal('modal-kayu-stand');">加入购物车</button>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="modal-tigerboo-plush">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('modal-tigerboo-plush')">✕</button>
+      <div class="modal-img"><img src="../assets/images/TigerZ TigerBoo Sticker (Game Mascot NETA Mascot) (Transparent).png"></div>
+      <h3 class="modal-title">TigerBoo 毛绒挂件</h3>
+      <div class="modal-price">¥68</div>
+      <p class="modal-desc">TigerZ的游戏吉祥物TigerBoo化身毛绒挂件！软fufu的触感，限量版，先到先得。挂在包上，每天都有游戏元气！</p>
+      <button class="modal-add-btn" onclick="addToCart('TigerBoo 毛绒挂件',68,'../assets/images/TigerZ TigerBoo Sticker (Game Mascot NETA Mascot) (Transparent).png'); closeModal('modal-tigerboo-plush');">加入购物车</button>
+    </div>
+  </div>
+
+  <script src="../js/main.js"></script>
+  <script>
+    // Shop Filter
+    function filterShop(category, btn) {
+      const cards = document.querySelectorAll('.shop-merch-card');
+      const btns = document.querySelectorAll('.shop-filter-btn');
+      btns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      let count = 0;
+      cards.forEach(card => {
+        if (category === 'all' || card.dataset.category === category) {
+          card.style.display = '';
+          count++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+      document.getElementById('shopCount').textContent = count;
+    }
+
+    // Cart Logic
+    let cart = [];
+
+    function addToCart(name, price, img) {
+      const existing = cart.find(item => item.name === name);
+      if (existing) {
+        existing.qty++;
+      } else {
+        cart.push({ name, price, img, qty: 1 });
+      }
+      updateCartUI();
+      showNotification('已加入购物车！ ☕');
+    }
+
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      updateCartUI();
+    }
+
+    function updateCartUI() {
+      const count = cart.reduce((sum, item) => sum + item.qty, 0);
+      const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+      const countEl = document.getElementById('cartCount');
+      if (count > 0) {
+        countEl.style.display = 'flex';
+        countEl.textContent = count;
+      } else {
+        countEl.style.display = 'none';
+      }
+      document.getElementById('cartTotal').textContent = '¥' + total;
+
+      const itemsEl = document.getElementById('cartItems');
+      if (cart.length === 0) {
+        itemsEl.innerHTML = '<p style="color:var(--text-muted); text-align:center; padding:2rem 0;">购物车是空的 ☕<br>去逛逛周边吧！</p>';
+      } else {
+        itemsEl.innerHTML = cart.map((item, i) => `
+          <div class="cart-item">
+            <div class="cart-item-img"><img src="${item.img}"></div>
+            <div class="cart-item-info">
+              <div class="cart-item-name">${item.name}</div>
+              <div class="cart-item-price">¥${item.price} × ${item.qty}</div>
+            </div>
+            <span style="cursor:pointer; color:var(--text-muted);" onclick="removeFromCart(${i})">✕</span>
+          </div>
+        `).join('');
+      }
+    }
+
+    function toggleCart() {
+      document.getElementById('cartSidebar').classList.toggle('open');
+    }
+
+    function checkout() {
+      if (cart.length === 0) return;
+      showNotification('订单已提交！我们会尽快处理 ☕');
+      cart = [];
+      updateCartUI();
+      toggleCart();
+    }
+  </script>
+</body>
+</html>

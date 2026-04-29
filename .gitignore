@@ -1,0 +1,38 @@
+# WorkBuddy internal files
+.workbuddy/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temporary files
+*.log
+*.tmp
+*.cache
+
+# Node modules (if added later)
+node_modules/
+package-lock.json
+yarn.lock
+
+# Build output (if added later)
+dist/
+build/
+	out/
+
+# Environment files
+.env
+.env.local
+.env.production
+
+# Misc
+*.zip
+*.tar.gz

@@ -1,0 +1,10 @@
+# Netlify Redirects for clean URLs
+# If you want to remove .html extensions, uncomment below:
+# /characters /pages/characters.html 200
+# /shop /pages/shop.html 200
+# /gallery /pages/gallery.html 200
+# /about /pages/about.html 200
+
+# Handle 404
+/pages/* /pages/404.html 404
+/* /index.html 200

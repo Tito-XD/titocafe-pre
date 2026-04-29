@@ -1,0 +1,21 @@
+[build]
+  publish = "."
+  command = ""
+
+[context.production]
+  publish = "."
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[functions]
+  directory = "netlify/functions"
+
+[dev]
+  publish = "."
+  command = ""
+  targetPort = 8888
+  port = 8888
+  live = true
