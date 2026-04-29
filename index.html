@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tito's Cafe | 头头咖啡屋</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">☕</span>
+                <span class="logo-text">Tito's Cafe</span>
+            </a>
+            <button class="nav-toggle" id="navToggle" aria-label="菜单">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="active">首页</a></li>
+                <li><a href="characters.html">角色</a></li>
+                <li><a href="products.html">周边</a></li>
+                <li><a href="about.html">关于</a></li>
+                <li><a href="contact.html">联系</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 英雄区域 -->
+    <header class="hero" id="hero">
+        <div class="hero-background">
+            <div class="hero-gradient"></div>
+            <div class="hero-particles" id="particles"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-badge">Furry × Coffee Culture</div>
+            <h1 class="hero-title">
+                <span class="title-main">Tito's Cafe</span>
+                <span class="title-sub">头头咖啡屋</span>
+            </h1>
+            <p class="hero-tagline">让可爱与醇香伴你左右</p>
+            <div class="hero-cta">
+                <a href="characters.html" class="btn btn-primary">探索角色</a>
+                <a href="products.html" class="btn btn-secondary">选购周边</a>
+            </div>
+        </div>
+        <div class="hero-character show" id="heroCharacter">
+            <div class="character-glow"></div>
+            <img src="images/Tito Stand (Transparent).png" alt="Tito - 店长" class="character-main">
+            <div class="character-shadow"></div>
+        </div>
+        <div class="scroll-indicator">
+            <span>向下探索</span>
+            <div class="scroll-arrow"></div>
+        </div>
+    </header>
+
+    <!-- 角色阵容 -->
+    <section class="characters-preview" id="charactersPreview">
+        <div class="section-header light">
+            <span class="section-tag">角色阵容</span>
+            <h2 class="section-title">可爱的伙伴们</h2>
+            <p class="section-subtitle">Meet Our Furry Friends</p>
+        </div>
+        <div class="character-carousel" id="characterCarousel">
+            <div class="carousel-track" id="carouselTrack"></div>
+            <button class="carousel-btn prev" id="carouselPrev">❮</button>
+            <button class="carousel-btn next" id="carouselNext">❯</button>
+            <div class="carousel-dots" id="carouselDots"></div>
+        </div>
+        <div class="section-cta">
+            <a href="characters.html" class="btn btn-outline">查看全部角色</a>
+        </div>
+    </section>
+
+    <!-- 产品展示 -->
+    <section class="featured-products" id="featuredProducts">
+        <div class="section-header">
+            <span class="section-tag">精选周边</span>
+            <h2 class="section-title">把头头带回家</h2>
+            <p class="section-subtitle">Take Tito Home</p>
+        </div>
+        <div class="products-grid">
+            <div class="product-card featured">
+                <div class="product-badge">热门</div>
+                <div class="product-image">
+                    <img src="images/Tito Sketch Set (Clean BG).png" alt="Tito's Cafe限定周边">
+                </div>
+                <div class="product-info">
+                    <h3>Tito's Cafe 限定周边套装</h3>
+                    <p>包含马克杯、明信片、贴纸组合</p>
+                    <span class="product-price">¥168</span>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="images/TigerZ TigerBoo Sticker (Game Mascot NETA Mascot) (Transparent).png" alt="角色贴纸">
+                </div>
+                <div class="product-info">
+                    <h3>TigerBoo 贴纸包</h3>
+                    <p>游戏吉祥物主题 · 12枚入</p>
+                    <span class="product-price">¥28</span>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="images/TON Playing Guitar Sticker (Transparent).png" alt="艺术微喷明信片">
+                </div>
+                <div class="product-info">
+                    <h3>TON 音乐主题马克杯</h3>
+                    <p>陶瓷材质 · 350ml</p>
+                    <span class="product-price">¥58</span>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="images/Summer Walk Sticker (with Tito TigerZ) (Transparent).png" alt="夏日限定">
+                </div>
+                <div class="product-info">
+                    <h3>Summer Walk 夏日系列</h3>
+                    <p>Tito & TigerZ 主题贴纸</p>
+                    <span class="product-price">¥32</span>
+                </div>
+            </div>
+        </div>
+        <div class="section-cta">
+            <a href="products.html" class="btn btn-primary">浏览全部周边</a>
+        </div>
+    </section>
+
+    <!-- 咖啡文化 -->
+    <section class="coffee-culture" id="coffeeCulture">
+        <div class="culture-content">
+            <div class="culture-text">
+                <span class="section-tag dark">关于我们</span>
+                <h2>温暖的咖啡屋</h2>
+                <p>Tito's Cafe 是一个为Furry社区打造的温暖空间。我们相信，一个好的咖啡馆不仅仅是提供咖啡的场所，更是一个让人感到归属的地方。</p>
+                <p>每一件周边都承载着创作者的心意，每一杯咖啡都代表着我们的热情。</p>
+                <div class="culture-features">
+                    <div class="feature-item">
+                        <span class="feature-icon">🎯</span>
+                        <span>精选单一产地咖啡豆</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">🎨</span>
+                        <span>TSURU原创角色设计</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">💜</span>
+                        <span>为社区量身打造</span>
+                    </div>
+                </div>
+            </div>
+            <div class="culture-visual">
+                <div class="visual-stack">
+                    <div class="stack-item stack-1">
+                        <img src="images/Kayu Avatar (Transparent).png" alt="Kayu">
+                    </div>
+                    <div class="stack-item stack-2">
+                        <img src="images/Frank Avatar (Transparent).png" alt="Frank">
+                    </div>
+                    <div class="stack-item stack-3">
+                        <img src="images/TigerZ Avatar (Transparent).png" alt="TigerZ">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer" id="footer">
+        <div class="footer-main">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <span class="logo-icon">☕</span>
+                    <span>Tito's Cafe</span>
+                </div>
+                <p>Furry × Coffee Culture<br>让可爱与醇香伴你左右</p>
+            </div>
+            <div class="footer-links">
+                <div class="link-group">
+                    <h4>导航</h4>
+                    <ul>
+                        <li><a href="index.html">首页</a></li>
+                        <li><a href="characters.html">角色</a></li>
+                        <li><a href="products.html">周边</a></li>
+                    </ul>
+                </div>
+                <div class="link-group">
+                    <h4>关于</h4>
+                    <ul>
+                        <li><a href="about.html">我们的故事</a></li>
+                        <li><a href="contact.html">联系方式</a></li>
+                    </ul>
+                </div>
+                <div class="link-group">
+                    <h4>关注</h4>
+                    <div class="social-links">
+                        <a href="#" class="social-link">微博</a>
+                        <a href="#" class="social-link">Twitter</a>
+                        <a href="#" class="social-link">微信</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Tito's Cafe. All rights reserved.</p>
+            <p class="footer-credit">Illustrations by TSURU</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

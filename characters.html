@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>角色展示 | Tito's Cafe</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/characters.css">
+</head>
+<body>
+    <nav class="navbar scrolled" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">☕</span>
+                <span class="logo-text">Tito's Cafe</span>
+            </a>
+            <button class="nav-toggle" id="navToggle" aria-label="菜单">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="characters.html" class="active">角色</a></li>
+                <li><a href="products.html">周边</a></li>
+                <li><a href="about.html">关于</a></li>
+                <li><a href="contact.html">联系</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="header-bg">
+            <div class="header-gradient"></div>
+        </div>
+        <div class="header-content">
+            <span class="page-tag">Meet Our Friends</span>
+            <h1 class="page-title">角色展示</h1>
+            <p class="page-subtitle">每一位角色都有独特的故事</p>
+        </div>
+    </header>
+
+    <section class="characters-section">
+        <div class="filter-bar">
+            <button class="filter-btn active" data-filter="all">全部</button>
+            <button class="filter-btn" data-filter="main">主角</button>
+            <button class="filter-btn" data-filter="friend">好友</button>
+            <button class="filter-btn" data-filter="mascot">吉祥物</button>
+        </div>
+
+        <div class="characters-grid" id="charactersGrid">
+            <!-- Tito -->
+            <div class="character-card" data-category="main" data-id="tito">
+                <div class="card-visual">
+                    <div class="card-bg"></div>
+                    <div class="card-image">
+                        <img src="images/Tito Stand (Transparent).png" alt="Tito" class="character-img">
+                    </div>
+                    <div class="card-overlay">
+                        <div class="overlay-content">
+                            <h3>Tito</h3>
+                            <p>店长 · 灰蓝狼</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-info">
+                    <h3>Tito</h3>
+                    <div class="card-tags">
+                        <span class="tag main">主角</span>
+                        <span class="tag cafe">店长</span>
+                    </div>
+                    <p class="card-description">Tito's Cafe的店长，温柔的灰蓝狼。总是带着微笑迎接每一位访客，是咖啡屋的灵魂人物。</p>
+                </div>
+            </div>
+
+            <!-- TigerZ -->
+            <div class="character-card" data-category="friend" data-id="tigerz">
+                <div class="card-visual">
+                    <div class="card-bg"></div>
+                    <div class="card-image">
+                        <img src="images/TigerZ Stand (Transparent).png" alt="TigerZ" class="character-img">
+                    </div>
+                    <div class="card-overlay">
+                        <div class="overlay-content">
+                            <h3>TigerZ</h3>
+                            <p>浅蓝老虎 · 游戏达人</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-info">
+                    <h3>TigerZ</h3>
+                    <div class="card-tags">
+                        <span class="tag gaming">游戏</span>
+                        <span class="tag friend">好友</span>
+                    </div>
+                    <p class="card-description">活力四射的浅蓝老虎，游戏高手。无论什么游戏都能轻松驾驭，是咖啡屋的游戏担当。</p>
+                </div>
+            </div>
+
+            <!-- Frank -->
+            <div class="character-card" data-category="friend" data-id="frank">
+                <div class="card-visual">
+                    <div class="card-bg"></div>
+                    <div class="card-image">
+                        <img src="images/Frank Stand (Transparent).png" alt="Frank" class="character-img">
+                    </div>
+                    <div class="card-overlay">
+                        <div class="overlay-content">
+                            <h3>Frank</h3>
+                            <p>橘色老虎 · 艺术系</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-info">
+                    <h3>Frank</h3>
+                    <div class="card-tags">
+                        <span class="tag art">艺术</span>
+                        <span class="tag friend">好友</span>
+                    </div>
+                    <p class="card-description">充满艺术气息的橘色老虎，绘画达人。经常在咖啡屋角落画画，作品深受大家喜爱。</p>
+                </div>
+            </div>
+
+            <!-- Kayu -->
+            <div class="character-card" data-category="friend" data-id="kayu">
+                <div class="card-visual">
+                    <div class="card-bg"></div>
+                    <div class="card-image">
+                        <img src="images/Kayu Stand (Transparent).png" alt="Kayu" class="character-img">
+                    </div>
+                    <div class="card-overlay">
+                        <div class="overlay-content">
+                            <h3>Kayu</h3>
+                            <p>白色熊 · 户外系</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-info">
+                    <h3>Kayu</h3>
+                    <div class="card-tags">
+                        <span class="tag outdoor">户外</span>
+                        <span class="tag friend">好友</span>
+                    </div>
+                    <p class="card-description">阳光开朗的白色熊熊，热爱户外和自然。总是带着夏日的活力出现在咖啡屋。</p>
+                </div>
+            </div>
+
+            <!-- TON -->
+            <div class="character-card" data-category="friend" data-id="ton">
+                <div class="card-visual">
+                    <div class="card-bg"></div>
+                    <div class="card-image">
+                        <img src="images/TON Stand (Transparent).png" alt="TON" class="character-img">
+                    </div>
+                    <div class="card-overlay">
+                        <div class="overlay-content">
+                            <h3>TON</h3>
+                            <p>茶色狼 · 音乐家</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-info">
+                    <h3>TON</h3>
+                    <div class="card-tags">
+                        <span class="tag music">音乐</span>
+                        <span class="tag friend">好友</span>
+                    </div>
+                    <p class="card-description">热爱音乐的茶色狼，吉他手。他的吉他声是咖啡屋最美的背景音乐。</p>
+                </div>
+            </div>
+
+            <!-- Diandian -->
+            <div class="character-card" data-category="friend" data-id="diandian">
+                <div class="card-visual">
+                    <div class="card-bg"></div>
+                    <div class="card-image">
+                        <img src="images/TON with Diandian (Pet Cat) Sticker (Transparent).png" alt="Diandian" class="character-img">
+                    </div>
+                    <div class="card-overlay">
+                        <div class="overlay-content">
+                            <h3>Diandian</h3>
+                            <p>点点 · 宠物猫</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-info">
+                    <h3>Diandian</h3>
+                    <div class="card-tags">
+                        <span class="tag pet">宠物</span>
+                        <span class="tag cute">可爱</span>
+                    </div>
+                    <p class="card-description">TON的宠物猫点点，小巧可爱。经常窝在TON身边，是咖啡屋的团宠。</p>
+                </div>
+            </div>
+
+            <!-- TigerBoo -->
+            <div class="character-card" data-category="mascot" data-id="tigerboo">
+                <div class="card-visual">
+                    <div class="card-bg"></div>
+                    <div class="card-image">
+                        <img src="images/TigerZ TigerBoo Sticker (Game Mascot NETA Mascot) (Transparent).png" alt="TigerBoo" class="character-img">
+                    </div>
+                    <div class="card-overlay">
+                        <div class="overlay-content">
+                            <h3>TigerBoo</h3>
+                            <p>游戏吉祥物</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-info">
+                    <h3>TigerBoo</h3>
+                    <div class="card-tags">
+                        <span class="tag gaming">游戏</span>
+                        <span class="tag mascot">吉祥物</span>
+                    </div>
+                    <p class="card-description">TigerZ设计的游戏吉祥物，可爱又带点神秘感的小家伙。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="character-story-cta">
+        <div class="cta-content">
+            <h2>想更深入了解角色故事？</h2>
+            <p>探索每位角色背后的创作灵感与日常趣事</p>
+            <a href="about.html" class="btn btn-primary">了解更多</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-main">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <span class="logo-icon">☕</span>
+                    <span>Tito's Cafe</span>
+                </div>
+                <p>Furry × Coffee Culture<br>让可爱与醇香伴你左右</p>
+            </div>
+            <div class="footer-links">
+                <div class="link-group">
+                    <h4>导航</h4>
+                    <ul>
+                        <li><a href="index.html">首页</a></li>
+                        <li><a href="characters.html">角色</a></li>
+                        <li><a href="products.html">周边</a></li>
+                    </ul>
+                </div>
+                <div class="link-group">
+                    <h4>关于</h4>
+                    <ul>
+                        <li><a href="about.html">我们的故事</a></li>
+                        <li><a href="contact.html">联系方式</a></li>
+                    </ul>
+                </div>
+                <div class="link-group">
+                    <h4>关注</h4>
+                    <div class="social-links">
+                        <a href="#" class="social-link">微博</a>
+                        <a href="#" class="social-link">Twitter</a>
+                        <a href="#" class="social-link">微信</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Tito's Cafe. All rights reserved.</p>
+            <p class="footer-credit">Illustrations by TSURU</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/characters.js"></script>
+</body>
+</html>
