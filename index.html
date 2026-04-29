@@ -2,569 +2,734 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tito's Cafe | 头头咖啡屋</title>
-<meta name="description" content="头头咖啡屋 — Furry周边与原创角色企划">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>头头咖啡屋 | Tito's Cafe — 原创 Furry 角色周边</title>
+<meta name="description" content="头头咖啡屋 Tito's Cafe — 原创 Furry 角色设定与限定周边，温暖的小世界等你来。">
+<link rel="icon" href="assets/Tito Avatar (Transparent).png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@600;900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Inter:wght@300;400;500;600;700&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
 <style>
 /* ═══════════════════════════════════════════
-   Tito's Cafe — Design System
+   RESET & BASE
    ═══════════════════════════════════════════ */
-
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-:root {
-  /* Core Palette */
-  --espresso: #2C1810;
-  --mocha: #5C3D2E;
-  --latte: #C4A882;
-  --cream: #F5EDE3;
-  --foam: #FFFDF9;
-  --caramel: #D4956A;
-  --cinnamon: #8B5E3C;
-  --matcha: #7B9E6B;
-  --berry: #9B4D6E;
-
-  /* Functional — Light Mode */
-  --bg: #FFFDF9;
-  --bg-alt: #F5EDE3;
-  --bg-card: #FFFCF7;
-  --text: #2C1810;
-  --text-sub: #6B5344;
-  --text-muted: #9C8B7E;
-  --border: #E8DDD0;
-  --shadow-sm: 0 2px 8px rgba(44,24,16,0.06);
-  --shadow-md: 0 4px 20px rgba(44,24,16,0.10);
-  --shadow-lg: 0 8px 40px rgba(44,24,16,0.14);
-  --accent: #D4956A;
-  --accent-hover: #C4855A;
-  --tag-bg: rgba(212,149,106,0.12);
-  --overlay: rgba(44,24,16,0.55);
-
-  /* Spacing */
-  --s1: 0.25rem; --s2: 0.5rem; --s3: 1rem; --s4: 1.5rem;
-  --s5: 2rem; --s6: 3rem; --s8: 4rem; --s10: 6rem; --s12: 8rem;
-
-  /* Type */
-  --font-display: 'Playfair Display', 'Noto Serif SC', serif;
-  --font-body: 'Noto Sans SC', sans-serif;
-  --font-serif: 'Noto Serif SC', serif;
-
-  /* Radius */
-  --r-sm: 6px; --r-md: 12px; --r-lg: 20px; --r-xl: 32px;
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#FBF7F2;--bg-alt:#F3EDE5;--surface:#FFFFFF;--surface-alt:#FAF6F0;
+  --primary:#C8956C;--primary-light:#E8C4A0;--primary-dark:#A07050;
+  --secondary:#7BA7BC;--secondary-light:#A8CCDD;
+  --accent:#E88B6A;--accent-light:#F5B8A0;
+  --text:#3D3028;--text-secondary:#8B7B6B;--text-muted:#B8A898;
+  --border:#E8DDD4;--border-light:#F0E8E0;
+  --shadow:rgba(60,45,30,.08);--shadow-md:rgba(60,45,30,.12);--shadow-lg:rgba(60,45,30,.16);
+  --glow:rgba(200,149,108,.2);
+  --glass:rgba(255,255,255,.72);--glass-border:rgba(255,255,255,.4);
+  --radius:16px;--radius-sm:10px;--radius-lg:24px;--radius-xl:32px;
+  --font-serif:'Noto Serif SC',Georgia,'Times New Roman',serif;
+  --font-sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --font-hand:'Caveat',cursive;
+  --transition:all .3s cubic-bezier(.4,0,.2,1);
+  --transition-slow:all .5s cubic-bezier(.4,0,.2,1);
+  --nav-h:72px;
+}
+[data-theme="dark"]{
+  --bg:#1C1816;--bg-alt:#221E1A;--surface:#2A2420;--surface-alt:#302A24;
+  --primary:#D4A574;--primary-light:#E8C4A0;--primary-dark:#B08050;
+  --secondary:#8DBDD4;--secondary-light:#A8D4E8;
+  --accent:#F0A080;--accent-light:#F5C0A0;
+  --text:#F0E8E0;--text-secondary:#A89888;--text-muted:#786858;
+  --border:#3A3228;--border-light:#443A30;
+  --shadow:rgba(0,0,0,.2);--shadow-md:rgba(0,0,0,.3);--shadow-lg:rgba(0,0,0,.4);
+  --glow:rgba(212,165,116,.15);
+  --glass:rgba(30,26,22,.78);--glass-border:rgba(80,70,60,.3);
 }
 
-[data-theme="dark"] {
-  --bg: #1A1210;
-  --bg-alt: #241A14;
-  --bg-card: #2C2018;
-  --text: #F5EDE3;
-  --text-sub: #C4A882;
-  --text-muted: #8B7B6E;
-  --border: #3D2E22;
-  --shadow-sm: 0 2px 8px rgba(0,0,0,0.2);
-  --shadow-md: 0 4px 20px rgba(0,0,0,0.3);
-  --shadow-lg: 0 8px 40px rgba(0,0,0,0.4);
-  --accent: #E8A870;
-  --accent-hover: #F0B880;
-  --tag-bg: rgba(232,168,112,0.15);
-  --overlay: rgba(10,6,4,0.7);
+/* ═══════════════════════════════════════════
+   TYPOGRAPHY & GENERAL
+   ═══════════════════════════════════════════ */
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;scroll-padding-top:var(--nav-h)}
+body{
+  font-family:var(--font-sans);color:var(--text);background:var(--bg);
+  line-height:1.7;overflow-x:hidden;transition:background .4s,color .4s;
+}
+a{color:var(--primary);text-decoration:none;transition:var(--transition)}
+a:hover{color:var(--accent)}
+img{max-width:100%;height:auto;display:block}
+button{cursor:pointer;font-family:inherit;border:none;background:none}
+ul{list-style:none}
+
+/* ═══════════════════════════════════════════
+   LAYOUT UTILITIES
+   ═══════════════════════════════════════════ */
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+.section-pad{padding:100px 0}
+.tag{
+  display:inline-block;padding:4px 12px;border-radius:20px;font-size:.75rem;font-weight:600;
+  background:var(--bg-alt);color:var(--text-secondary);border:1px solid var(--border-light);
+  transition:var(--transition);
+}
+.section-label{
+  font-family:var(--font-hand);font-size:1.1rem;color:var(--primary);
+  letter-spacing:.05em;margin-bottom:8px;
+}
+.section-title{
+  font-family:var(--font-serif);font-size:clamp(1.8rem,4vw,2.6rem);
+  font-weight:700;color:var(--text);margin-bottom:12px;line-height:1.3;
+}
+.section-desc{
+  font-size:1rem;color:var(--text-secondary);max-width:560px;
+  margin-bottom:48px;line-height:1.8;
+}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:.1s}.reveal-delay-2{transition-delay:.18s}
+.reveal-delay-3{transition-delay:.26s}.reveal-delay-4{transition-delay:.34s}
+.reveal-delay-5{transition-delay:.42s}
+
+/* ═══════════════════════════════════════════
+   SCROLL PROGRESS BAR
+   ═══════════════════════════════════════════ */
+.progress-bar{
+  position:fixed;top:0;left:0;height:3px;z-index:1000;
+  background:linear-gradient(90deg,var(--primary),var(--accent));
+  width:0;transition:width .15s ease;border-radius:0 2px 2px 0;
 }
 
-html { scroll-behavior: smooth; font-size: 16px; }
-
-body {
-  font-family: var(--font-body);
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.7;
-  overflow-x: hidden;
-  transition: background 0.4s, color 0.4s;
+/* ═══════════════════════════════════════════
+   NAVIGATION
+   ═══════════════════════════════════════════ */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:900;height:var(--nav-h);
+  display:flex;align-items:center;transition:var(--transition);
+}
+.nav.scrolled{
+  background:var(--glass);backdrop-filter:blur(20px) saturate(1.4);
+  -webkit-backdrop-filter:blur(20px) saturate(1.4);
+  border-bottom:1px solid var(--glass-border);box-shadow:0 2px 24px var(--shadow);
+}
+.nav-inner{
+  max-width:1200px;margin:0 auto;padding:0 24px;width:100%;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.nav-brand{
+  display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.05rem;
+  color:var(--text);text-decoration:none;
+}
+.nav-brand img{width:36px;height:36px;border-radius:50%;object-fit:cover;border:2px solid var(--primary-light)}
+.nav-links{display:flex;gap:28px}
+.nav-links a{
+  color:var(--text-secondary);font-size:.9rem;font-weight:500;
+  position:relative;padding:4px 0;text-decoration:none;
+}
+.nav-links a::after{
+  content:'';position:absolute;bottom:-2px;left:0;width:0;height:2px;
+  background:var(--primary);border-radius:1px;transition:width .3s ease;
+}
+.nav-links a:hover{color:var(--text)}
+.nav-links a:hover::after{width:100%}
+.nav-actions{display:flex;align-items:center;gap:8px}
+.btn-icon{
+  width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+  color:var(--text-secondary);font-size:1.1rem;transition:var(--transition);
+  position:relative;
+}
+.btn-icon:hover{background:var(--bg-alt);color:var(--text)}
+.cart-count{
+  position:absolute;top:2px;right:2px;width:18px;height:18px;border-radius:50%;
+  background:var(--accent);color:#fff;font-size:.65rem;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;transform:scale(.5);transition:var(--transition);
+}
+.cart-count.show{opacity:1;transform:scale(1)}
+.nav-toggle{
+  display:none;flex-direction:column;gap:5px;width:28px;padding:4px 0;
+}
+.nav-toggle span{
+  width:100%;height:2px;background:var(--text);border-radius:2px;transition:var(--transition);
 }
 
-a { color: inherit; text-decoration: none; }
-img { max-width: 100%; display: block; }
-button { font-family: inherit; cursor: pointer; border: none; background: none; }
-ul { list-style: none; }
+/* Theme toggle icons */
+.theme-toggle svg{width:18px;height:18px}
+.sun-icon,.moon-icon{transition:var(--transition)}
+[data-theme="dark"] .sun-icon{display:none}
+[data-theme="dark"] .moon-icon{display:block}
+.sun-icon{display:block}
+.moon-icon{display:none}
 
-/* Utility */
-.container { max-width: 1200px; margin: 0 auto; padding: 0 var(--s5); }
-.section-pad { padding: var(--s10) 0; }
-.tag {
-  display: inline-block; padding: 4px 14px; border-radius: 99px;
-  font-size: 0.75rem; font-weight: 500; background: var(--tag-bg); color: var(--accent);
-  letter-spacing: 0.02em;
+/* ═══════════════════════════════════════════
+   HERO
+   ═══════════════════════════════════════════ */
+.hero{
+  min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;
+  padding-top:var(--nav-h);
 }
-.section-label {
-  font-family: var(--font-display); font-size: 0.8rem; text-transform: uppercase;
-  letter-spacing: 0.2em; color: var(--text-muted); margin-bottom: var(--s2);
-}
-.section-title {
-  font-family: var(--font-display); font-size: clamp(2rem, 4vw, 2.8rem);
-  font-weight: 900; line-height: 1.2; margin-bottom: var(--s3);
-}
-.section-desc {
-  color: var(--text-sub); font-size: 1.05rem; max-width: 560px; line-height: 1.8;
-}
-
-/* Scroll reveal */
-.reveal {
-  opacity: 0; transform: translateY(32px);
-  transition: opacity 0.7s cubic-bezier(.22,1,.36,1), transform 0.7s cubic-bezier(.22,1,.36,1);
-}
-.reveal.visible { opacity: 1; transform: translateY(0); }
-.reveal-delay-1 { transition-delay: 0.1s; }
-.reveal-delay-2 { transition-delay: 0.2s; }
-.reveal-delay-3 { transition-delay: 0.3s; }
-.reveal-delay-4 { transition-delay: 0.4s; }
-.reveal-delay-5 { transition-delay: 0.5s; }
-
-/* ═══════ NAV ═══════ */
-.nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  padding: var(--s3) 0;
-  background: transparent;
-  transition: background 0.3s, box-shadow 0.3s, padding 0.3s;
-}
-.nav.scrolled {
-  background: var(--bg); box-shadow: var(--shadow-sm); padding: var(--s2) 0;
-  backdrop-filter: blur(12px);
-}
-[data-theme="dark"] .nav.scrolled { background: rgba(26,18,16,0.92); }
-.nav-inner {
-  display: flex; align-items: center; justify-content: space-between; max-width: 1200px;
-  margin: 0 auto; padding: 0 var(--s5);
-}
-.nav-brand {
-  font-family: var(--font-display); font-size: 1.4rem; font-weight: 900;
-  display: flex; align-items: center; gap: var(--s2);
-}
-.nav-brand img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; }
-.nav-links { display: flex; gap: var(--s5); align-items: center; }
-.nav-links a {
-  font-size: 0.9rem; font-weight: 500; color: var(--text-sub);
-  position: relative; transition: color 0.2s;
-}
-.nav-links a:hover { color: var(--text); }
-.nav-links a::after {
-  content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px;
-  background: var(--accent); transition: width 0.3s;
-}
-.nav-links a:hover::after { width: 100%; }
-.nav-actions { display: flex; align-items: center; gap: var(--s3); }
-.btn-icon {
-  width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center;
-  color: var(--text-sub); transition: background 0.2s, color 0.2s; font-size: 1.1rem;
-  position: relative;
-}
-.btn-icon:hover { background: var(--tag-bg); color: var(--accent); }
-.cart-count {
-  position: absolute; top: 2px; right: 2px; width: 18px; height: 18px;
-  background: var(--accent); color: #fff; font-size: 0.65rem; font-weight: 700;
-  border-radius: 50%; display: grid; place-items: center;
-  transform: scale(0); transition: transform 0.3s cubic-bezier(.68,-0.55,.27,1.55);
-}
-.cart-count.show { transform: scale(1); }
-
-/* Mobile nav */
-.nav-toggle { display: none; flex-direction: column; gap: 5px; padding: 8px; }
-.nav-toggle span { width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: all 0.3s; }
-
-/* ═══════ HERO ═══════ */
-.hero {
-  min-height: 100vh; display: flex; align-items: center;
-  position: relative; overflow: hidden;
-  padding-top: 80px;
-}
-.hero-bg {
-  position: absolute; inset: 0; z-index: 0;
+.hero-bg{
+  position:absolute;inset:0;z-index:0;
   background:
-    radial-gradient(ellipse 80% 60% at 70% 40%, rgba(212,149,106,0.12) 0%, transparent 70%),
-    radial-gradient(ellipse 60% 80% at 20% 80%, rgba(196,168,130,0.08) 0%, transparent 60%);
+    radial-gradient(ellipse 80% 60% at 70% 40%,var(--glow),transparent),
+    radial-gradient(ellipse 50% 80% at 20% 80%,rgba(123,167,188,.08),transparent),
+    linear-gradient(180deg,var(--bg),var(--bg-alt));
 }
-.hero-inner {
-  display: grid; grid-template-columns: 1fr 1fr; gap: var(--s8); align-items: center;
-  position: relative; z-index: 1;
+.hero-particles{
+  position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden;
 }
-.hero-text { max-width: 540px; }
-.hero-eyebrow {
-  font-family: var(--font-display); font-size: 0.85rem; letter-spacing: 0.15em;
-  color: var(--accent); text-transform: uppercase; margin-bottom: var(--s3);
+.particle{
+  position:absolute;border-radius:50%;opacity:.4;
+  animation:float-up linear infinite;
 }
-.hero-title {
-  font-family: var(--font-display); font-size: clamp(3rem, 6vw, 4.5rem);
-  font-weight: 900; line-height: 1.1; margin-bottom: var(--s4);
+@keyframes float-up{
+  0%{transform:translateY(0) scale(1);opacity:.4}
+  50%{opacity:.6}
+  100%{transform:translateY(-100vh) scale(.3);opacity:0}
 }
-.hero-title .accent { color: var(--accent); }
-.hero-sub {
-  font-size: 1.15rem; color: var(--text-sub); line-height: 1.8;
-  margin-bottom: var(--s6);
+.hero-inner{
+  position:relative;z-index:2;display:grid;
+  grid-template-columns:1fr 1fr;gap:60px;align-items:center;
+  min-height:calc(100vh - var(--nav-h));
 }
-.hero-actions { display: flex; gap: var(--s3); flex-wrap: wrap; }
-.btn-primary {
-  display: inline-flex; align-items: center; gap: var(--s2);
-  padding: 14px 32px; border-radius: var(--r-lg);
-  background: var(--accent); color: #fff; font-weight: 600; font-size: 0.95rem;
-  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
-  box-shadow: 0 4px 16px rgba(212,149,106,0.3);
+.hero-text{padding:40px 0}
+.hero-eyebrow{
+  font-family:var(--font-hand);font-size:1.15rem;color:var(--primary);
+  margin-bottom:16px;letter-spacing:.08em;
 }
-.btn-primary:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 6px 24px rgba(212,149,106,0.4); }
-.btn-secondary {
-  display: inline-flex; align-items: center; gap: var(--s2);
-  padding: 14px 32px; border-radius: var(--r-lg);
-  border: 2px solid var(--border); color: var(--text); font-weight: 600; font-size: 0.95rem;
-  transition: border-color 0.2s, transform 0.2s;
+.hero-title{
+  font-family:var(--font-serif);font-size:clamp(2.4rem,5vw,3.8rem);
+  font-weight:700;line-height:1.25;margin-bottom:24px;color:var(--text);
 }
-.btn-secondary:hover { border-color: var(--accent); transform: translateY(-2px); }
+.hero-title .accent{
+  background:linear-gradient(135deg,var(--primary),var(--accent));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.hero-sub{
+  font-size:1.05rem;color:var(--text-secondary);line-height:1.9;
+  margin-bottom:36px;max-width:440px;
+}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:14px 32px;border-radius:14px;font-weight:600;font-size:.95rem;
+  background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+  color:#fff;box-shadow:0 4px 20px var(--glow);transition:var(--transition);
+  text-decoration:none;
+}
+.btn-primary:hover{
+  transform:translateY(-2px);box-shadow:0 8px 32px var(--glow);color:#fff;
+}
+.btn-secondary{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:14px 32px;border-radius:14px;font-weight:600;font-size:.95rem;
+  background:var(--surface);color:var(--text);
+  border:1.5px solid var(--border);transition:var(--transition);text-decoration:none;
+}
+.btn-secondary:hover{
+  border-color:var(--primary);color:var(--primary);transform:translateY(-2px);
+  box-shadow:0 4px 16px var(--shadow);
+}
+.hero-visual{position:relative;display:flex;justify-content:center;align-items:center}
+.hero-image{
+  max-height:520px;object-fit:contain;filter:drop-shadow(0 20px 40px var(--shadow-lg));
+  transition:transform .6s cubic-bezier(.4,0,.2,1);
+  animation:hero-float 6s ease-in-out infinite;
+}
+.hero-image:hover{transform:scale(1.03) rotate(-1deg)}
+@keyframes hero-float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-12px)}
+}
+.hero-float{
+  position:absolute;width:100px;height:100px;object-fit:contain;
+  filter:drop-shadow(0 8px 20px var(--shadow));
+  transition:var(--transition);
+}
+.hero-float-1{bottom:10%;left:-5%;animation:float-1 5s ease-in-out infinite}
+.hero-float-2{top:10%;right:-5%;animation:float-2 7s ease-in-out infinite}
+.hero-float:hover{transform:scale(1.15) rotate(5deg)}
+@keyframes float-1{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-18px) rotate(3deg)}}
+@keyframes float-2{0%,100%{transform:translateY(0) rotate(3deg)}50%{transform:translateY(-14px) rotate(-3deg)}}
 
-.hero-visual {
-  position: relative; display: flex; justify-content: center; align-items: center;
+/* ═══════════════════════════════════════════
+   CHARACTERS
+   ═══════════════════════════════════════════ */
+.chars{background:var(--bg-alt)}
+.chars-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:24px}
+.char-card{
+  background:var(--surface);border-radius:var(--radius-lg);overflow:hidden;
+  border:1px solid var(--border-light);transition:var(--transition);
+  cursor:pointer;position:relative;
 }
-.hero-image {
-  width: 100%; max-width: 480px; border-radius: var(--r-xl);
-  box-shadow: var(--shadow-lg); position: relative; z-index: 2;
-  transition: transform 0.4s;
+.char-card:hover{
+  transform:translateY(-6px);box-shadow:0 16px 48px var(--shadow-md);
+  border-color:var(--primary-light);
 }
-.hero-image:hover { transform: scale(1.02) rotate(-1deg); }
-.hero-float {
-  position: absolute; border-radius: var(--r-lg); box-shadow: var(--shadow-md);
-  z-index: 3; transition: transform 0.4s;
+.char-card.featured{
+  grid-column:span 2;
+  background:linear-gradient(135deg,var(--surface),var(--surface-alt));
+  border:1.5px solid var(--primary-light);
 }
-.hero-float-1 { width: 100px; top: -10px; right: -20px; transform: rotate(8deg); }
-.hero-float-1:hover { transform: rotate(12deg) scale(1.1); }
-.hero-float-2 { width: 80px; bottom: 20px; left: -10px; transform: rotate(-6deg); }
-.hero-float-2:hover { transform: rotate(-2deg) scale(1.1); }
+.char-card.featured .char-visual img{max-height:400px}
+.char-visual{
+  display:flex;justify-content:center;align-items:center;padding:24px;
+  position:relative;min-height:240px;
+  background:radial-gradient(ellipse at center,var(--bg-alt),transparent);
+}
+.char-visual img{
+  max-height:300px;object-fit:contain;
+  filter:drop-shadow(0 8px 24px var(--shadow));
+  transition:transform .5s cubic-bezier(.4,0,.2,1);
+}
+.char-card:hover .char-visual img{transform:scale(1.06) translateY(-4px)}
+.char-species{
+  position:absolute;top:16px;right:16px;
+  background:var(--surface);box-shadow:0 2px 8px var(--shadow);
+}
+.char-info{padding:0 24px 24px}
+.char-name{
+  font-family:var(--font-serif);font-size:1.3rem;font-weight:700;
+  margin-bottom:6px;color:var(--text);display:flex;align-items:baseline;gap:8px;
+}
+.char-name-en{font-family:var(--font-sans);font-size:.85rem;font-weight:400;color:var(--text-muted)}
+.char-desc{font-size:.9rem;color:var(--text-secondary);line-height:1.7;margin-bottom:14px}
+.char-traits{display:flex;flex-wrap:wrap;gap:8px}
 
-/* ═══════ CHARACTERS ═══════ */
-.chars { background: var(--bg-alt); }
-.chars-grid {
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: var(--s5); margin-top: var(--s6);
+/* ═══════════════════════════════════════════
+   CHARACTER MODAL
+   ═══════════════════════════════════════════ */
+.char-modal-overlay{
+  position:fixed;inset:0;z-index:950;background:rgba(0,0,0,.5);
+  backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;
+  padding:24px;opacity:0;transition:opacity .3s ease;
 }
-.char-card {
-  background: var(--bg-card); border-radius: var(--r-lg); overflow: hidden;
-  box-shadow: var(--shadow-sm); transition: transform 0.3s, box-shadow 0.3s;
-  position: relative; border: 1px solid var(--border);
+.char-modal-overlay.open{display:flex;opacity:1}
+.char-modal{
+  background:var(--surface);border-radius:var(--radius-xl);max-width:720px;width:100%;
+  max-height:90vh;overflow-y:auto;position:relative;
+  box-shadow:0 32px 80px rgba(0,0,0,.3);transform:scale(.95);
+  transition:transform .3s ease;
 }
-.char-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); }
-.char-card.featured {
-  grid-column: span 2; display: grid; grid-template-columns: 1fr 1fr;
-  border: 2px solid var(--accent);
+.char-modal-overlay.open .char-modal{transform:scale(1)}
+.char-modal-close{
+  position:absolute;top:16px;right:16px;width:40px;height:40px;border-radius:50%;
+  background:var(--glass);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;
+  font-size:1.3rem;color:var(--text);z-index:10;transition:var(--transition);
+  border:1px solid var(--border-light);
 }
-.char-visual {
-  background: var(--bg-alt); display: flex; align-items: flex-end; justify-content: center;
-  overflow: hidden; position: relative; min-height: 300px;
+.char-modal-close:hover{background:var(--accent);color:#fff}
+.char-modal-visual{
+  display:flex;justify-content:center;padding:48px 32px 24px;
+  background:radial-gradient(ellipse at center,var(--bg-alt),var(--surface));
 }
-.char-visual img {
-  width: 100%; height: 100%; object-fit: contain; object-position: bottom center;
-  transition: transform 0.4s;
+.char-modal-visual img{
+  max-height:360px;object-fit:contain;
+  filter:drop-shadow(0 12px 32px var(--shadow-lg));
 }
-.char-card:hover .char-visual img { transform: scale(1.05); }
-.char-visual .char-species {
-  position: absolute; top: var(--s3); left: var(--s3);
+.char-modal-body{padding:0 36px 36px}
+.char-modal-name{
+  font-family:var(--font-serif);font-size:2rem;font-weight:700;
+  margin-bottom:4px;display:flex;align-items:baseline;gap:10px;
 }
-.char-info { padding: var(--s4); }
-.char-name {
-  font-family: var(--font-display); font-size: 1.4rem; font-weight: 700;
-  margin-bottom: var(--s1);
+.char-modal-name span{font-size:1rem;font-weight:400;color:var(--text-muted)}
+.char-modal-role{
+  font-family:var(--font-hand);font-size:1.1rem;color:var(--primary);
+  margin-bottom:16px;
 }
-.char-name-en { color: var(--text-muted); font-size: 0.85rem; font-weight: 400; }
-.char-desc { color: var(--text-sub); font-size: 0.9rem; line-height: 1.7; margin-top: var(--s2); }
-.char-traits { display: flex; flex-wrap: wrap; gap: var(--s2); margin-top: var(--s3); }
+.char-modal-desc{
+  font-size:.95rem;color:var(--text-secondary);line-height:1.9;margin-bottom:20px;
+}
+.char-modal-traits{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.char-modal-traits .tag{background:var(--primary-light);color:var(--primary-dark);border:none}
+[data-theme="dark"] .char-modal-traits .tag{background:rgba(212,165,116,.15);color:var(--primary)}
 
-/* ═══════ SHOP ═══════ */
-.shop-filters {
-  display: flex; gap: var(--s2); flex-wrap: wrap; margin: var(--s5) 0;
+/* ═══════════════════════════════════════════
+   SHOP
+   ═══════════════════════════════════════════ */
+.shop-filters{
+  display:flex;gap:10px;flex-wrap:wrap;margin-bottom:36px;
 }
-.filter-btn {
-  padding: 8px 20px; border-radius: 99px; font-size: 0.85rem; font-weight: 500;
-  border: 1.5px solid var(--border); color: var(--text-sub);
-  transition: all 0.2s;
+.filter-btn{
+  padding:10px 22px;border-radius:12px;font-size:.85rem;font-weight:600;
+  background:var(--surface);color:var(--text-secondary);
+  border:1.5px solid var(--border);transition:var(--transition);
 }
-.filter-btn:hover { border-color: var(--accent); color: var(--accent); }
-.filter-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+.filter-btn:hover{border-color:var(--primary-light);color:var(--text)}
+.filter-btn.active{
+  background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+  color:#fff;border-color:transparent;box-shadow:0 4px 16px var(--glow);
+}
+.shop-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:24px}
+.product-card{
+  background:var(--surface);border-radius:var(--radius);overflow:hidden;
+  border:1px solid var(--border-light);transition:var(--transition);
+}
+.product-card:hover{
+  transform:translateY(-4px);box-shadow:0 12px 36px var(--shadow-md);
+  border-color:var(--primary-light);
+}
+.product-card.hidden{display:none}
+.product-img{
+  position:relative;overflow:hidden;aspect-ratio:1;display:flex;align-items:center;
+  justify-content:center;background:var(--bg-alt);
+}
+.product-img img{
+  max-width:80%;max-height:80%;object-fit:contain;
+  transition:transform .4s cubic-bezier(.4,0,.2,1);
+}
+.product-card:hover .product-img img{transform:scale(1.08)}
+.product-badge{
+  position:absolute;top:12px;left:12px;padding:5px 12px;border-radius:8px;
+  font-size:.7rem;font-weight:700;letter-spacing:.04em;
+}
+.badge-new{background:#4CAF50;color:#fff}
+.badge-hot{background:#FF5722;color:#fff}
+.badge-limited{background:#9C27B0;color:#fff}
+.badge-special{background:linear-gradient(135deg,#FFD700,#FFA000);color:#3D3028}
+.product-body{padding:16px}
+.product-name{
+  font-weight:600;font-size:.95rem;margin-bottom:4px;
+  color:var(--text);line-height:1.4;
+}
+.product-char{font-size:.78rem;color:var(--text-muted);margin-bottom:12px}
+.product-bottom{display:flex;align-items:center;justify-content:space-between}
+.product-price{
+  font-family:var(--font-serif);font-size:1.15rem;font-weight:700;color:var(--accent);
+}
+.btn-add{
+  padding:8px 18px;border-radius:10px;font-size:.8rem;font-weight:600;
+  background:var(--primary);color:#fff;transition:var(--transition);
+}
+.btn-add:hover{background:var(--primary-dark);transform:scale(1.05)}
+.btn-add:active{transform:scale(.95)}
 
-.shop-grid {
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: var(--s5);
+/* ═══════════════════════════════════════════
+   GALLERY
+   ═══════════════════════════════════════════ */
+.gallery{background:var(--bg-alt)}
+.gallery-tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:36px}
+.gallery-tab{
+  padding:10px 22px;border-radius:12px;font-size:.85rem;font-weight:600;
+  background:var(--surface);color:var(--text-secondary);
+  border:1.5px solid var(--border);transition:var(--transition);
 }
-.product-card {
-  background: var(--bg-card); border-radius: var(--r-lg); overflow: hidden;
-  box-shadow: var(--shadow-sm); border: 1px solid var(--border);
-  transition: transform 0.3s, box-shadow 0.3s;
+.gallery-tab:hover{border-color:var(--primary-light);color:var(--text)}
+.gallery-tab.active{
+  background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+  color:#fff;border-color:transparent;
 }
-.product-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
-.product-img {
-  aspect-ratio: 1; background: var(--bg-alt); display: flex; align-items: center;
-  justify-content: center; overflow: hidden; position: relative; cursor: pointer;
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  grid-auto-rows:200px;gap:16px;
 }
-.product-img img { width: 100%; height: 100%; object-fit: contain; padding: var(--s4); transition: transform 0.4s; }
-.product-card:hover .product-img img { transform: scale(1.08); }
-.product-badge {
-  position: absolute; top: var(--s2); left: var(--s2);
-  padding: 4px 10px; border-radius: var(--r-sm); font-size: 0.7rem;
-  font-weight: 700; color: #fff;
+.gallery-item{
+  position:relative;border-radius:var(--radius);overflow:hidden;cursor:pointer;
+  transition:var(--transition);
 }
-.badge-new { background: var(--matcha); }
-.badge-hot { background: var(--berry); }
-.badge-limited { background: var(--caramel); }
-.product-body { padding: var(--s3) var(--s4) var(--s4); }
-.product-name { font-weight: 600; font-size: 0.95rem; margin-bottom: var(--s1); }
-.product-char { color: var(--text-muted); font-size: 0.8rem; margin-bottom: var(--s2); }
-.product-bottom { display: flex; align-items: center; justify-content: space-between; }
-.product-price { font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; color: var(--accent); }
-.btn-add {
-  padding: 8px 18px; border-radius: var(--r-md); background: var(--accent);
-  color: #fff; font-size: 0.8rem; font-weight: 600;
-  transition: background 0.2s, transform 0.2s;
+.gallery-item.wide{grid-column:span 2}
+.gallery-item.tall{grid-row:span 2}
+.gallery-item:hover{transform:scale(1.02);z-index:2}
+.gallery-item.hidden{display:none}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.gallery-item:hover img{transform:scale(1.08)}
+.gallery-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(0deg,rgba(0,0,0,.65) 0%,transparent 50%);
+  display:flex;align-items:flex-end;padding:16px;
+  opacity:0;transition:opacity .3s ease;
 }
-.btn-add:hover { background: var(--accent-hover); transform: scale(1.05); }
-
-/* ═══════ GALLERY ═══════ */
-.gallery { background: var(--bg-alt); }
-.gallery-grid {
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: var(--s3); margin-top: var(--s6);
-}
-.gallery-item {
-  border-radius: var(--r-md); overflow: hidden; cursor: pointer;
-  position: relative; aspect-ratio: 1;
-  box-shadow: var(--shadow-sm); transition: transform 0.3s, box-shadow 0.3s;
-}
-.gallery-item.wide { grid-column: span 2; aspect-ratio: 2/1; }
-.gallery-item.tall { grid-row: span 2; aspect-ratio: 1/2; }
-.gallery-item:hover { transform: scale(1.03); box-shadow: var(--shadow-md); z-index: 2; }
-.gallery-item img { width: 100%; height: 100%; object-fit: cover; }
-.gallery-overlay {
-  position: absolute; inset: 0; background: linear-gradient(transparent 50%, rgba(44,24,16,0.6));
-  opacity: 0; transition: opacity 0.3s; display: flex; align-items: flex-end; padding: var(--s3);
-}
-.gallery-item:hover .gallery-overlay { opacity: 1; }
-.gallery-overlay span { color: #fff; font-size: 0.85rem; font-weight: 500; }
-
-/* ═══════ STORY ═══════ */
-.story-grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: var(--s8);
-  align-items: center; margin-top: var(--s6);
-}
-.story-img {
-  border-radius: var(--r-xl); overflow: hidden; box-shadow: var(--shadow-lg);
-}
-.story-img img { width: 100%; transition: transform 0.4s; }
-.story-img:hover img { transform: scale(1.03); }
-.story-content h3 {
-  font-family: var(--font-display); font-size: 1.6rem; font-weight: 700;
-  margin-bottom: var(--s3);
-}
-.story-content p { color: var(--text-sub); line-height: 1.9; margin-bottom: var(--s4); }
-
-/* ═══════ GUESTBOOK ═══════ */
-.guestbook { background: var(--bg-alt); }
-.gb-form {
-  display: flex; gap: var(--s3); margin-bottom: var(--s5); flex-wrap: wrap;
-}
-.gb-input {
-  flex: 1; min-width: 200px; padding: 14px 20px; border-radius: var(--r-lg);
-  border: 1.5px solid var(--border); background: var(--bg-card); color: var(--text);
-  font-size: 0.95rem; transition: border-color 0.2s;
-}
-.gb-input:focus { outline: none; border-color: var(--accent); }
-.gb-submit {
-  padding: 14px 32px; border-radius: var(--r-lg); background: var(--accent);
-  color: #fff; font-weight: 600; transition: background 0.2s;
-}
-.gb-submit:hover { background: var(--accent-hover); }
-.gb-messages { display: flex; flex-direction: column; gap: var(--s3); }
-.gb-msg {
-  background: var(--bg-card); border-radius: var(--r-lg); padding: var(--s4);
-  border: 1px solid var(--border); animation: slideIn 0.3s ease;
-}
-.gb-msg-header { display: flex; align-items: center; gap: var(--s2); margin-bottom: var(--s2); }
-.gb-msg-avatar {
-  width: 36px; height: 36px; border-radius: 50%; background: var(--tag-bg);
-  display: grid; place-items: center; font-size: 1rem;
-}
-.gb-msg-name { font-weight: 600; font-size: 0.9rem; }
-.gb-msg-time { color: var(--text-muted); font-size: 0.75rem; margin-left: auto; }
-.gb-msg-text { color: var(--text-sub); font-size: 0.9rem; line-height: 1.7; }
-
-@keyframes slideIn {
-  from { opacity: 0; transform: translateY(12px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* ═══════ FOOTER ═══════ */
-.footer {
-  padding: var(--s8) 0 var(--s5); border-top: 1px solid var(--border);
-}
-.footer-inner {
-  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: var(--s6);
-}
-.footer-brand { max-width: 300px; }
-.footer-brand-name {
-  font-family: var(--font-display); font-size: 1.3rem; font-weight: 900;
-  margin-bottom: var(--s2);
-}
-.footer-brand p { color: var(--text-sub); font-size: 0.9rem; line-height: 1.7; }
-.footer-col h4 {
-  font-size: 0.85rem; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 0.1em; margin-bottom: var(--s3); color: var(--text-muted);
-}
-.footer-col a {
-  display: block; color: var(--text-sub); font-size: 0.9rem; padding: 4px 0;
-  transition: color 0.2s;
-}
-.footer-col a:hover { color: var(--accent); }
-.footer-bottom {
-  margin-top: var(--s6); padding-top: var(--s4); border-top: 1px solid var(--border);
-  display: flex; justify-content: space-between; align-items: center;
-  color: var(--text-muted); font-size: 0.8rem;
-}
-
-/* ═══════ CART SIDEBAR ═══════ */
-.cart-overlay {
-  position: fixed; inset: 0; background: var(--overlay); z-index: 200;
-  opacity: 0; pointer-events: none; transition: opacity 0.3s;
-}
-.cart-overlay.open { opacity: 1; pointer-events: auto; }
-.cart-sidebar {
-  position: fixed; top: 0; right: 0; bottom: 0; width: 400px; max-width: 90vw;
-  background: var(--bg); z-index: 201; transform: translateX(100%);
-  transition: transform 0.4s cubic-bezier(.22,1,.36,1);
-  display: flex; flex-direction: column; box-shadow: var(--shadow-lg);
-}
-.cart-sidebar.open { transform: translateX(0); }
-.cart-header {
-  padding: var(--s4) var(--s5); border-bottom: 1px solid var(--border);
-  display: flex; justify-content: space-between; align-items: center;
-}
-.cart-header h3 { font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; }
-.cart-close { font-size: 1.5rem; color: var(--text-muted); transition: color 0.2s; padding: 8px; }
-.cart-close:hover { color: var(--text); }
-.cart-items { flex: 1; overflow-y: auto; padding: var(--s3) var(--s5); }
-.cart-empty { text-align: center; padding: var(--s8) 0; color: var(--text-muted); }
-.cart-item {
-  display: flex; gap: var(--s3); padding: var(--s3) 0;
-  border-bottom: 1px solid var(--border); align-items: center;
-}
-.cart-item-img {
-  width: 64px; height: 64px; border-radius: var(--r-md); background: var(--bg-alt);
-  flex-shrink: 0; overflow: hidden;
-}
-.cart-item-img img { width: 100%; height: 100%; object-fit: contain; padding: 4px; }
-.cart-item-info { flex: 1; }
-.cart-item-name { font-weight: 600; font-size: 0.9rem; }
-.cart-item-price { color: var(--accent); font-size: 0.85rem; }
-.cart-item-qty {
-  display: flex; align-items: center; gap: var(--s2); margin-top: 4px;
-}
-.qty-btn {
-  width: 26px; height: 26px; border-radius: 50%; border: 1px solid var(--border);
-  display: grid; place-items: center; font-size: 0.85rem; color: var(--text-sub);
-  transition: border-color 0.2s;
-}
-.qty-btn:hover { border-color: var(--accent); color: var(--accent); }
-.cart-item-remove { color: var(--text-muted); font-size: 0.8rem; cursor: pointer; }
-.cart-item-remove:hover { color: var(--berry); }
-.cart-footer {
-  padding: var(--s4) var(--s5); border-top: 1px solid var(--border);
-}
-.cart-total {
-  display: flex; justify-content: space-between; font-size: 1.1rem;
-  font-weight: 700; margin-bottom: var(--s3);
-}
-.cart-total .price { color: var(--accent); font-family: var(--font-display); }
-.btn-checkout {
-  width: 100%; padding: 14px; border-radius: var(--r-lg); background: var(--accent);
-  color: #fff; font-weight: 700; font-size: 1rem; transition: background 0.2s;
-}
-.btn-checkout:hover { background: var(--accent-hover); }
-
-/* ═══════ LIGHTBOX ═══════ */
-.lightbox {
-  position: fixed; inset: 0; z-index: 300; background: rgba(0,0,0,0.9);
-  display: flex; align-items: center; justify-content: center;
-  opacity: 0; pointer-events: none; transition: opacity 0.3s;
-}
-.lightbox.open { opacity: 1; pointer-events: auto; }
-.lightbox img {
-  max-width: 90vw; max-height: 85vh; object-fit: contain; border-radius: var(--r-md);
-}
-.lightbox-close {
-  position: absolute; top: 20px; right: 24px; font-size: 2rem; color: #fff;
-  cursor: pointer; transition: color 0.2s;
-}
-.lightbox-close:hover { color: var(--accent); }
-.lightbox-caption {
-  position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
-  color: rgba(255,255,255,0.7); font-size: 0.9rem;
+.gallery-item:hover .gallery-overlay{opacity:1}
+.gallery-overlay span{
+  color:#fff;font-size:.9rem;font-weight:500;
+  text-shadow:0 1px 4px rgba(0,0,0,.4);
 }
 
-/* ═══════ TOAST ═══════ */
-.toast-container {
-  position: fixed; bottom: 24px; right: 24px; z-index: 400;
-  display: flex; flex-direction: column; gap: var(--s2);
+/* ═══════════════════════════════════════════
+   STORY
+   ═══════════════════════════════════════════ */
+.story-block{
+  display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;
+  margin-bottom:80px;
 }
-.toast {
-  padding: 14px 24px; border-radius: var(--r-md); background: var(--espresso);
-  color: var(--cream); font-size: 0.9rem; box-shadow: var(--shadow-md);
-  animation: toastIn 0.3s ease, toastOut 0.3s ease 2.5s forwards;
-  display: flex; align-items: center; gap: var(--s2);
+.story-block:nth-child(even) .story-img{order:2}
+.story-block:nth-child(even) .story-content{order:1}
+.story-img{
+  border-radius:var(--radius-lg);overflow:hidden;
+  box-shadow:0 12px 40px var(--shadow-md);
 }
-@keyframes toastIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes toastOut { to { opacity: 0; transform: translateY(20px); } }
+.story-img img{
+  width:100%;height:100%;object-fit:cover;min-height:320px;
+  transition:transform .6s ease;
+}
+.story-img:hover img{transform:scale(1.04)}
+.story-content h3{
+  font-family:var(--font-serif);font-size:1.5rem;font-weight:700;
+  margin-bottom:16px;color:var(--text);
+}
+.story-content p{
+  font-size:.95rem;color:var(--text-secondary);line-height:1.9;margin-bottom:14px;
+}
+.story-quote{
+  font-family:var(--font-hand);font-size:1.3rem;color:var(--primary);
+  padding:20px 0;border-left:3px solid var(--primary-light);padding-left:20px;
+  margin-top:20px;
+}
 
-/* ═══════ THEME TOGGLE ═══════ */
-.theme-toggle { position: relative; }
-.theme-toggle svg { width: 20px; height: 20px; }
-.sun-icon, .moon-icon { position: absolute; transition: opacity 0.3s, transform 0.3s; }
-[data-theme="dark"] .sun-icon { opacity: 1; transform: rotate(0); }
-[data-theme="dark"] .moon-icon { opacity: 0; transform: rotate(90deg); }
-.sun-icon { opacity: 0; transform: rotate(-90deg); }
-.moon-icon { opacity: 1; transform: rotate(0); }
-
-/* ═══════ RESPONSIVE ═══════ */
-@media (max-width: 900px) {
-  .hero-inner { grid-template-columns: 1fr; text-align: center; }
-  .hero-text { max-width: 100%; }
-  .hero-actions { justify-content: center; }
-  .hero-visual { margin-top: var(--s5); }
-  .char-card.featured { grid-column: span 1; grid-template-columns: 1fr; }
-  .story-grid { grid-template-columns: 1fr; }
-  .footer-inner { grid-template-columns: 1fr 1fr; }
+/* ═══════════════════════════════════════════
+   GUESTBOOK
+   ═══════════════════════════════════════════ */
+.guestbook{background:var(--bg-alt)}
+.gb-form{
+  display:flex;gap:12px;flex-wrap:wrap;margin-bottom:36px;
 }
-@media (max-width: 640px) {
-  .nav-links { display: none; }
-  .nav-links.open {
-    display: flex; flex-direction: column; position: absolute;
-    top: 100%; left: 0; right: 0; background: var(--bg);
-    padding: var(--s4); box-shadow: var(--shadow-md); gap: var(--s3);
+.gb-input{
+  flex:1;min-width:200px;padding:14px 20px;border-radius:14px;
+  border:1.5px solid var(--border);background:var(--surface);color:var(--text);
+  font-size:.9rem;font-family:var(--font-sans);transition:var(--transition);
+}
+.gb-input::placeholder{color:var(--text-muted)}
+.gb-input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px var(--glow)}
+.gb-submit{
+  padding:14px 28px;border-radius:14px;font-weight:600;font-size:.9rem;
+  background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+  color:#fff;transition:var(--transition);
+}
+.gb-submit:hover{transform:translateY(-2px);box-shadow:0 6px 20px var(--glow)}
+.gb-messages{display:flex;flex-direction:column;gap:16px}
+.gb-msg{
+  background:var(--surface);border-radius:var(--radius);padding:20px;
+  border:1px solid var(--border-light);transition:var(--transition);
+}
+.gb-msg:hover{border-color:var(--primary-light);box-shadow:0 4px 16px var(--shadow)}
+.gb-msg-header{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.gb-msg-avatar{
+  width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:1.2rem;background:var(--bg-alt);
+}
+.gb-msg-name{font-weight:600;font-size:.9rem;color:var(--text)}
+.gb-msg-time{font-size:.75rem;color:var(--text-muted);margin-left:auto}
+.gb-msg-text{font-size:.9rem;color:var(--text-secondary);line-height:1.7}
+
+/* ═══════════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════════ */
+.footer{
+  background:var(--surface-alt);border-top:1px solid var(--border-light);
+  padding:64px 0 32px;
+}
+.footer-inner{
+  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px;
+}
+.footer-brand-name{
+  font-family:var(--font-serif);font-size:1.4rem;font-weight:700;
+  color:var(--text);margin-bottom:8px;
+}
+.footer-brand p{font-size:.85rem;color:var(--text-secondary);line-height:1.7;max-width:300px}
+.footer-col h4{
+  font-size:.8rem;font-weight:700;color:var(--text-muted);text-transform:uppercase;
+  letter-spacing:.1em;margin-bottom:16px;
+}
+.footer-col a{
+  display:block;font-size:.88rem;color:var(--text-secondary);
+  margin-bottom:10px;transition:var(--transition);
+}
+.footer-col a:hover{color:var(--primary);padding-left:4px}
+.footer-bottom{
+  display:flex;justify-content:space-between;align-items:center;
+  padding-top:24px;border-top:1px solid var(--border-light);
+  font-size:.8rem;color:var(--text-muted);
+}
+
+/* ═══════════════════════════════════════════
+   CART SIDEBAR
+   ═══════════════════════════════════════════ */
+.cart-overlay{
+  position:fixed;inset:0;z-index:960;background:rgba(0,0,0,.4);
+  backdrop-filter:blur(4px);opacity:0;pointer-events:none;transition:opacity .3s ease;
+}
+.cart-overlay.open{opacity:1;pointer-events:auto}
+.cart-sidebar{
+  position:fixed;top:0;right:0;bottom:0;z-index:970;width:400px;max-width:90vw;
+  background:var(--surface);box-shadow:-8px 0 40px var(--shadow-lg);
+  transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);
+  display:flex;flex-direction:column;
+}
+.cart-sidebar.open{transform:translateX(0)}
+.cart-header{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:20px 24px;border-bottom:1px solid var(--border-light);
+}
+.cart-header h3{font-family:var(--font-serif);font-size:1.2rem}
+.cart-close{
+  width:36px;height:36px;border-radius:10px;display:flex;align-items:center;
+  justify-content:center;font-size:1.3rem;color:var(--text-secondary);transition:var(--transition);
+}
+.cart-close:hover{background:var(--bg-alt);color:var(--text)}
+.cart-items{flex:1;overflow-y:auto;padding:16px 24px}
+.cart-empty{text-align:center;color:var(--text-muted);padding:48px 0;font-size:.95rem}
+.cart-item{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--border-light)}
+.cart-item-img{
+  width:64px;height:64px;border-radius:10px;overflow:hidden;flex-shrink:0;
+  background:var(--bg-alt);display:flex;align-items:center;justify-content:center;
+}
+.cart-item-img img{max-width:90%;max-height:90%;object-fit:contain}
+.cart-item-info{flex:1}
+.cart-item-name{font-weight:600;font-size:.88rem;margin-bottom:2px}
+.cart-item-price{font-size:.8rem;color:var(--text-muted);margin-bottom:8px}
+.cart-item-qty{display:flex;align-items:center;gap:8px;font-size:.85rem}
+.qty-btn{
+  width:28px;height:28px;border-radius:8px;display:flex;align-items:center;
+  justify-content:center;background:var(--bg-alt);color:var(--text);
+  font-weight:600;transition:var(--transition);
+}
+.qty-btn:hover{background:var(--primary-light)}
+.cart-item-remove{
+  margin-left:auto;font-size:.78rem;color:var(--text-muted);cursor:pointer;
+  transition:var(--transition);
+}
+.cart-item-remove:hover{color:var(--accent)}
+.cart-footer{
+  padding:20px 24px;border-top:1px solid var(--border-light);
+}
+.cart-total{
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:1rem;margin-bottom:16px;
+}
+.cart-total .price{font-family:var(--font-serif);font-size:1.3rem;font-weight:700;color:var(--accent)}
+.btn-checkout{
+  width:100%;padding:14px;border-radius:14px;font-weight:600;font-size:.95rem;
+  background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+  color:#fff;transition:var(--transition);
+}
+.btn-checkout:hover{transform:translateY(-2px);box-shadow:0 6px 20px var(--glow)}
+
+/* ═══════════════════════════════════════════
+   LIGHTBOX
+   ═══════════════════════════════════════════ */
+.lightbox{
+  position:fixed;inset:0;z-index:980;background:rgba(0,0,0,.9);
+  backdrop-filter:blur(16px);display:none;align-items:center;justify-content:center;
+  flex-direction:column;padding:24px;opacity:0;transition:opacity .3s ease;
+}
+.lightbox.open{display:flex;opacity:1}
+.lightbox-close{
+  position:absolute;top:20px;right:24px;width:48px;height:48px;border-radius:50%;
+  background:rgba(255,255,255,.1);color:#fff;font-size:1.6rem;
+  display:flex;align-items:center;justify-content:center;transition:var(--transition);
+  z-index:10;
+}
+.lightbox-close:hover{background:rgba(255,255,255,.2)}
+.lightbox-nav{
+  position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;
+  border-radius:50%;background:rgba(255,255,255,.1);color:#fff;font-size:1.3rem;
+  display:flex;align-items:center;justify-content:center;transition:var(--transition);
+  z-index:10;
+}
+.lightbox-nav:hover{background:rgba(255,255,255,.25)}
+.lightbox-prev{left:20px}
+.lightbox-next{right:20px}
+.lightbox img{
+  max-width:85vw;max-height:75vh;object-fit:contain;border-radius:8px;
+  box-shadow:0 8px 40px rgba(0,0,0,.4);
+}
+.lightbox-caption{
+  color:rgba(255,255,255,.8);font-size:.9rem;margin-top:16px;
+  text-align:center;font-weight:500;
+}
+.lightbox-counter{
+  color:rgba(255,255,255,.5);font-size:.78rem;margin-top:8px;
+}
+
+/* ═══════════════════════════════════════════
+   TOAST
+   ═══════════════════════════════════════════ */
+.toast-container{
+  position:fixed;bottom:24px;right:24px;z-index:999;
+  display:flex;flex-direction:column;gap:10px;
+}
+.toast{
+  padding:14px 24px;border-radius:14px;font-size:.88rem;font-weight:500;
+  background:var(--surface);color:var(--text);border:1px solid var(--border);
+  box-shadow:0 8px 24px var(--shadow-md);
+  animation:toast-in .4s ease,toast-out .4s ease 2.6s forwards;
+}
+@keyframes toast-in{from{opacity:0;transform:translateY(16px) scale(.95)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes toast-out{from{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(-8px)}}
+
+/* ═══════════════════════════════════════════
+   BACK TO TOP
+   ═══════════════════════════════════════════ */
+.back-top{
+  position:fixed;bottom:28px;left:28px;z-index:800;
+  width:48px;height:48px;border-radius:50%;
+  background:var(--surface);color:var(--text);border:1.5px solid var(--border);
+  display:flex;align-items:center;justify-content:center;font-size:1.1rem;
+  box-shadow:0 4px 16px var(--shadow);transition:var(--transition);
+  opacity:0;pointer-events:none;transform:translateY(16px);
+}
+.back-top.show{opacity:1;pointer-events:auto;transform:translateY(0)}
+.back-top:hover{
+  background:var(--primary);color:#fff;border-color:var(--primary);
+  transform:translateY(-3px);box-shadow:0 8px 24px var(--glow);
+}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════ */
+@media(max-width:960px){
+  .hero-inner{grid-template-columns:1fr;text-align:center}
+  .hero-visual{margin-top:40px}
+  .hero-sub{margin:0 auto 36px}
+  .hero-actions{justify-content:center}
+  .char-card.featured{grid-column:span 1}
+  .char-card.featured .char-visual img{max-height:300px}
+  .story-block{grid-template-columns:1fr;gap:32px}
+  .story-block:nth-child(even) .story-img{order:0}
+  .story-block:nth-child(even) .story-content{order:0}
+  .footer-inner{grid-template-columns:1fr 1fr;gap:32px}
+  .gallery-grid{grid-template-columns:repeat(3,1fr);grid-auto-rows:180px}
+}
+@media(max-width:640px){
+  .nav-links{
+    display:none;position:fixed;top:var(--nav-h);left:0;right:0;
+    background:var(--glass);backdrop-filter:blur(20px);
+    flex-direction:column;padding:20px 24px;gap:0;
+    border-bottom:1px solid var(--glass-border);
+    transform:translateY(-10px);opacity:0;transition:var(--transition);
   }
-  .nav-toggle { display: flex; }
-  .hero-title { font-size: 2.4rem; }
-  .gallery-grid { grid-template-columns: 1fr 1fr; }
-  .gallery-item.wide { grid-column: span 1; }
-  .gallery-item.tall { grid-row: span 1; aspect-ratio: 1; }
-  .footer-inner { grid-template-columns: 1fr; }
-  .footer-bottom { flex-direction: column; gap: var(--s2); text-align: center; }
+  .nav-links.open{display:flex;transform:translateY(0);opacity:1}
+  .nav-links a{padding:12px 0;border-bottom:1px solid var(--border-light)}
+  .nav-links a:last-child{border:none}
+  .nav-toggle{display:flex}
+  .hero-title{font-size:clamp(1.8rem,8vw,2.6rem)}
+  .gallery-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:160px}
+  .gallery-item.wide{grid-column:span 1}
+  .shop-grid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
+  .footer-inner{grid-template-columns:1fr}
+  .footer-bottom{flex-direction:column;gap:8px;text-align:center}
+  .section-pad{padding:64px 0}
+  .gb-form{flex-direction:column}
+  .lightbox-nav{display:none}
 }
 
-/* ═══════ SCROLLBAR ═══════ */
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: var(--bg-alt); }
-::-webkit-scrollbar-thumb { background: var(--latte); border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: var(--cinnamon); }
+/* ═══════════════════════════════════════════
+   SCROLLBAR
+   ═══════════════════════════════════════════ */
+::-webkit-scrollbar{width:8px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
+::-webkit-scrollbar-thumb:hover{background:var(--text-muted)}
 </style>
 </head>
 <body>
 
-<!-- ═══════ NAV ═══════ -->
+<!-- ═══════ SCROLL PROGRESS ═══════ -->
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- ═══════ NAVIGATION ═══════ -->
 <nav class="nav" id="nav">
   <div class="nav-inner">
     <a href="#" class="nav-brand">
       <img src="assets/Tito Avatar (Transparent).png" alt="Tito">
-      Tito's Cafe
+      头头咖啡屋
     </a>
     <div class="nav-links" id="navLinks">
       <a href="#characters">角色</a>
@@ -591,14 +756,15 @@ ul { list-style: none; }
 <!-- ═══════ HERO ═══════ -->
 <section class="hero" id="hero">
   <div class="hero-bg"></div>
+  <div class="hero-particles" id="heroParticles"></div>
   <div class="container hero-inner">
     <div class="hero-text">
       <p class="hero-eyebrow reveal">✦ Welcome to Tito's Cafe ✦</p>
       <h1 class="hero-title reveal reveal-delay-1">
-        一杯温热<br><span class="accent">毛茸茸</span>的咖啡
+        路上辛苦了<br>喝点<span class="accent">什么</span>？
       </h1>
       <p class="hero-sub reveal reveal-delay-2">
-        这里是头头的咖啡屋——每位毛茸茸都有属于自己的角落。<br>
+        这里是头头的咖啡屋，每位毛茸茸都有属于自己的角落。<br>
         原创角色 · 限定周边 · 温暖故事
       </p>
       <div class="hero-actions reveal reveal-delay-3">
@@ -607,9 +773,9 @@ ul { list-style: none; }
       </div>
     </div>
     <div class="hero-visual reveal reveal-delay-2">
-      <img class="hero-image" src="assets/Summer Walk Sticker (with Tito TigerZ) (Transparent).png" alt="Tito & TigerZ 夏日散步">
-      <img class="hero-float hero-float-1" src="assets/Tito Strike Chibi (Transparent).png" alt="Tito Chibi">
-      <img class="hero-float hero-float-2" src="assets/Kayu Yeah! Chibi (Transparent).png" alt="Kayu Chibi">
+      <img class="hero-image" src="assets/Tito Stand (Transparent).png" alt="Tito 头头">
+      <img class="hero-float hero-float-1" src="assets/Tito Strike Chibi (Transparent).png" alt="">
+      <img class="hero-float hero-float-2" src="assets/Kayu Yeah! Chibi (Transparent).png" alt="">
     </div>
   </div>
 </section>
@@ -619,124 +785,116 @@ ul { list-style: none; }
   <div class="container">
     <p class="section-label reveal">Our Crew</p>
     <h2 class="section-title reveal reveal-delay-1">咖啡屋的伙伴们</h2>
-    <p class="section-desc reveal reveal-delay-2">每位角色都有自己的故事。来认识一下这个温暖的小世界吧。</p>
+    <p class="section-desc reveal reveal-delay-2">每位角色都有自己的故事。点击卡片，了解更多。</p>
 
     <div class="chars-grid">
-      <!-- Tito — featured card -->
-      <div class="char-card featured reveal">
+      <!-- Tito — featured -->
+      <div class="char-card featured reveal" data-char="tito">
         <div class="char-visual">
-          <img src="assets/Tito Stand (Transparent).png" alt="Tito 站姿">
+          <img src="assets/Tito Stand (Transparent).png" alt="Tito">
           <span class="tag char-species">🐺 灰蓝狼</span>
         </div>
         <div class="char-info">
           <h3 class="char-name">头头 <span class="char-name-en">Tito</span></h3>
-          <p class="char-desc">咖啡屋的店长，一只灰蓝色的狼。沉稳又温暖，总是站在吧台后面为每位来客调制专属的那一杯。有时候会偷偷在咖啡拉花上画小狼脸。</p>
+          <p class="char-desc">咖啡屋的店长，一只灰蓝色的狼。沉稳又温暖，总是站在吧台后面为每位来客调制专属的那一杯。</p>
           <div class="char-traits">
-            <span class="tag">店长</span>
-            <span class="tag">灰蓝狼</span>
-            <span class="tag">咖啡拉花</span>
-            <span class="tag">温柔可靠</span>
+            <span class="tag">店长</span><span class="tag">灰蓝狼</span>
+            <span class="tag">咖啡拉花</span><span class="tag">温柔可靠</span>
           </div>
         </div>
       </div>
 
       <!-- TigerZ -->
-      <div class="char-card reveal reveal-delay-1">
+      <div class="char-card reveal reveal-delay-1" data-char="tigerz">
         <div class="char-visual">
-          <img src="assets/TigerZ Stand (Transparent).png" alt="TigerZ 站姿">
+          <img src="assets/TigerZ Stand (Transparent).png" alt="TigerZ">
           <span class="tag char-species">🐯 浅蓝虎</span>
         </div>
         <div class="char-info">
           <h3 class="char-name">TigerZ</h3>
-          <p class="char-desc">浅蓝色的老虎，游戏达人。总能在咖啡屋的角落发现他抱着手柄战斗的身影。TigerBoo 是他在游戏世界里的吉祥物伙伴。</p>
+          <p class="char-desc">浅蓝色的老虎，游戏达人。总能在咖啡屋的角落发现他抱着手柄战斗的身影。</p>
           <div class="char-traits">
-            <span class="tag">浅蓝虎</span>
-            <span class="tag">游戏达人</span>
+            <span class="tag">浅蓝虎</span><span class="tag">游戏达人</span>
             <span class="tag">TigerBoo 拥有者</span>
           </div>
         </div>
       </div>
 
       <!-- Frank -->
-      <div class="char-card reveal reveal-delay-2">
+      <div class="char-card reveal reveal-delay-2" data-char="frank">
         <div class="char-visual">
-          <img src="assets/Frank Stand (Transparent).png" alt="Frank 站姿">
+          <img src="assets/Frank Stand (Transparent).png" alt="Frank">
           <span class="tag char-species">🐯 橘色虎</span>
         </div>
         <div class="char-info">
           <h3 class="char-name">Frank</h3>
-          <p class="char-desc">橘色老虎，画画的时候很专注，被打扰会发出 "NOOOO" 的哀嚎。画画是他的热爱，也是他表达自己的方式。</p>
+          <p class="char-desc">橘色老虎，画画的时候很专注，被打扰会发出 "NOOOO" 的哀嚎。</p>
           <div class="char-traits">
-            <span class="tag">橘色虎</span>
-            <span class="tag">画画</span>
+            <span class="tag">橘色虎</span><span class="tag">画画</span>
             <span class="tag">容易被打扰</span>
           </div>
         </div>
       </div>
 
       <!-- Kayu -->
-      <div class="char-card reveal reveal-delay-3">
+      <div class="char-card reveal reveal-delay-3" data-char="kayu">
         <div class="char-visual">
-          <img src="assets/Kayu Stand (Transparent).png" alt="Kayu 站姿">
+          <img src="assets/Kayu Stand (Transparent).png" alt="Kayu">
           <span class="tag char-species">🐻 白熊</span>
         </div>
         <div class="char-info">
           <h3 class="char-name">Kayu</h3>
-          <p class="char-desc">白色的大熊，温暖又憨厚。总是第一个说"好耶！"的那位。看起来大大只的，其实心很软，喜欢抱抱。</p>
+          <p class="char-desc">白色的大熊，温暖又憨厚。总是第一个说"好耶！"的那位。</p>
           <div class="char-traits">
-            <span class="tag">白熊</span>
-            <span class="tag">温暖憨厚</span>
+            <span class="tag">白熊</span><span class="tag">温暖憨厚</span>
             <span class="tag">喜欢抱抱</span>
           </div>
         </div>
       </div>
 
       <!-- TON -->
-      <div class="char-card reveal reveal-delay-4">
+      <div class="char-card reveal reveal-delay-4" data-char="ton">
         <div class="char-visual">
-          <img src="assets/TON Stand (Transparent).png" alt="TON 站姿">
+          <img src="assets/TON Stand (Transparent).png" alt="TON">
           <span class="tag char-species">🐺 茶色狼</span>
         </div>
         <div class="char-info">
           <h3 class="char-name">TON</h3>
-          <p class="char-desc">茶色的狼，安静的音乐人。经常在咖啡屋弹吉他，点点是他的宠物猫，总趴在他脚边打盹。</p>
+          <p class="char-desc">茶色的狼，安静的音乐人。经常在咖啡屋弹吉他，点点是他的宠物猫。</p>
           <div class="char-traits">
-            <span class="tag">茶色狼</span>
-            <span class="tag">吉他</span>
+            <span class="tag">茶色狼</span><span class="tag">吉他</span>
             <span class="tag">点点的主人</span>
           </div>
         </div>
       </div>
 
       <!-- Diandian -->
-      <div class="char-card reveal reveal-delay-5">
+      <div class="char-card reveal reveal-delay-5" data-char="diandian">
         <div class="char-visual">
-          <img src="assets/TON with Diandian (Pet Cat) Sticker (Transparent).png" alt="TON 和点点">
+          <img src="assets/TON with Diandian (Pet Cat) Sticker (Transparent).png" alt="Diandian">
           <span class="tag char-species">🐱 宠物猫</span>
         </div>
         <div class="char-info">
           <h3 class="char-name">点点 <span class="char-name-en">Diandian</span></h3>
-          <p class="char-desc">TON 的小猫，咖啡屋的团宠。最喜欢在 TON 弹吉他的时候蜷在他脚边，偶尔也会跳上吧台巡视领地。</p>
+          <p class="char-desc">TON 的小猫，咖啡屋的团宠。喜欢蜷在 TON 脚边打盹。</p>
           <div class="char-traits">
-            <span class="tag">宠物猫</span>
-            <span class="tag">TON 的伙伴</span>
+            <span class="tag">宠物猫</span><span class="tag">TON 的伙伴</span>
             <span class="tag">团宠</span>
           </div>
         </div>
       </div>
 
       <!-- TigerBoo -->
-      <div class="char-card reveal reveal-delay-5">
+      <div class="char-card reveal reveal-delay-5" data-char="tigerboo">
         <div class="char-visual">
-          <img src="assets/TigerZ TigerBoo Sticker (Game Mascot NETA Mascot) (Transparent) (Seperate).png" alt="TigerBoo">
+          <img src="assets/TigerBoo by TSURU (Transparency).png" alt="TigerBoo">
           <span class="tag char-species">🎮 吉祥物</span>
         </div>
         <div class="char-info">
           <h3 class="char-name">TigerBoo</h3>
-          <p class="char-desc">TigerZ 的游戏内吉祥物角色的拟人化形象。从像素世界走出来的小伙伴，圆滚滚的超可爱。</p>
+          <p class="char-desc">TigerZ 的游戏内吉祥物角色拟设。从像素世界走出来的圆滚滚小伙伴。</p>
           <div class="char-traits">
-            <span class="tag">游戏吉祥物</span>
-            <span class="tag">TigerZ 的伙伴</span>
+            <span class="tag">游戏吉祥物</span><span class="tag">TigerZ 的伙伴</span>
             <span class="tag">圆滚滚</span>
           </div>
         </div>
@@ -758,14 +916,16 @@ ul { list-style: none; }
       <button class="filter-btn" data-filter="stand">立牌</button>
       <button class="filter-btn" data-filter="chibi">Q版</button>
       <button class="filter-btn" data-filter="sketch">画集</button>
-      <button class="filter-btn" data-filter="photo">写真</button>
+      <button class="filter-btn" data-filter="photo">明信片</button>
+      <button class="filter-btn" data-filter="print">艺术画</button>
     </div>
 
     <div class="shop-grid" id="shopGrid">
-      <!-- Stickers -->
+
+      <!-- ── 贴纸 Stickers ── -->
       <div class="product-card reveal" data-category="sticker">
         <div class="product-img">
-          <img src="assets/Tito Strike Chibi (Transparent).png" alt="Tito Strike">
+          <img src="assets/Tito Strike Chibi (Transparent).png" alt="Tito Strike" loading="lazy">
           <span class="product-badge badge-hot">HOT</span>
         </div>
         <div class="product-body">
@@ -773,14 +933,14 @@ ul { list-style: none; }
           <p class="product-char">Tito · 贴纸</p>
           <div class="product-bottom">
             <span class="product-price">¥18</span>
-            <button class="btn-add" onclick="addToCart('Tito 一击！贴纸', 18, 'assets/Tito Strike Chibi (Transparent).png')">加入购物车</button>
+            <button class="btn-add" onclick="addToCart('Tito 一击！贴纸',18,'assets/Tito Strike Chibi (Transparent).png')">加入购物车</button>
           </div>
         </div>
       </div>
 
       <div class="product-card reveal reveal-delay-1" data-category="sticker">
         <div class="product-img">
-          <img src="assets/Frank NOOOO Sticker (Transparent).png" alt="Frank NOOOO">
+          <img src="assets/Frank NOOOO Sticker (Transparent).png" alt="Frank NOOOO" loading="lazy">
           <span class="product-badge badge-new">NEW</span>
         </div>
         <div class="product-body">
@@ -788,28 +948,43 @@ ul { list-style: none; }
           <p class="product-char">Frank · 贴纸</p>
           <div class="product-bottom">
             <span class="product-price">¥15</span>
-            <button class="btn-add" onclick="addToCart('Frank NOOOO！贴纸', 15, 'assets/Frank NOOOO Sticker (Transparent).png')">加入购物车</button>
+            <button class="btn-add" onclick="addToCart('Frank NOOOO！贴纸',15,'assets/Frank NOOOO Sticker (Transparent).png')">加入购物车</button>
           </div>
         </div>
       </div>
 
       <div class="product-card reveal reveal-delay-2" data-category="sticker">
         <div class="product-img">
-          <img src="assets/Kayu Yeah! Chibi (Transparent).png" alt="Kayu Yeah!">
+          <img src="assets/Frank Do Not Want to Draw Sticker (Transparent).png" alt="Frank 不想画" loading="lazy">
         </div>
         <div class="product-body">
-          <h4 class="product-name">Kayu 好耶！贴纸</h4>
-          <p class="product-char">Kayu · 贴纸</p>
+          <h4 class="product-name">Frank 不想画画 贴纸</h4>
+          <p class="product-char">Frank · 贴纸</p>
           <div class="product-bottom">
             <span class="product-price">¥15</span>
-            <button class="btn-add" onclick="addToCart('Kayu 好耶！贴纸', 15, 'assets/Kayu Yeah! Chibi (Transparent).png')">加入购物车</button>
+            <button class="btn-add" onclick="addToCart('Frank 不想画画 贴纸',15,'assets/Frank Do Not Want to Draw Sticker (Transparent).png')">加入购物车</button>
           </div>
         </div>
       </div>
 
       <div class="product-card reveal" data-category="sticker">
         <div class="product-img">
-          <img src="assets/TON with Diandian (Pet Cat) Sticker (Transparent).png" alt="TON & Diandian">
+          <img src="assets/Frank Table Crack Sticker (Transparent).png" alt="Frank 拍桌" loading="lazy">
+          <span class="product-badge badge-new">NEW</span>
+        </div>
+        <div class="product-body">
+          <h4 class="product-name">Frank 拍桌！贴纸</h4>
+          <p class="product-char">Frank · 贴纸</p>
+          <div class="product-bottom">
+            <span class="product-price">¥15</span>
+            <button class="btn-add" onclick="addToCart('Frank 拍桌！贴纸',15,'assets/Frank Table Crack Sticker (Transparent).png')">加入购物车</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card reveal reveal-delay-1" data-category="sticker">
+        <div class="product-img">
+          <img src="assets/TON with Diandian (Pet Cat) Sticker (Transparent).png" alt="TON & Diandian" loading="lazy">
           <span class="product-badge badge-limited">限定</span>
         </div>
         <div class="product-body">
@@ -817,143 +992,187 @@ ul { list-style: none; }
           <p class="product-char">TON & Diandian · 贴纸</p>
           <div class="product-bottom">
             <span class="product-price">¥18</span>
-            <button class="btn-add" onclick="addToCart('TON & 点点 贴纸', 18, 'assets/TON with Diandian (Pet Cat) Sticker (Transparent).png')">加入购物车</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="product-card reveal reveal-delay-1" data-category="sticker">
-        <div class="product-img">
-          <img src="assets/TON Playing Guitar Sticker (Transparent).png" alt="TON Guitar">
-        </div>
-        <div class="product-body">
-          <h4 class="product-name">TON 弹吉他 贴纸</h4>
-          <p class="product-char">TON · 贴纸</p>
-          <div class="product-bottom">
-            <span class="product-price">¥15</span>
-            <button class="btn-add" onclick="addToCart('TON 弹吉他 贴纸', 15, 'assets/TON Playing Guitar Sticker (Transparent).png')">加入购物车</button>
+            <button class="btn-add" onclick="addToCart('TON & 点点 贴纸',18,'assets/TON with Diandian (Pet Cat) Sticker (Transparent).png')">加入购物车</button>
           </div>
         </div>
       </div>
 
       <div class="product-card reveal reveal-delay-2" data-category="sticker">
         <div class="product-img">
-          <img src="assets/Summer Walk Sticker (with Tito TigerZ) (Transparent).png" alt="夏日散步">
+          <img src="assets/TON Playing Guitar Sticker (Transparent).png" alt="TON Guitar" loading="lazy">
         </div>
         <div class="product-body">
-          <h4 class="product-name">夏日散步 双人贴纸</h4>
-          <p class="product-char">Tito & TigerZ · 贴纸</p>
+          <h4 class="product-name">TON 弹吉他 贴纸</h4>
+          <p class="product-char">TON · 贴纸</p>
           <div class="product-bottom">
-            <span class="product-price">¥22</span>
-            <button class="btn-add" onclick="addToCart('夏日散步 双人贴纸', 22, 'assets/Summer Walk Sticker (with Tito TigerZ) (Transparent).png')">加入购物车</button>
+            <span class="product-price">¥15</span>
+            <button class="btn-add" onclick="addToCart('TON 弹吉他 贴纸',15,'assets/TON Playing Guitar Sticker (Transparent).png')">加入购物车</button>
           </div>
         </div>
       </div>
 
       <div class="product-card reveal" data-category="sticker">
         <div class="product-img">
-          <img src="assets/Flowers Sticker (with Tito TigerZ) (Transparency).png" alt="花束贴纸">
+          <img src="assets/Kayu Tail-draw Sticker (Transparent).png" alt="Kayu Tail-draw" loading="lazy">
         </div>
         <div class="product-body">
-          <h4 class="product-name">花束贴纸</h4>
-          <p class="product-char">Tito & TigerZ · 贴纸</p>
+          <h4 class="product-name">Kayu 画尾巴 贴纸</h4>
+          <p class="product-char">Kayu · 贴纸</p>
           <div class="product-bottom">
-            <span class="product-price">¥18</span>
-            <button class="btn-add" onclick="addToCart('花束贴纸', 18, 'assets/Flowers Sticker (with Tito TigerZ) (Transparency).png')">加入购物车</button>
+            <span class="product-price">¥15</span>
+            <button class="btn-add" onclick="addToCart('Kayu 画尾巴 贴纸',15,'assets/Kayu Tail-draw Sticker (Transparent).png')">加入购物车</button>
           </div>
         </div>
       </div>
 
       <div class="product-card reveal reveal-delay-1" data-category="sticker">
         <div class="product-img">
-          <img src="assets/TigerZ TigerBoo Sticker (Game Mascot NETA Mascot) (Transparent) (Seperate).png" alt="TigerBoo">
+          <img src="assets/Summer Walk Sticker (with Tito TigerZ) (Transparent).png" alt="夏日散步" loading="lazy">
+        </div>
+        <div class="product-body">
+          <h4 class="product-name">夏日散步 双人贴纸</h4>
+          <p class="product-char">Tito & TigerZ · 贴纸</p>
+          <div class="product-bottom">
+            <span class="product-price">¥22</span>
+            <button class="btn-add" onclick="addToCart('夏日散步 双人贴纸',22,'assets/Summer Walk Sticker (with Tito TigerZ) (Transparent).png')">加入购物车</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card reveal reveal-delay-2" data-category="sticker">
+        <div class="product-img">
+          <img src="assets/Flowers Sticker (with Tito TigerZ) (Transparency).png" alt="花束" loading="lazy">
+        </div>
+        <div class="product-body">
+          <h4 class="product-name">花束贴纸</h4>
+          <p class="product-char">Tito & TigerZ · 贴纸</p>
+          <div class="product-bottom">
+            <span class="product-price">¥18</span>
+            <button class="btn-add" onclick="addToCart('花束贴纸',18,'assets/Flowers Sticker (with Tito TigerZ) (Transparency).png')">加入购物车</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card reveal" data-category="sticker">
+        <div class="product-img">
+          <img src="assets/TigerZ TigerBoo Sticker (Game Mascot NETA Mascot) (Transparent) (Seperate).png" alt="TigerBoo" loading="lazy">
         </div>
         <div class="product-body">
           <h4 class="product-name">TigerBoo 吉祥物贴纸</h4>
           <p class="product-char">TigerZ · 贴纸</p>
           <div class="product-bottom">
             <span class="product-price">¥15</span>
-            <button class="btn-add" onclick="addToCart('TigerBoo 吉祥物贴纸', 15, 'assets/TigerZ TigerBoo Sticker (Game Mascot NETA Mascot) (Transparent) (Seperate).png')">加入购物车</button>
+            <button class="btn-add" onclick="addToCart('TigerBoo 吉祥物贴纸',15,'assets/TigerZ TigerBoo Sticker (Game Mascot NETA Mascot) (Transparent) (Seperate).png')">加入购物车</button>
           </div>
         </div>
       </div>
 
-      <!-- Stands -->
+      <div class="product-card reveal reveal-delay-1" data-category="sticker">
+        <div class="product-img">
+          <img src="assets/Tito in Palm Sticker (Transparent).png" alt="掌心 Tito" loading="lazy">
+          <span class="product-badge badge-hot">HOT</span>
+        </div>
+        <div class="product-body">
+          <h4 class="product-name">掌心小 Tito 贴纸</h4>
+          <p class="product-char">Tito · 贴纸</p>
+          <div class="product-bottom">
+            <span class="product-price">¥15</span>
+            <button class="btn-add" onclick="addToCart('掌心小 Tito 贴纸',15,'assets/Tito in Palm Sticker (Transparent).png')">加入购物车</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 立牌 Stands ── -->
       <div class="product-card reveal" data-category="stand">
         <div class="product-img">
-          <img src="assets/Tito Stand (Transparent).png" alt="Tito 立牌">
+          <img src="assets/Tito Stand (Transparent).png" alt="Tito 立牌" loading="lazy">
           <span class="product-badge badge-hot">HOT</span>
         </div>
         <div class="product-body">
           <h4 class="product-name">Tito 亚克力立牌</h4>
           <p class="product-char">Tito · 立牌</p>
           <div class="product-bottom">
-            <span class="product-price">¥45</span>
-            <button class="btn-add" onclick="addToCart('Tito 亚克力立牌', 45, 'assets/Tito Stand (Transparent).png')">加入购物车</button>
+            <span class="product-price">¥48</span>
+            <button class="btn-add" onclick="addToCart('Tito 亚克力立牌',48,'assets/Tito Stand (Transparent).png')">加入购物车</button>
           </div>
         </div>
       </div>
 
       <div class="product-card reveal reveal-delay-1" data-category="stand">
         <div class="product-img">
-          <img src="assets/TigerZ Stand (Transparent).png" alt="TigerZ 立牌">
+          <img src="assets/TigerZ Stand (Transparent).png" alt="TigerZ 立牌" loading="lazy">
         </div>
         <div class="product-body">
           <h4 class="product-name">TigerZ 亚克力立牌</h4>
           <p class="product-char">TigerZ · 立牌</p>
           <div class="product-bottom">
-            <span class="product-price">¥45</span>
-            <button class="btn-add" onclick="addToCart('TigerZ 亚克力立牌', 45, 'assets/TigerZ Stand (Transparent).png')">加入购物车</button>
+            <span class="product-price">¥48</span>
+            <button class="btn-add" onclick="addToCart('TigerZ 亚克力立牌',48,'assets/TigerZ Stand (Transparent).png')">加入购物车</button>
           </div>
         </div>
       </div>
 
       <div class="product-card reveal reveal-delay-2" data-category="stand">
         <div class="product-img">
-          <img src="assets/Frank Stand (Transparent).png" alt="Frank 立牌">
+          <img src="assets/Frank Stand (Transparent).png" alt="Frank 立牌" loading="lazy">
         </div>
         <div class="product-body">
           <h4 class="product-name">Frank 亚克力立牌</h4>
           <p class="product-char">Frank · 立牌</p>
           <div class="product-bottom">
-            <span class="product-price">¥45</span>
-            <button class="btn-add" onclick="addToCart('Frank 亚克力立牌', 45, 'assets/Frank Stand (Transparent).png')">加入购物车</button>
+            <span class="product-price">¥48</span>
+            <button class="btn-add" onclick="addToCart('Frank 亚克力立牌',48,'assets/Frank Stand (Transparent).png')">加入购物车</button>
           </div>
         </div>
       </div>
 
       <div class="product-card reveal" data-category="stand">
         <div class="product-img">
-          <img src="assets/Kayu Stand (Transparent).png" alt="Kayu 立牌">
+          <img src="assets/Kayu Stand (Transparent).png" alt="Kayu 立牌" loading="lazy">
         </div>
         <div class="product-body">
           <h4 class="product-name">Kayu 亚克力立牌</h4>
           <p class="product-char">Kayu · 立牌</p>
           <div class="product-bottom">
-            <span class="product-price">¥45</span>
-            <button class="btn-add" onclick="addToCart('Kayu 亚克力立牌', 45, 'assets/Kayu Stand (Transparent).png')">加入购物车</button>
+            <span class="product-price">¥48</span>
+            <button class="btn-add" onclick="addToCart('Kayu 亚克力立牌',48,'assets/Kayu Stand (Transparent).png')">加入购物车</button>
           </div>
         </div>
       </div>
 
       <div class="product-card reveal reveal-delay-1" data-category="stand">
         <div class="product-img">
-          <img src="assets/TON Stand (Transparent).png" alt="TON 立牌">
+          <img src="assets/TON Stand (Transparent).png" alt="TON 立牌" loading="lazy">
         </div>
         <div class="product-body">
           <h4 class="product-name">TON 亚克力立牌</h4>
           <p class="product-char">TON · 立牌</p>
           <div class="product-bottom">
-            <span class="product-price">¥45</span>
-            <button class="btn-add" onclick="addToCart('TON 亚克力立牌', 45, 'assets/TON Stand (Transparent).png')">加入购物车</button>
+            <span class="product-price">¥48</span>
+            <button class="btn-add" onclick="addToCart('TON 亚克力立牌',48,'assets/TON Stand (Transparent).png')">加入购物车</button>
           </div>
         </div>
       </div>
 
-      <!-- Chibi -->
+      <div class="product-card reveal reveal-delay-2" data-category="stand">
+        <div class="product-img">
+          <img src="assets/TON Stand with Zacian (Transparent).png" alt="TON & Zacian 立牌" loading="lazy">
+          <span class="product-badge badge-special">特别</span>
+        </div>
+        <div class="product-body">
+          <h4 class="product-name">TON & Zacian 特别立牌</h4>
+          <p class="product-char">TON · 特别版立牌</p>
+          <div class="product-bottom">
+            <span class="product-price">¥68</span>
+            <button class="btn-add" onclick="addToCart('TON & Zacian 特别立牌',68,'assets/TON Stand with Zacian (Transparent).png')">加入购物车</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Q版 Chibi ── -->
       <div class="product-card reveal" data-category="chibi">
         <div class="product-img">
-          <img src="assets/Frank Drawing Chibi (Transparent).png" alt="Frank 画画Q版">
+          <img src="assets/Frank Drawing Chibi (Transparent).png" alt="Frank Q版" loading="lazy">
           <span class="product-badge badge-new">NEW</span>
         </div>
         <div class="product-body">
@@ -961,43 +1180,57 @@ ul { list-style: none; }
           <p class="product-char">Frank · Q版</p>
           <div class="product-bottom">
             <span class="product-price">¥28</span>
-            <button class="btn-add" onclick="addToCart('Frank 画画 Q版挂件', 28, 'assets/Frank Drawing Chibi (Transparent).png')">加入购物车</button>
+            <button class="btn-add" onclick="addToCart('Frank 画画 Q版挂件',28,'assets/Frank Drawing Chibi (Transparent).png')">加入购物车</button>
           </div>
         </div>
       </div>
 
       <div class="product-card reveal reveal-delay-1" data-category="chibi">
         <div class="product-img">
-          <img src="assets/TigerZ Gaming Chibi (Transparent).png" alt="TigerZ 游戏Q版">
+          <img src="assets/TigerZ Gaming Chibi (Transparent).png" alt="TigerZ Q版" loading="lazy">
         </div>
         <div class="product-body">
           <h4 class="product-name">TigerZ 游戏 Q版挂件</h4>
           <p class="product-char">TigerZ · Q版</p>
           <div class="product-bottom">
             <span class="product-price">¥28</span>
-            <button class="btn-add" onclick="addToCart('TigerZ 游戏 Q版挂件', 28, 'assets/TigerZ Gaming Chibi (Transparent).png')">加入购物车</button>
+            <button class="btn-add" onclick="addToCart('TigerZ 游戏 Q版挂件',28,'assets/TigerZ Gaming Chibi (Transparent).png')">加入购物车</button>
           </div>
         </div>
       </div>
 
       <div class="product-card reveal reveal-delay-2" data-category="chibi">
         <div class="product-img">
-          <img src="assets/TON Walking Chibi (Transparent).png" alt="TON 散步Q版">
+          <img src="assets/TON Walking Chibi (Transparent).png" alt="TON Q版" loading="lazy">
         </div>
         <div class="product-body">
           <h4 class="product-name">TON 散步 Q版挂件</h4>
           <p class="product-char">TON · Q版</p>
           <div class="product-bottom">
             <span class="product-price">¥28</span>
-            <button class="btn-add" onclick="addToCart('TON 散步 Q版挂件', 28, 'assets/TON Walking Chibi (Transparent).png')">加入购物车</button>
+            <button class="btn-add" onclick="addToCart('TON 散步 Q版挂件',28,'assets/TON Walking Chibi (Transparent).png')">加入购物车</button>
           </div>
         </div>
       </div>
 
-      <!-- Sketch Sets -->
+      <div class="product-card reveal" data-category="chibi">
+        <div class="product-img">
+          <img src="assets/Kayu Yeah! Chibi (Transparent).png" alt="Kayu Q版" loading="lazy">
+        </div>
+        <div class="product-body">
+          <h4 class="product-name">Kayu 好耶！Q版挂件</h4>
+          <p class="product-char">Kayu · Q版</p>
+          <div class="product-bottom">
+            <span class="product-price">¥28</span>
+            <button class="btn-add" onclick="addToCart('Kayu 好耶！Q版挂件',28,'assets/Kayu Yeah! Chibi (Transparent).png')">加入购物车</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 画集 Sketch Sets ── -->
       <div class="product-card reveal" data-category="sketch">
         <div class="product-img">
-          <img src="assets/Tito Sketch Set (Clean BG).png" alt="Tito 画集">
+          <img src="assets/Tito Sketch Set (Clean BG).png" alt="Tito 画集" loading="lazy">
           <span class="product-badge badge-limited">限定</span>
         </div>
         <div class="product-body">
@@ -1005,82 +1238,270 @@ ul { list-style: none; }
           <p class="product-char">Tito · 画集</p>
           <div class="product-bottom">
             <span class="product-price">¥68</span>
-            <button class="btn-add" onclick="addToCart('Tito 速写画集', 68, 'assets/Tito Sketch Set (Clean BG).png')">加入购物车</button>
+            <button class="btn-add" onclick="addToCart('Tito 速写画集',68,'assets/Tito Sketch Set (Clean BG).png')">加入购物车</button>
           </div>
         </div>
       </div>
 
       <div class="product-card reveal reveal-delay-1" data-category="sketch">
         <div class="product-img">
-          <img src="assets/TigerZ Sketch Set (Clean BG).png" alt="TigerZ 画集">
+          <img src="assets/TigerZ Sketch Set (Clean BG).png" alt="TigerZ 画集" loading="lazy">
         </div>
         <div class="product-body">
           <h4 class="product-name">TigerZ 速写画集</h4>
           <p class="product-char">TigerZ · 画集</p>
           <div class="product-bottom">
             <span class="product-price">¥68</span>
-            <button class="btn-add" onclick="addToCart('TigerZ 速写画集', 68, 'assets/TigerZ Sketch Set (Clean BG).png')">加入购物车</button>
+            <button class="btn-add" onclick="addToCart('TigerZ 速写画集',68,'assets/TigerZ Sketch Set (Clean BG).png')">加入购物车</button>
           </div>
         </div>
       </div>
 
       <div class="product-card reveal reveal-delay-2" data-category="sketch">
         <div class="product-img">
-          <img src="assets/Kayu Sketch Set (Clean BG).png" alt="Kayu 画集">
+          <img src="assets/Kayu Sketch Set (Clean BG).png" alt="Kayu 画集" loading="lazy">
         </div>
         <div class="product-body">
           <h4 class="product-name">Kayu 速写画集</h4>
           <p class="product-char">Kayu · 画集</p>
           <div class="product-bottom">
             <span class="product-price">¥68</span>
-            <button class="btn-add" onclick="addToCart('Kayu 速写画集', 68, 'assets/Kayu Sketch Set (Clean BG).png')">加入购物车</button>
+            <button class="btn-add" onclick="addToCart('Kayu 速写画集',68,'assets/Kayu Sketch Set (Clean BG).png')">加入购物车</button>
           </div>
         </div>
       </div>
 
       <div class="product-card reveal" data-category="sketch">
         <div class="product-img">
-          <img src="assets/TON Sketch Set (Clean BG).png" alt="TON 画集">
+          <img src="assets/TON Sketch Set (Clean BG).png" alt="TON 画集" loading="lazy">
         </div>
         <div class="product-body">
           <h4 class="product-name">TON 速写画集</h4>
           <p class="product-char">TON · 画集</p>
           <div class="product-bottom">
             <span class="product-price">¥68</span>
-            <button class="btn-add" onclick="addToCart('TON 速写画集', 68, 'assets/TON Sketch Set (Clean BG).png')">加入购物车</button>
+            <button class="btn-add" onclick="addToCart('TON 速写画集',68,'assets/TON Sketch Set (Clean BG).png')">加入购物车</button>
           </div>
         </div>
       </div>
 
-      <!-- Photos -->
-      <div class="product-card reveal reveal-delay-1" data-category="photo">
+      <div class="product-card reveal reveal-delay-1" data-category="sketch">
         <div class="product-img">
-          <img src="assets/Saturday Photo (with Tito TigerZ Kayu).jpg" alt="周六写真">
+          <img src="assets/Frank Sketch Set.png" alt="Frank 画集" loading="lazy">
+        </div>
+        <div class="product-body">
+          <h4 class="product-name">Frank 速写画集</h4>
+          <p class="product-char">Frank · 画集</p>
+          <div class="product-bottom">
+            <span class="product-price">¥68</span>
+            <button class="btn-add" onclick="addToCart('Frank 速写画集',68,'assets/Frank Sketch Set.png')">加入购物车</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card reveal reveal-delay-2" data-category="sketch">
+        <div class="product-img">
+          <img src="assets/TON Sketch Set with Zacian (Clean BG).png" alt="TON & Zacian 画集" loading="lazy">
+          <span class="product-badge badge-special">特别</span>
+        </div>
+        <div class="product-body">
+          <h4 class="product-name">TON & Zacian 特别画集</h4>
+          <p class="product-char">TON · 特别版画集</p>
+          <div class="product-bottom">
+            <span class="product-price">¥88</span>
+            <button class="btn-add" onclick="addToCart('TON & Zacian 特别画集',88,'assets/TON Sketch Set with Zacian (Clean BG).png')">加入购物车</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 明信片 Photos ── -->
+      <div class="product-card reveal" data-category="photo">
+        <div class="product-img">
+          <img src="assets/Saturday Photo (with Tito TigerZ Kayu).jpg" alt="周六写真" loading="lazy">
           <span class="product-badge badge-new">NEW</span>
         </div>
         <div class="product-body">
           <h4 class="product-name">周六写真 明信片</h4>
-          <p class="product-char">Tito & TigerZ & Kayu · 写真</p>
+          <p class="product-char">Tito & TigerZ & Kayu · 明信片</p>
           <div class="product-bottom">
             <span class="product-price">¥12</span>
-            <button class="btn-add" onclick="addToCart('周六写真 明信片', 12, 'assets/Saturday Photo (with Tito TigerZ Kayu).jpg')">加入购物车</button>
+            <button class="btn-add" onclick="addToCart('周六写真 明信片',12,'assets/Saturday Photo (with Tito TigerZ Kayu).jpg')">加入购物车</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card reveal reveal-delay-1" data-category="photo">
+        <div class="product-img">
+          <img src="assets/Saturday Photo Smile (with Tito TigerZ Kayu).jpg" alt="周六微笑" loading="lazy">
+        </div>
+        <div class="product-body">
+          <h4 class="product-name">周六微笑 明信片</h4>
+          <p class="product-char">Tito & TigerZ & Kayu · 明信片</p>
+          <div class="product-bottom">
+            <span class="product-price">¥12</span>
+            <button class="btn-add" onclick="addToCart('周六微笑 明信片',12,'assets/Saturday Photo Smile (with Tito TigerZ Kayu).jpg')">加入购物车</button>
           </div>
         </div>
       </div>
 
       <div class="product-card reveal reveal-delay-2" data-category="photo">
         <div class="product-img">
-          <img src="assets/Doraemon! Photo (with Tito TigerZ TON).png" alt="哆啦A梦写真">
+          <img src="assets/Doraemon! Photo (with Tito TigerZ TON).png" alt="哆啦A梦" loading="lazy">
         </div>
         <div class="product-body">
-          <h4 class="product-name">哆啦A梦！写真 明信片</h4>
-          <p class="product-char">Tito & TigerZ & TON · 写真</p>
+          <h4 class="product-name">哆啦A梦！明信片</h4>
+          <p class="product-char">Tito & TigerZ & TON · 明信片</p>
           <div class="product-bottom">
             <span class="product-price">¥12</span>
-            <button class="btn-add" onclick="addToCart('哆啦A梦！写真 明信片', 12, 'assets/Doraemon! Photo (with Tito TigerZ TON).png')">加入购物车</button>
+            <button class="btn-add" onclick="addToCart('哆啦A梦！明信片',12,'assets/Doraemon! Photo (with Tito TigerZ TON).png')">加入购物车</button>
           </div>
         </div>
       </div>
+
+      <div class="product-card reveal" data-category="photo">
+        <div class="product-img">
+          <img src="assets/Selfie Photo (with Kayu & Frank) (filter).png" alt="自拍" loading="lazy">
+        </div>
+        <div class="product-body">
+          <h4 class="product-name">Kayu & Frank 自拍 明信片</h4>
+          <p class="product-char">Kayu & Frank · 明信片</p>
+          <div class="product-bottom">
+            <span class="product-price">¥12</span>
+            <button class="btn-add" onclick="addToCart('Kayu & Frank 自拍 明信片',12,'assets/Selfie Photo (with Kayu & Frank) (filter).png')">加入购物车</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card reveal reveal-delay-1" data-category="photo">
+        <div class="product-img">
+          <img src="assets/HBD Celebration (with Tito and TigerZ).png" alt="生日快乐" loading="lazy">
+          <span class="product-badge badge-limited">限定</span>
+        </div>
+        <div class="product-body">
+          <h4 class="product-name">生日快乐！明信片</h4>
+          <p class="product-char">Tito & TigerZ · 明信片</p>
+          <div class="product-bottom">
+            <span class="product-price">¥15</span>
+            <button class="btn-add" onclick="addToCart('生日快乐！明信片',15,'assets/HBD Celebration (with Tito and TigerZ).png')">加入购物车</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card reveal reveal-delay-2" data-category="photo">
+        <div class="product-img">
+          <img src="assets/Yummy! Photo Drawn (filter).jpg" alt="Yummy" loading="lazy">
+        </div>
+        <div class="product-body">
+          <h4 class="product-name">Yummy! 明信片</h4>
+          <p class="product-char">群像 · 明信片</p>
+          <div class="product-bottom">
+            <span class="product-price">¥12</span>
+            <button class="btn-add" onclick="addToCart('Yummy! 明信片',12,'assets/Yummy! Photo Drawn (filter).jpg')">加入购物车</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 艺术画 Art Prints ── -->
+      <div class="product-card reveal" data-category="print">
+        <div class="product-img">
+          <img src="assets/Summer by TSURU (Transparency).png" alt="夏日" loading="lazy">
+          <span class="product-badge badge-limited">限定</span>
+        </div>
+        <div class="product-body">
+          <h4 class="product-name">夏日 艺术画</h4>
+          <p class="product-char">Tito & TigerZ · 艺术画</p>
+          <div class="product-bottom">
+            <span class="product-price">¥88</span>
+            <button class="btn-add" onclick="addToCart('夏日 艺术画',88,'assets/Summer by TSURU (Transparency).png')">加入购物车</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card reveal reveal-delay-1" data-category="print">
+        <div class="product-img">
+          <img src="assets/Chinese Opera Style Outfit Design (with Tito TigerZ).png" alt="戏曲" loading="lazy">
+        </div>
+        <div class="product-body">
+          <h4 class="product-name">戏曲风服饰设计 艺术画</h4>
+          <p class="product-char">Tito & TigerZ · 艺术画</p>
+          <div class="product-bottom">
+            <span class="product-price">¥98</span>
+            <button class="btn-add" onclick="addToCart('戏曲风服饰设计 艺术画',98,'assets/Chinese Opera Style Outfit Design (with Tito TigerZ).png')">加入购物车</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card reveal reveal-delay-2" data-category="print">
+        <div class="product-img">
+          <img src="assets/Flowers by TSURU (Transparency).png" alt="花束" loading="lazy">
+        </div>
+        <div class="product-body">
+          <h4 class="product-name">花束 艺术画</h4>
+          <p class="product-char">Tito & TigerZ · 艺术画</p>
+          <div class="product-bottom">
+            <span class="product-price">¥78</span>
+            <button class="btn-add" onclick="addToCart('花束 艺术画',78,'assets/Flowers by TSURU (Transparency).png')">加入购物车</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card reveal" data-category="print">
+        <div class="product-img">
+          <img src="assets/Gaming TigerZ by TSURU (Transparency).png" alt="游戏 TigerZ" loading="lazy">
+        </div>
+        <div class="product-body">
+          <h4 class="product-name">游戏时光 艺术画</h4>
+          <p class="product-char">TigerZ · 艺术画</p>
+          <div class="product-bottom">
+            <span class="product-price">¥68</span>
+            <button class="btn-add" onclick="addToCart('游戏时光 艺术画',68,'assets/Gaming TigerZ by TSURU (Transparency).png')">加入购物车</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card reveal reveal-delay-1" data-category="print">
+        <div class="product-img">
+          <img src="assets/TON Guitar Playing by TSURU (Transparency).png" alt="TON 弹吉他" loading="lazy">
+        </div>
+        <div class="product-body">
+          <h4 class="product-name">吉他时光 艺术画</h4>
+          <p class="product-char">TON · 艺术画</p>
+          <div class="product-bottom">
+            <span class="product-price">¥68</span>
+            <button class="btn-add" onclick="addToCart('吉他时光 艺术画',68,'assets/TON Guitar Playing by TSURU (Transparency).png')">加入购物车</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card reveal reveal-delay-2" data-category="print">
+        <div class="product-img">
+          <img src="assets/Drawing Frank by TSURU (Transparency).png" alt="Frank 画画" loading="lazy">
+        </div>
+        <div class="product-body">
+          <h4 class="product-name">专注 艺术画</h4>
+          <p class="product-char">Frank · 艺术画</p>
+          <div class="product-bottom">
+            <span class="product-price">¥68</span>
+            <button class="btn-add" onclick="addToCart('专注 艺术画',68,'assets/Drawing Frank by TSURU (Transparency).png')">加入购物车</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card reveal" data-category="print">
+        <div class="product-img">
+          <img src="assets/Little Comic (with Tito TigerZ Frank Kayu and TSURU herself).png" alt="小漫画" loading="lazy">
+          <span class="product-badge badge-new">NEW</span>
+        </div>
+        <div class="product-body">
+          <h4 class="product-name">日常小漫画 艺术画</h4>
+          <p class="product-char">全员 · 艺术画</p>
+          <div class="product-bottom">
+            <span class="product-price">¥78</span>
+            <button class="btn-add" onclick="addToCart('日常小漫画 艺术画',78,'assets/Little Comic (with Tito TigerZ Frank Kayu and TSURU herself).png')">加入购物车</button>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -1092,66 +1513,142 @@ ul { list-style: none; }
     <h2 class="section-title reveal reveal-delay-1">画廊</h2>
     <p class="section-desc reveal reveal-delay-2">角色们的日常瞬间——点击图片查看大图。</p>
 
-    <div class="gallery-grid">
-      <div class="gallery-item wide reveal" onclick="openLightbox(this)">
+    <div class="gallery-tabs reveal reveal-delay-3">
+      <button class="gallery-tab active" data-gal="all">全部</button>
+      <button class="gallery-tab" data-gal="character">角色</button>
+      <button class="gallery-tab" data-gal="scene">场景</button>
+      <button class="gallery-tab" data-gal="sticker">贴纸</button>
+      <button class="gallery-tab" data-gal="comic">漫画</button>
+    </div>
+
+    <div class="gallery-grid" id="galleryGrid">
+      <div class="gallery-item wide reveal" data-galcat="scene" onclick="openLightbox(this)">
         <img src="assets/Summer Walk Sticker (with Tito TigerZ).png" alt="夏日散步">
         <div class="gallery-overlay"><span>Tito & TigerZ 的夏日散步</span></div>
       </div>
-      <div class="gallery-item reveal reveal-delay-1" onclick="openLightbox(this)">
+      <div class="gallery-item reveal reveal-delay-1" data-galcat="character" onclick="openLightbox(this)">
         <img src="assets/Tito Sketch Set.png" alt="Tito 速写集">
         <div class="gallery-overlay"><span>Tito 速写集</span></div>
       </div>
-      <div class="gallery-item reveal reveal-delay-2" onclick="openLightbox(this)">
+      <div class="gallery-item reveal reveal-delay-2" data-galcat="character" onclick="openLightbox(this)">
         <img src="assets/Frank Sketch Set.png" alt="Frank 速写集">
         <div class="gallery-overlay"><span>Frank 速写集</span></div>
       </div>
-      <div class="gallery-item tall reveal" onclick="openLightbox(this)">
+      <div class="gallery-item tall reveal" data-galcat="scene" onclick="openLightbox(this)">
         <img src="assets/Chinese Opera Style Outfit Design (with Tito TigerZ).png" alt="戏曲风设计">
         <div class="gallery-overlay"><span>戏曲风服饰设计 · Tito & TigerZ</span></div>
       </div>
-      <div class="gallery-item reveal reveal-delay-1" onclick="openLightbox(this)">
+      <div class="gallery-item reveal reveal-delay-1" data-galcat="scene" onclick="openLightbox(this)">
         <img src="assets/HBD Celebration (with Tito and TigerZ).png" alt="生日快乐">
         <div class="gallery-overlay"><span>生日快乐！</span></div>
       </div>
-      <div class="gallery-item reveal reveal-delay-2" onclick="openLightbox(this)">
+      <div class="gallery-item reveal reveal-delay-2" data-galcat="comic" onclick="openLightbox(this)">
         <img src="assets/Little Comic (with Tito TigerZ Frank Kayu and TSURU herself).png" alt="小漫画">
         <div class="gallery-overlay"><span>小漫画 · 大家一起</span></div>
       </div>
-      <div class="gallery-item wide reveal" onclick="openLightbox(this)">
+      <div class="gallery-item wide reveal" data-galcat="scene" onclick="openLightbox(this)">
         <img src="assets/Kayu Photo Corner Sticker (Kayu Plushi with Tito TigerZ Frank and himself).png" alt="Kayu 拍照角">
         <div class="gallery-overlay"><span>Kayu 的拍照角</span></div>
       </div>
-      <div class="gallery-item reveal reveal-delay-1" onclick="openLightbox(this)">
+      <div class="gallery-item reveal reveal-delay-1" data-galcat="character" onclick="openLightbox(this)">
         <img src="assets/TigerZ Sketch Set.png" alt="TigerZ 速写集">
         <div class="gallery-overlay"><span>TigerZ 速写集</span></div>
       </div>
-      <div class="gallery-item reveal reveal-delay-2" onclick="openLightbox(this)">
+      <div class="gallery-item reveal reveal-delay-2" data-galcat="scene" onclick="openLightbox(this)">
         <img src="assets/Selfie Photo (with Kayu & Frank) (filter).png" alt="自拍">
         <div class="gallery-overlay"><span>Kayu & Frank 自拍</span></div>
       </div>
-      <div class="gallery-item reveal" onclick="openLightbox(this)">
+      <div class="gallery-item reveal" data-galcat="character" onclick="openLightbox(this)">
         <img src="assets/TON Sketch Set.png" alt="TON 速写集">
         <div class="gallery-overlay"><span>TON 速写集</span></div>
       </div>
-      <div class="gallery-item reveal reveal-delay-1" onclick="openLightbox(this)">
+      <div class="gallery-item reveal reveal-delay-1" data-galcat="sticker" onclick="openLightbox(this)">
         <img src="assets/Frank Do Not Want to Draw Sticker (Transparent).png" alt="Frank 不想画画">
         <div class="gallery-overlay"><span>Frank：不想画画</span></div>
       </div>
-      <div class="gallery-item reveal reveal-delay-2" onclick="openLightbox(this)">
+      <div class="gallery-item reveal reveal-delay-2" data-galcat="sticker" onclick="openLightbox(this)">
         <img src="assets/Kayu Tail-draw Sticker (Transparent).png" alt="Kayu 画尾巴">
         <div class="gallery-overlay"><span>Kayu 画尾巴</span></div>
       </div>
-      <div class="gallery-item reveal" onclick="openLightbox(this)">
+      <div class="gallery-item reveal" data-galcat="sticker" onclick="openLightbox(this)">
         <img src="assets/Tito in Palm Sticker (Transparent).png" alt="掌心Tito">
         <div class="gallery-overlay"><span>掌心小 Tito</span></div>
       </div>
-      <div class="gallery-item reveal reveal-delay-1" onclick="openLightbox(this)">
+      <div class="gallery-item reveal reveal-delay-1" data-galcat="scene" onclick="openLightbox(this)">
         <img src="assets/Saturday Photo Smile (with Tito TigerZ Kayu).jpg" alt="周六微笑">
         <div class="gallery-overlay"><span>周六的微笑</span></div>
       </div>
-      <div class="gallery-item reveal reveal-delay-2" onclick="openLightbox(this)">
+      <div class="gallery-item reveal reveal-delay-2" data-galcat="scene" onclick="openLightbox(this)">
         <img src="assets/Yummy! Photo Drawn (filter).jpg" alt="Yummy">
         <div class="gallery-overlay"><span>Yummy!</span></div>
+      </div>
+      <div class="gallery-item reveal" data-galcat="sticker" onclick="openLightbox(this)">
+        <img src="assets/Frank NOOOO Sticker (Transparent).png" alt="Frank NOOOO">
+        <div class="gallery-overlay"><span>NOOOO!</span></div>
+      </div>
+      <div class="gallery-item reveal reveal-delay-1" data-galcat="sticker" onclick="openLightbox(this)">
+        <img src="assets/Frank Table Crack Sticker (Transparent).png" alt="Frank 拍桌">
+        <div class="gallery-overlay"><span>拍桌！</span></div>
+      </div>
+      <div class="gallery-item reveal reveal-delay-2" data-galcat="scene" onclick="openLightbox(this)">
+        <img src="assets/Summer by TSURU (Transparency).png" alt="夏日">
+        <div class="gallery-overlay"><span>夏日的咖啡屋</span></div>
+      </div>
+      <div class="gallery-item reveal" data-galcat="character" onclick="openLightbox(this)">
+        <img src="assets/Kayu Sketch Set.png" alt="Kayu 速写集">
+        <div class="gallery-overlay"><span>Kayu 速写集</span></div>
+      </div>
+      <div class="gallery-item reveal reveal-delay-1" data-galcat="scene" onclick="openLightbox(this)">
+        <img src="assets/Doraemon! Photo (with Tito TigerZ TON).png" alt="哆啦A梦">
+        <div class="gallery-overlay"><span>哆啦A梦！</span></div>
+      </div>
+      <div class="gallery-item wide reveal" data-galcat="scene" onclick="openLightbox(this)">
+        <img src="assets/Flowers by TSURU (Transparency).png" alt="花束">
+        <div class="gallery-overlay"><span>送你一束花</span></div>
+      </div>
+      <div class="gallery-item reveal reveal-delay-1" data-galcat="sticker" onclick="openLightbox(this)">
+        <img src="assets/TON Playing Guitar Sticker (Transparent).png" alt="TON 吉他">
+        <div class="gallery-overlay"><span>TON 的吉他时间</span></div>
+      </div>
+      <div class="gallery-item reveal reveal-delay-2" data-galcat="sticker" onclick="openLightbox(this)">
+        <img src="assets/TigerZ TigerBoo Sticker (Game Mascot NETA Mascot) (Transparent) (Seperate).png" alt="TigerBoo">
+        <div class="gallery-overlay"><span>TigerBoo 出没！</span></div>
+      </div>
+      <div class="gallery-item reveal" data-galcat="scene" onclick="openLightbox(this)">
+        <img src="assets/Gaming TigerZ by TSURU (Transparency).png" alt="TigerZ 游戏">
+        <div class="gallery-overlay"><span>沉浸游戏的 TigerZ</span></div>
+      </div>
+      <div class="gallery-item reveal reveal-delay-1" data-galcat="scene" onclick="openLightbox(this)">
+        <img src="assets/TON Guitar Playing by TSURU (Transparency).png" alt="TON 吉他演奏">
+        <div class="gallery-overlay"><span>窗边的旋律</span></div>
+      </div>
+      <div class="gallery-item reveal reveal-delay-2" data-galcat="scene" onclick="openLightbox(this)">
+        <img src="assets/Drawing Frank by TSURU (Transparency).png" alt="Frank 画画">
+        <div class="gallery-overlay"><span>专注的 Frank</span></div>
+      </div>
+      <div class="gallery-item reveal" data-galcat="scene" onclick="openLightbox(this)">
+        <img src="assets/Kayu Yeah! by TSURU (Transparency).png" alt="Kayu 好耶">
+        <div class="gallery-overlay"><span>好耶！</span></div>
+      </div>
+      <div class="gallery-item reveal reveal-delay-1" data-galcat="sticker" onclick="openLightbox(this)">
+        <img src="assets/TON with Diandian (Pet Cat) Sticker (Transparent).png" alt="TON & 点点">
+        <div class="gallery-overlay"><span>TON & 点点</span></div>
+      </div>
+      <div class="gallery-item reveal reveal-delay-2" data-galcat="scene" onclick="openLightbox(this)">
+        <img src="assets/TON with Dian by TSURU (Transparency).png" alt="TON 和点点">
+        <div class="gallery-overlay"><span>和点点在一起</span></div>
+      </div>
+      <div class="gallery-item reveal" data-galcat="sticker" onclick="openLightbox(this)">
+        <img src="assets/Kayu Yeah! Chibi (Transparent).png" alt="Kayu Q版">
+        <div class="gallery-overlay"><span>Kayu 好耶！</span></div>
+      </div>
+      <div class="gallery-item reveal reveal-delay-1" data-galcat="sticker" onclick="openLightbox(this)">
+        <img src="assets/TigerBoo by TSURU (Transparency).png" alt="TigerBoo">
+        <div class="gallery-overlay"><span>TigerBoo</span></div>
+      </div>
+      <div class="gallery-item reveal reveal-delay-2" data-galcat="sticker" onclick="openLightbox(this)">
+        <img src="assets/Summer Walk Sticker (with Tito TigerZ) (Trans. no Stickers).png" alt="夏日散步 线稿">
+        <div class="gallery-overlay"><span>夏日散步 · 线稿版</span></div>
       </div>
     </div>
   </div>
@@ -1163,25 +1660,56 @@ ul { list-style: none; }
     <p class="section-label reveal">Our Story</p>
     <h2 class="section-title reveal reveal-delay-1">关于咖啡屋</h2>
 
-    <div class="story-grid">
-      <div class="story-img reveal">
+    <div class="story-block reveal">
+      <div class="story-img">
         <img src="assets/Summer by TSURU (Transparency).png" alt="咖啡屋的夏天">
       </div>
-      <div class="story-content reveal reveal-delay-1">
+      <div class="story-content">
         <h3>每杯咖啡都有故事</h3>
         <p>
           头头的咖啡屋不只是一间咖啡馆——它是所有毛茸茸的避风港。
           灰蓝狼 Tito 在吧台后面默默守护着这个空间，为每一位推开店门的来客调一杯恰到好处的温热。
         </p>
         <p>
+          不知不觉已经走进春天了，生活又要这样继续往前走了。
+          如果我的寥寥几字也能让你驻足停看，那也不错。
+        </p>
+        <div class="story-quote">这里没有陌生人——只有还没推开门的朋友。</div>
+      </div>
+    </div>
+
+    <div class="story-block reveal">
+      <div class="story-img">
+        <img src="assets/Doraemon! Photo (with Tito TigerZ TON).png" alt="咖啡屋日常">
+      </div>
+      <div class="story-content">
+        <h3>日常的小确幸</h3>
+        <p>
           TigerZ 会窝在角落打游戏，Frank 趴在桌上画画（请勿打扰），
           Kayu 大大只地占据整个沙发却让你觉得安心，
           TON 在窗边轻声弹着吉他，点点蜷在他脚边打盹。
-          TigerBoo 偶尔从 TigerZ 的屏幕里探出圆圆的脑袋。
         </p>
         <p>
-          这里没有陌生人——只有还没推开门的朋友。
+          TigerBoo 偶尔从 TigerZ 的屏幕里探出圆圆的脑袋。
+          这些细碎的日常，构成了咖啡屋最温暖的风景。
         </p>
+      </div>
+    </div>
+
+    <div class="story-block reveal">
+      <div class="story-img">
+        <img src="assets/Little Comic (with Tito TigerZ Frank Kayu and TSURU herself).png" alt="小漫画">
+      </div>
+      <div class="story-content">
+        <h3>记录这些瞬间</h3>
+        <p>
+          每一幅画、每一张贴纸、每一个立牌，都是对这些温暖瞬间的记录。
+          把喜欢的角色带回家，就像把咖啡屋的温度随身携带。
+        </p>
+        <p>
+          make 21 grams interesting.
+        </p>
+        <div class="story-quote">欢迎光临，请开心。</div>
       </div>
     </div>
   </div>
@@ -1208,6 +1736,22 @@ ul { list-style: none; }
         </div>
         <p class="gb-msg-text">欢迎来到咖啡屋！请随意坐，我来为你泡一杯 ☕</p>
       </div>
+      <div class="gb-msg">
+        <div class="gb-msg-header">
+          <div class="gb-msg-avatar">🐯</div>
+          <span class="gb-msg-name">TigerZ</span>
+          <span class="gb-msg-time">常客</span>
+        </div>
+        <p class="gb-msg-text">今天的游戏打到新纪录了！谁要来挑战一下？🎮</p>
+      </div>
+      <div class="gb-msg">
+        <div class="gb-msg-header">
+          <div class="gb-msg-avatar">🐻</div>
+          <span class="gb-msg-name">Kayu</span>
+          <span class="gb-msg-time">常客</span>
+        </div>
+        <p class="gb-msg-text">好耶！今天沙发好软，大家快来坐~ ✨</p>
+      </div>
     </div>
   </div>
 </section>
@@ -1217,8 +1761,8 @@ ul { list-style: none; }
   <div class="container">
     <div class="footer-inner">
       <div class="footer-brand">
-        <h3 class="footer-brand-name">Tito's Cafe</h3>
-        <p>头头咖啡屋——每杯咖啡都有故事，每位毛茸茸都有角落。</p>
+        <h3 class="footer-brand-name">头头咖啡屋 Tito's Cafe</h3>
+        <p>每杯咖啡都有故事，每位毛茸茸都有角落。</p>
       </div>
       <div class="footer-col">
         <h4>导航</h4>
@@ -1242,7 +1786,7 @@ ul { list-style: none; }
       </div>
     </div>
     <div class="footer-bottom">
-      <span>&copy; 2026 Tito's Cafe. All characters belong to their respective owners.</span>
+      <span>&copy; 2026 头头咖啡屋 Tito's Cafe. All characters belong to their respective owners.</span>
       <span>Art by TSURU</span>
     </div>
   </div>
@@ -1267,103 +1811,190 @@ ul { list-style: none; }
   </div>
 </div>
 
-<!-- ═══════ LIGHTBOX ═══════ -->
-<div class="lightbox" id="lightbox" onclick="closeLightbox()">
-  <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
-  <img id="lightboxImg" src="" alt="">
-  <div class="lightbox-caption" id="lightboxCaption"></div>
+<!-- ═══════ CHARACTER MODAL ═══════ -->
+<div class="char-modal-overlay" id="charModal" onclick="closeCharModal(event)">
+  <div class="char-modal" onclick="event.stopPropagation()">
+    <button class="char-modal-close" onclick="closeCharModal()">&times;</button>
+    <div class="char-modal-visual">
+      <img id="charModalImg" src="" alt="">
+    </div>
+    <div class="char-modal-body">
+      <h3 class="char-modal-name" id="charModalName"></h3>
+      <p class="char-modal-role" id="charModalRole"></p>
+      <p class="char-modal-desc" id="charModalDesc"></p>
+      <div class="char-modal-traits" id="charModalTraits"></div>
+    </div>
+  </div>
 </div>
 
-<!-- ═══════ TOAST CONTAINER ═══════ -->
+<!-- ═══════ LIGHTBOX ═══════ -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+  <button class="lightbox-nav lightbox-prev" onclick="navLightbox(-1)">‹</button>
+  <button class="lightbox-nav lightbox-next" onclick="navLightbox(1)">›</button>
+  <img id="lightboxImg" src="" alt="">
+  <div class="lightbox-caption" id="lightboxCaption"></div>
+  <div class="lightbox-counter" id="lightboxCounter"></div>
+</div>
+
+<!-- ═══════ TOAST ═══════ -->
 <div class="toast-container" id="toastContainer"></div>
 
+<!-- ═══════ BACK TO TOP ═══════ -->
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
 <script>
-/* ═══════ THEME ═══════ */
-(function() {
-  const saved = localStorage.getItem('tito-cafe-theme');
-  if (saved) document.documentElement.setAttribute('data-theme', saved);
-  else if (window.matchMedia('(prefers-color-scheme: dark)').matches)
-    document.documentElement.setAttribute('data-theme', 'dark');
+/* ═══════════════════════════════════════════
+   THEME
+   ═══════════════════════════════════════════ */
+(function(){
+  const s=localStorage.getItem('tito-cafe-theme');
+  if(s)document.documentElement.setAttribute('data-theme',s);
+  else if(window.matchMedia('(prefers-color-scheme:dark)').matches)
+    document.documentElement.setAttribute('data-theme','dark');
+})();
+document.getElementById('themeToggle').addEventListener('click',()=>{
+  const c=document.documentElement.getAttribute('data-theme');
+  const n=c==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme',n);
+  localStorage.setItem('tito-cafe-theme',n);
+});
+
+/* ═══════════════════════════════════════════
+   HERO PARTICLES
+   ═══════════════════════════════════════════ */
+(function(){
+  const box=document.getElementById('heroParticles');
+  if(!box)return;
+  for(let i=0;i<20;i++){
+    const p=document.createElement('div');
+    p.className='particle';
+    const size=Math.random()*6+3;
+    p.style.cssText=`
+      width:${size}px;height:${size}px;
+      left:${Math.random()*100}%;
+      bottom:-${size}px;
+      background:${Math.random()>.5?'var(--primary-light)':'var(--secondary-light)'};
+      animation-duration:${Math.random()*8+6}s;
+      animation-delay:${Math.random()*6}s;
+    `;
+    box.appendChild(p);
+  }
 })();
 
-document.getElementById('themeToggle').addEventListener('click', () => {
-  const curr = document.documentElement.getAttribute('data-theme');
-  const next = curr === 'dark' ? 'light' : 'dark';
-  document.documentElement.setAttribute('data-theme', next);
-  localStorage.setItem('tito-cafe-theme', next);
-});
+/* ═══════════════════════════════════════════
+   SCROLL PROGRESS & NAV
+   ═══════════════════════════════════════════ */
+const nav=document.getElementById('nav');
+const progressBar=document.getElementById('progressBar');
+const backTop=document.getElementById('backTop');
 
-/* ═══════ NAV SCROLL ═══════ */
-const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 50);
-}, { passive: true });
+window.addEventListener('scroll',()=>{
+  const y=window.scrollY;
+  const h=document.documentElement.scrollHeight-window.innerHeight;
+  nav.classList.toggle('scrolled',y>50);
+  progressBar.style.width=h>0?(y/h*100)+'%':'0';
+  backTop.classList.toggle('show',y>600);
+},{passive:true});
 
-/* ═══════ MOBILE NAV ═══════ */
-document.getElementById('navToggle').addEventListener('click', () => {
+/* ═══════════════════════════════════════════
+   MOBILE NAV
+   ═══════════════════════════════════════════ */
+document.getElementById('navToggle').addEventListener('click',()=>{
   document.getElementById('navLinks').classList.toggle('open');
 });
-document.querySelectorAll('.nav-links a').forEach(a => {
-  a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+document.querySelectorAll('.nav-links a').forEach(a=>{
+  a.addEventListener('click',()=>document.getElementById('navLinks').classList.remove('open'));
 });
 
-/* ═══════ SCROLL REVEAL ═══════ */
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }});
-}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+/* ═══════════════════════════════════════════
+   SCROLL REVEAL
+   ═══════════════════════════════════════════ */
+const revealObs=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');revealObs.unobserve(e.target);}});
+},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>revealObs.observe(el));
 
-/* ═══════ SHOP FILTER ═══════ */
-document.querySelectorAll('.filter-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+/* ═══════════════════════════════════════════
+   SHOP FILTER
+   ═══════════════════════════════════════════ */
+document.querySelectorAll('.filter-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
     btn.classList.add('active');
-    const f = btn.dataset.filter;
-    document.querySelectorAll('.product-card').forEach(card => {
-      card.style.display = (f === 'all' || card.dataset.category === f) ? '' : 'none';
+    const f=btn.dataset.filter;
+    document.querySelectorAll('.product-card').forEach(card=>{
+      if(f==='all'||card.dataset.category===f){
+        card.classList.remove('hidden');
+      }else{
+        card.classList.add('hidden');
+      }
     });
   });
 });
 
-/* ═══════ CART ═══════ */
-let cart = [];
+/* ═══════════════════════════════════════════
+   GALLERY FILTER
+   ═══════════════════════════════════════════ */
+let galleryItems=[];
+function updateGalleryRefs(){
+  galleryItems=Array.from(document.querySelectorAll('.gallery-item:not(.hidden)'));
+}
+document.querySelectorAll('.gallery-tab').forEach(tab=>{
+  tab.addEventListener('click',()=>{
+    document.querySelectorAll('.gallery-tab').forEach(t=>t.classList.remove('active'));
+    tab.classList.add('active');
+    const f=tab.dataset.gal;
+    document.querySelectorAll('.gallery-item').forEach(item=>{
+      if(f==='all'||item.dataset.galcat===f){
+        item.classList.remove('hidden');
+      }else{
+        item.classList.add('hidden');
+      }
+    });
+    updateGalleryRefs();
+  });
+});
+updateGalleryRefs();
 
-function addToCart(name, price, img) {
-  const existing = cart.find(i => i.name === name);
-  if (existing) { existing.qty++; }
-  else { cart.push({ name, price, img, qty: 1 }); }
+/* ═══════════════════════════════════════════
+   CART
+   ═══════════════════════════════════════════ */
+let cart=[];
+
+function addToCart(name,price,img){
+  const existing=cart.find(i=>i.name===name);
+  if(existing){existing.qty++;}
+  else{cart.push({name,price,img,qty:1});}
   renderCart();
   showToast(`已添加「${name}」`);
 }
 
-function removeFromCart(idx) {
-  cart.splice(idx, 1);
+function removeFromCart(idx){cart.splice(idx,1);renderCart();}
+
+function changeQty(idx,delta){
+  cart[idx].qty+=delta;
+  if(cart[idx].qty<=0)cart.splice(idx,1);
   renderCart();
 }
 
-function changeQty(idx, delta) {
-  cart[idx].qty += delta;
-  if (cart[idx].qty <= 0) cart.splice(idx, 1);
-  renderCart();
-}
+function renderCart(){
+  const container=document.getElementById('cartItems');
+  const countEl=document.getElementById('cartCount');
+  const totalEl=document.getElementById('cartTotal');
+  const total=cart.reduce((s,i)=>s+i.price*i.qty,0);
+  const count=cart.reduce((s,i)=>s+i.qty,0);
 
-function renderCart() {
-  const container = document.getElementById('cartItems');
-  const countEl = document.getElementById('cartCount');
-  const totalEl = document.getElementById('cartTotal');
-  const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
-  const count = cart.reduce((s, i) => s + i.qty, 0);
+  countEl.textContent=count;
+  countEl.classList.toggle('show',count>0);
+  totalEl.textContent=`¥${total}`;
 
-  countEl.textContent = count;
-  countEl.classList.toggle('show', count > 0);
-  totalEl.textContent = `¥${total}`;
-
-  if (cart.length === 0) {
-    container.innerHTML = '<div class="cart-empty">购物车是空的~</div>';
+  if(cart.length===0){
+    container.innerHTML='<div class="cart-empty">购物车是空的~</div>';
     return;
   }
 
-  container.innerHTML = cart.map((item, i) => `
+  container.innerHTML=cart.map((item,i)=>`
     <div class="cart-item">
       <div class="cart-item-img"><img src="${item.img}" alt="${item.name}"></div>
       <div class="cart-item-info">
@@ -1380,59 +2011,164 @@ function renderCart() {
   `).join('');
 }
 
-document.getElementById('cartBtn').addEventListener('click', () => {
+document.getElementById('cartBtn').addEventListener('click',()=>{
   document.getElementById('cartOverlay').classList.add('open');
   document.getElementById('cartSidebar').classList.add('open');
 });
 
-function closeCart() {
+function closeCart(){
   document.getElementById('cartOverlay').classList.remove('open');
   document.getElementById('cartSidebar').classList.remove('open');
 }
 
-function checkout() {
-  if (cart.length === 0) { showToast('购物车还是空的哦~'); return; }
-  const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+function checkout(){
+  if(cart.length===0){showToast('购物车还是空的哦~');return;}
+  const total=cart.reduce((s,i)=>s+i.price*i.qty,0);
   showToast(`结算成功！共 ¥${total} 🎉`);
-  cart = [];
-  renderCart();
-  closeCart();
+  cart=[];renderCart();closeCart();
 }
 
-/* ═══════ LIGHTBOX ═══════ */
-function openLightbox(el) {
-  const img = el.querySelector('img');
-  const caption = el.querySelector('.gallery-overlay span');
-  document.getElementById('lightboxImg').src = img.src;
-  document.getElementById('lightboxCaption').textContent = caption ? caption.textContent : '';
+/* ═══════════════════════════════════════════
+   CHARACTER MODAL
+   ═══════════════════════════════════════════ */
+const charData={
+  tito:{
+    img:'assets/Tito Stand (Transparent).png',
+    name:'头头',nameEn:'Tito',
+    role:'🐺 灰蓝狼 · 咖啡屋店长',
+    desc:'咖啡屋的店长，一只灰蓝色的狼。沉稳又温暖，总是站在吧台后面为每位来客调制专属的那一杯。有时候会偷偷在咖啡拉花上画小狼脸。不知不觉已经走进春天了，生活又要这样继续往前走了。如果我的寥寥几字也能让你驻足停看，那也不错。',
+    traits:['店长','灰蓝狼','咖啡拉花','温柔可靠','拿铁艺术']
+  },
+  tigerz:{
+    img:'assets/TigerZ Stand (Transparent).png',
+    name:'TigerZ',nameEn:'',
+    role:'🐯 浅蓝虎 · 游戏达人',
+    desc:'浅蓝色的老虎，游戏达人。总能在咖啡屋的角落发现他抱着手柄战斗的身影。TigerBoo 是他在游戏世界里的吉祥物伙伴。打游戏的时候会不自觉地发出各种声音，是咖啡屋最热闹的背景音。',
+    traits:['浅蓝虎','游戏达人','TigerBoo 拥有者','热血','手柄不离手']
+  },
+  frank:{
+    img:'assets/Frank Stand (Transparent).png',
+    name:'Frank',nameEn:'',
+    role:'🐯 橘色虎 · 画画爱好者',
+    desc:'橘色老虎，画画的时候很专注，被打扰会发出 "NOOOO" 的哀嚎。画画是他的热爱，也是他表达自己的方式。桌上总是堆满了画笔和颜料，偶尔还会不小心把咖啡当成洗笔水。',
+    traits:['橘色虎','画画','容易被打扰','艺术气息','颜料常客']
+  },
+  kayu:{
+    img:'assets/Kayu Stand (Transparent).png',
+    name:'Kayu',nameEn:'',
+    role:'🐻 白熊 · 温暖担当',
+    desc:'白色的大熊，温暖又憨厚。总是第一个说"好耶！"的那位。看起来大大只的，其实心很软，喜欢抱抱。沙发的常客，但因为太大只，总能让旁边的人觉得特别安心。',
+    traits:['白熊','温暖憨厚','喜欢抱抱','沙发之王','好耶！']
+  },
+  ton:{
+    img:'assets/TON Stand (Transparent).png',
+    name:'TON',nameEn:'',
+    role:'🐺 茶色狼 · 音乐人',
+    desc:'茶色的狼，安静的音乐人。经常在咖啡屋窗边弹吉他，旋律轻柔得像午后的阳光。点点是他的宠物猫，总趴在他脚边打盹。偶尔也会和 Zacian 一起出现在游戏世界里。',
+    traits:['茶色狼','吉他','点点的主人','安静温柔','音乐人']
+  },
+  diandian:{
+    img:'assets/TON with Diandian (Pet Cat) Sticker (Transparent).png',
+    name:'点点',nameEn:'Diandian',
+    role:'🐱 宠物猫 · 咖啡屋团宠',
+    desc:'TON 的小猫，咖啡屋的团宠。最喜欢在 TON 弹吉他的时候蜷在他脚边，偶尔也会跳上吧台巡视领地。虽然小小只的，但气场十足，连 Kayu 都要让三分。',
+    traits:['宠物猫','TON 的伙伴','团宠','气场十足','吧台巡视员']
+  },
+  tigerboo:{
+    img:'assets/TigerBoo by TSURU (Transparency).png',
+    name:'TigerBoo',nameEn:'',
+    role:'🎮 游戏吉祥物 · TigerZ 的伙伴',
+    desc:'TigerZ 的游戏内吉祥物角色的拟人化形象。从像素世界走出来的小伙伴，圆滚滚的超可爱。偶尔会从屏幕里探出脑袋，看看咖啡屋的大家在做什么。',
+    traits:['游戏吉祥物','TigerZ 的伙伴','圆滚滚','像素世界来客','探头探脑']
+  }
+};
+
+document.querySelectorAll('.char-card').forEach(card=>{
+  card.addEventListener('click',()=>{
+    const key=card.dataset.char;
+    const data=charData[key];
+    if(!data)return;
+    document.getElementById('charModalImg').src=data.img;
+    document.getElementById('charModalImg').alt=data.name;
+    document.getElementById('charModalName').innerHTML=data.name+(data.nameEn?` <span>${data.nameEn}</span>`:'');
+    document.getElementById('charModalRole').textContent=data.role;
+    document.getElementById('charModalDesc').textContent=data.desc;
+    document.getElementById('charModalTraits').innerHTML=data.traits.map(t=>`<span class="tag">${t}</span>`).join('');
+    document.getElementById('charModal').classList.add('open');
+    document.body.style.overflow='hidden';
+  });
+});
+
+function closeCharModal(e){
+  if(e&&e.target!==e.currentTarget)return;
+  document.getElementById('charModal').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+/* ═══════════════════════════════════════════
+   LIGHTBOX
+   ═══════════════════════════════════════════ */
+let lbIndex=0;
+
+function openLightbox(el){
+  updateGalleryRefs();
+  lbIndex=galleryItems.indexOf(el);
+  if(lbIndex<0)lbIndex=0;
+  renderLightbox();
   document.getElementById('lightbox').classList.add('open');
-  document.body.style.overflow = 'hidden';
+  document.body.style.overflow='hidden';
 }
 
-function closeLightbox() {
+function renderLightbox(){
+  const el=galleryItems[lbIndex];
+  if(!el)return;
+  const img=el.querySelector('img');
+  const caption=el.querySelector('.gallery-overlay span');
+  document.getElementById('lightboxImg').src=img.src;
+  document.getElementById('lightboxCaption').textContent=caption?caption.textContent:'';
+  document.getElementById('lightboxCounter').textContent=`${lbIndex+1} / ${galleryItems.length}`;
+}
+
+function navLightbox(dir){
+  lbIndex=(lbIndex+dir+galleryItems.length)%galleryItems.length;
+  renderLightbox();
+}
+
+function closeLightbox(){
   document.getElementById('lightbox').classList.remove('open');
-  document.body.style.overflow = '';
+  document.body.style.overflow='';
 }
 
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){
+    closeLightbox();
+    closeCharModal();
+  }
+  if(document.getElementById('lightbox').classList.contains('open')){
+    if(e.key==='ArrowLeft')navLightbox(-1);
+    if(e.key==='ArrowRight')navLightbox(1);
+  }
+});
 
-/* ═══════ GUESTBOOK ═══════ */
-const emojis = ['🐺','🐯','🐻','🐱','🎮','☕','🎨','🎸','✨','🌙','🍀','💙'];
+/* ═══════════════════════════════════════════
+   GUESTBOOK
+   ═══════════════════════════════════════════ */
+const emojis=['🐺','🐯','🐻','🐱','🎮','☕','🎨','🎸','✨','🌙','🍀','💙'];
 
-function addGuestMsg() {
-  const nameEl = document.getElementById('gbName');
-  const msgEl = document.getElementById('gbMsg');
-  const name = nameEl.value.trim() || '匿名';
-  const msg = msgEl.value.trim();
-  if (!msg) return;
+function addGuestMsg(){
+  const nameEl=document.getElementById('gbName');
+  const msgEl=document.getElementById('gbMsg');
+  const name=nameEl.value.trim()||'匿名';
+  const msg=msgEl.value.trim();
+  if(!msg)return;
 
-  const emoji = emojis[Math.floor(Math.random() * emojis.length)];
-  const now = new Date();
-  const time = `${now.getHours().toString().padStart(2,'0')}:${now.getMinutes().toString().padStart(2,'0')}`;
+  const emoji=emojis[Math.floor(Math.random()*emojis.length)];
+  const now=new Date();
+  const time=`${now.getHours().toString().padStart(2,'0')}:${now.getMinutes().toString().padStart(2,'0')}`;
 
-  const div = document.createElement('div');
-  div.className = 'gb-msg';
-  div.innerHTML = `
+  const div=document.createElement('div');
+  div.className='gb-msg';
+  div.innerHTML=`
     <div class="gb-msg-header">
       <div class="gb-msg-avatar">${emoji}</div>
       <span class="gb-msg-name">${name}</span>
@@ -1442,23 +2178,25 @@ function addGuestMsg() {
   `;
 
   document.getElementById('gbMessages').prepend(div);
-  nameEl.value = '';
-  msgEl.value = '';
+  nameEl.value='';
+  msgEl.value='';
+  showToast('留言成功！ ☕');
 }
 
-// Enter to submit
-document.getElementById('gbMsg').addEventListener('keydown', e => {
-  if (e.key === 'Enter') addGuestMsg();
+document.getElementById('gbMsg').addEventListener('keydown',e=>{
+  if(e.key==='Enter')addGuestMsg();
 });
 
-/* ═══════ TOAST ═══════ */
-function showToast(msg) {
-  const container = document.getElementById('toastContainer');
-  const toast = document.createElement('div');
-  toast.className = 'toast';
-  toast.textContent = msg;
+/* ═══════════════════════════════════════════
+   TOAST
+   ═══════════════════════════════════════════ */
+function showToast(msg){
+  const container=document.getElementById('toastContainer');
+  const toast=document.createElement('div');
+  toast.className='toast';
+  toast.textContent=msg;
   container.appendChild(toast);
-  setTimeout(() => toast.remove(), 3000);
+  setTimeout(()=>toast.remove(),3000);
 }
 </script>
 </body>
