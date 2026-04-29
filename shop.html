@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<title>Shop / 周边柜台 - Tito Cafe</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="css/styles.css">
+<script src="js/main.js" defer></script></head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html" aria-label="Tito's Cafe 首页">
+      <img class="brand-mark" src="assets/images/tito-avatar-transparent.png" alt="Tito 头像">
+      <span><span class="brand-title">Tito's Cafe</span><span class="brand-subtitle">头头咖啡屋 · 周边与作品集</span></span>
+    </a>
+    <nav class="nav-links" aria-label="主导航">
+      <a href="index.html">Home</a>
+      <a href="characters.html">Characters</a>
+      <a href="shop.html">Shop</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="about.html">About</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-button menu-button" aria-label="打开菜单" aria-expanded="false">☰</button>
+      <button class="icon-button theme-toggle" aria-label="切换明暗主题">◐</button>
+      <button class="text-button cart-open" aria-label="打开购物车">Cart <span class="cart-count">0</span></button>
+    </div>
+  </div>
+</header>
+<main>
+<section class="page-hero">
+  <p class="eyebrow">Shop</p>
+  <h1>今日柜台，慢慢挑。</h1>
+  <p class="lead">这是模拟购买体验：筛选角色、看材质方向、收藏喜欢的，再把想带走的放进今日托盘。</p>
+</section>
+<section class="section">
+  <div class="toolbar" aria-label="商品筛选">
+    <div class="filters">
+      <label>类型 <select class="type-filter"><option value="all">全部</option><option value="stand">立牌</option><option value="sticker">贴纸</option><option value="badge">徽章</option><option value="set">组合</option></select></label>
+      <label>角色 <select class="role-filter"><option value="all">全部</option><option value="Tito">Tito</option><option value="TigerZ">TigerZ</option><option value="Frank">Frank</option><option value="Kayu">Kayu</option><option value="TON">TON</option></select></label>
+      <label>排序 <select class="sort-filter"><option value="featured">推荐顺序</option><option value="price-asc">价格从低到高</option><option value="price-desc">价格从高到低</option></select></label>
+    </div>
+    <button class="text-button cart-open">查看今日托盘 <span class="cart-count">0</span></button>
+  </div>
+  <div class="grid grid-3 product-grid"></div>
+</section>
+<section class="band"><div class="section"><div class="section-heading"><div><p class="eyebrow">Operator Notes</p><h2>像咖啡菜单一样陈列。</h2></div><p>立牌负责“站住”，贴纸负责“带走”，头像徽章负责“认领”。价格只是模拟，但购买路径要真实顺手。</p></div></div></section>
+</main>
+<footer class="footer">
+  <div class="footer-inner">
+    <p>make 21 grams interesting. Welcome to Tito's Cafe.</p>
+    <p>Artwork by TSURU. Static site for Netlify.</p>
+  </div>
+</footer>
+<div class="drawer" aria-hidden="true">
+  <div class="scrim"></div>
+  <aside class="drawer-panel" aria-label="购物车">
+    <div class="drawer-head"><h2>今日托盘</h2><button class="icon-button" data-close="drawer" aria-label="关闭购物车">×</button></div>
+    <div class="cart-items"></div>
+    <div class="price-row"><strong>小计</strong><strong class="cart-total">¥0</strong></div>
+  </aside>
+</div>
+<div class="modal" aria-hidden="true">
+  <div class="scrim"></div>
+  <section class="modal-panel" aria-label="商品详情">
+    <div class="modal-head"><h2 class="modal-title">商品详情</h2><button class="icon-button" data-close="modal" aria-label="关闭商品详情">×</button></div>
+    <div class="modal-body"></div>
+  </section>
+</div>
+<div class="lightbox" aria-hidden="true">
+  <div class="scrim"></div>
+  <section class="lightbox-panel" aria-label="图库预览">
+    <div class="modal-head"><div><h2 class="lightbox-title">作品预览</h2><p class="lightbox-meta"></p></div><button class="icon-button" data-close="lightbox" aria-label="关闭图库预览">×</button></div>
+    <div class="lightbox-media"></div>
+    <div class="lightbox-controls"><button class="text-button lightbox-prev">上一张</button><button class="text-button lightbox-next">下一张</button></div>
+  </section>
+</div>
+<button class="icon-button back-to-top" aria-label="回到顶部">↑</button>
+</body>
+</html>

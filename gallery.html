@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<title>Gallery / 作品集 - Tito Cafe</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="css/styles.css">
+<script src="js/main.js" defer></script></head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html" aria-label="Tito's Cafe 首页">
+      <img class="brand-mark" src="assets/images/tito-avatar-transparent.png" alt="Tito 头像">
+      <span><span class="brand-title">Tito's Cafe</span><span class="brand-subtitle">头头咖啡屋 · 周边与作品集</span></span>
+    </a>
+    <nav class="nav-links" aria-label="主导航">
+      <a href="index.html">Home</a>
+      <a href="characters.html">Characters</a>
+      <a href="shop.html">Shop</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="about.html">About</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-button menu-button" aria-label="打开菜单" aria-expanded="false">☰</button>
+      <button class="icon-button theme-toggle" aria-label="切换明暗主题">◐</button>
+      <button class="text-button cart-open" aria-label="打开购物车">Cart <span class="cart-count">0</span></button>
+    </div>
+  </div>
+</header>
+<main>
+<section class="page-hero">
+  <p class="eyebrow">Gallery</p>
+  <h1>作品不是库存，是灯光。</h1>
+  <p class="lead">按用途而不是按文件夹整理：设定图、立绘、贴纸、生活碎片、特别企划。适合评审快速看完成度，也适合访客慢慢翻。</p>
+</section>
+<section class="section">
+  <div class="toolbar">
+    <div class="filters" role="group" aria-label="图库分类">
+      <button class="filter-button gallery-filter" data-group="all" aria-pressed="true">全部</button>
+      <button class="filter-button gallery-filter" data-group="sketch" aria-pressed="false">设定图</button>
+      <button class="filter-button gallery-filter" data-group="stand" aria-pressed="false">立绘</button>
+      <button class="filter-button gallery-filter" data-group="sticker" aria-pressed="false">贴纸</button>
+      <button class="filter-button gallery-filter" data-group="life" aria-pressed="false">生活碎片</button>
+      <button class="filter-button gallery-filter" data-group="special" aria-pressed="false">特别企划</button>
+    </div>
+  </div>
+  <div class="grid grid-4 gallery-grid"></div>
+</section>
+</main>
+<footer class="footer">
+  <div class="footer-inner">
+    <p>make 21 grams interesting. Welcome to Tito's Cafe.</p>
+    <p>Artwork by TSURU. Static site for Netlify.</p>
+  </div>
+</footer>
+<div class="drawer" aria-hidden="true">
+  <div class="scrim"></div>
+  <aside class="drawer-panel" aria-label="购物车">
+    <div class="drawer-head"><h2>今日托盘</h2><button class="icon-button" data-close="drawer" aria-label="关闭购物车">×</button></div>
+    <div class="cart-items"></div>
+    <div class="price-row"><strong>小计</strong><strong class="cart-total">¥0</strong></div>
+  </aside>
+</div>
+<div class="modal" aria-hidden="true">
+  <div class="scrim"></div>
+  <section class="modal-panel" aria-label="商品详情">
+    <div class="modal-head"><h2 class="modal-title">商品详情</h2><button class="icon-button" data-close="modal" aria-label="关闭商品详情">×</button></div>
+    <div class="modal-body"></div>
+  </section>
+</div>
+<div class="lightbox" aria-hidden="true">
+  <div class="scrim"></div>
+  <section class="lightbox-panel" aria-label="图库预览">
+    <div class="modal-head"><div><h2 class="lightbox-title">作品预览</h2><p class="lightbox-meta"></p></div><button class="icon-button" data-close="lightbox" aria-label="关闭图库预览">×</button></div>
+    <div class="lightbox-media"></div>
+    <div class="lightbox-controls"><button class="text-button lightbox-prev">上一张</button><button class="text-button lightbox-next">下一张</button></div>
+  </section>
+</div>
+<button class="icon-button back-to-top" aria-label="回到顶部">↑</button>
+</body>
+</html>
