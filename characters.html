@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>角色 | Tito's Cafe</title>
+<link rel="stylesheet" href="css/style.css">
+<style>
+.char-hero{display:grid;grid-template-columns:300px 1fr;gap:var(--space-lg);align-items:center;margin-bottom:var(--space-lg)}
+.char-hero__img{max-height:360px;margin:0 auto}
+.char-hero__tag{display:inline-block;font-family:var(--font-ui);font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-medium-roast);background:var(--color-honey);padding:4px 12px;border-radius:var(--radius-pill);margin-bottom:var(--space-xs)}
+.char-hero__name{font-size:2.2rem;margin-bottom:var(--space-xs)}
+.char-hero__species{font-size:1rem;color:var(--color-text-muted);margin-bottom:var(--space-sm)}
+.char-hero__desc{line-height:1.8;color:var(--color-text-muted)}
+.char-section{padding:var(--space-xl) 0}
+.char-section:nth-child(even){background:var(--color-milk)}
+.char-gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:var(--space-sm);margin-top:var(--space-md)}
+.char-gallery__item{text-align:center}
+.char-gallery__item img{max-height:150px;margin:0 auto;border-radius:var(--radius-sm);background:var(--color-cream);transition:transform var(--transition-fast)}
+.char-gallery__item:hover img{transform:scale(1.04)}
+.char-gallery__label{font-size:0.7rem;color:var(--color-text-muted);margin-top:4px}
+.char-gallery__section-title{font-family:var(--font-ui);font-size:0.8rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--color-medium-roast);margin-top:var(--space-md);margin-bottom:var(--space-xs)}
+.meme-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:var(--space-sm);margin-top:var(--space-md)}
+.meme-item{background:var(--color-cream);border-radius:var(--radius-md);padding:var(--space-sm);text-align:center}
+.meme-item img{max-height:160px;margin:0 auto}
+.meme-item__cap{font-size:0.8rem;color:var(--color-text-muted);margin-top:var(--space-xs)}
+@media(max-width:768px){.char-hero{grid-template-columns:1fr;text-align:center}.char-hero__img{max-height:280px}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+<div class="container nav__inner">
+<a href="index.html" class="nav__brand"><span class="nav__brand-icon">☕</span><span>头头咖啡屋<span style="display:block;font-size:0.7rem;letter-spacing:0.15em;color:var(--color-medium-roast);opacity:0.8;margin-top:-2px">TITO'S CAFE</span></span></a>
+<button class="nav__toggle" aria-label="菜单" aria-expanded="false">☰</button>
+<ul class="nav__menu">
+<li><a href="index.html" class="nav__link">首页</a></li>
+<li><a href="characters.html" class="nav__link">角色</a></li>
+<li><a href="shop.html" class="nav__link">周边</a></li>
+<li><a href="gallery.html" class="nav__link">画廊</a></li>
+<li><a href="about.html" class="nav__link">关于</a></li>
+</ul>
+</div>
+</nav>
+
+<section class="section section--compact" style="padding-top:var(--space-xl)">
+<div class="container text-center">
+<div class="section-header">
+<span class="section-header__tag">Characters</span>
+<h1 class="section-header__title">角色</h1>
+</div>
+</div>
+</section>
+
+<!-- Tito -->
+<section class="char-section" id="tito">
+<div class="container">
+<div class="char-hero">
+<img src="assets/images/by-TSURU/Tito Stand (Transparent).png" alt="Tito" class="char-hero__img">
+<div>
+<span class="char-hero__tag">主角</span>
+<h2 class="char-hero__name">Tito</h2>
+<p class="char-hero__species">灰狼</p>
+<p class="char-hero__desc">Strike Chibi 棒球少年、Summer Walk 漫步者、Chinese Opera Style 换装主角。</p>
+</div>
+</div>
+<p class="char-gallery__section-title">Avatar</p>
+<div class="char-gallery">
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/Tito Avatar (Transparent).png" alt=""><p class="char-gallery__label">Transparent</p></div>
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/Tito Avatar.png" alt=""><p class="char-gallery__label">Original</p></div>
+</div>
+<p class="char-gallery__section-title">Stand</p>
+<div class="char-gallery">
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/Tito Stand (Transparent).png" alt=""><p class="char-gallery__label">Transparent</p></div>
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/Tito Stand.png" alt=""><p class="char-gallery__label">Original</p></div>
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/Tito in Palm (Transparent).png" alt=""><p class="char-gallery__label">In Palm</p></div>
+</div>
+<p class="char-gallery__section-title">Chibi</p>
+<div class="char-gallery">
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/Tito Strike Chibi (Transparent).png" alt=""><p class="char-gallery__label">Strike · Transparent</p></div>
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/Tito Strike Chibi.png" alt=""><p class="char-gallery__label">Strike · Original</p></div>
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/Tito Strike Chibi (Blue BG).png" alt=""><p class="char-gallery__label">Strike · Blue BG</p></div>
+</div>
+<p class="char-gallery__section-title">Sketch Set</p>
+<div class="char-gallery">
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/Tito Sketch Set.png" alt=""><p class="char-gallery__label">Full Set</p></div>
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/Tito Sketch Set (Clean BG).png" alt=""><p class="char-gallery__label">Clean BG</p></div>
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/Tito Sketch Set Background.png" alt=""><p class="char-gallery__label">With BG</p></div>
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/Tito Sketch Set Background (Transparent).png" alt=""><p class="char-gallery__label">BG Transparent</p></div>
+</div>
+<p class="char-gallery__section-title">Scenes</p>
+<div class="char-gallery">
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/Summer Walk (with Tito TigerZ).png" alt=""><p class="char-gallery__label">Summer Walk</p></div>
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/Summer Walk (with Tito TigerZ) (Transparent).png" alt=""><p class="char-gallery__label">Summer Walk · Trans</p></div>
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/Summer Walk (with Tito TigerZ) (Trans. no Stickers).png" alt=""><p class="char-gallery__label">Summer · No Stickers</p></div>
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/HBD Celebration (with Tito and TigerZ).png" alt=""><p class="char-gallery__label">HBD</p></div>
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/Chinese Opera Style Outfit Design (with Tito TigerZ).png" alt=""><p class="char-gallery__label">Opera Style</p></div>
+</div>
+</div>
+</section>
+
+<!-- TigerZ -->
+<section class="char-section" id="tigerz">
+<div class="container">
+<div class="char-hero">
+<img src="assets/images/by-TSURU/TigerZ Stand (Transparent).png" alt="TigerZ" class="char-hero__img">
+<div>
+<span class="char-hero__tag">浅蓝老虎</span>
+<h2 class="char-hero__name">TigerZ</h2>
+<p class="char-hero__species">游戏玩家 · TigerBoo 原型</p>
+<p class="char-hero__desc">Gaming Chibi 里的宅虎，Summer Walk 和 HBD 的常客，TigerBoo 游戏吉祥物的原型。</p>
+</div>
+</div>
+<p class="char-gallery__section-title">Avatar</p>
+<div class="char-gallery">
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/TigerZ Avatar (Transparent).png" alt=""><p class="char-gallery__label">Transparent</p></div>
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/TigerZ Avatar.png" alt=""><p class="char-gallery__label">Original</p></div>
+</div>
+<p class="char-gallery__section-title">Stand</p>
+<div class="char-gallery">
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/TigerZ Stand (Transparent).png" alt=""><p class="char-gallery__label">Transparent</p></div>
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/TigerZ Stand.png" alt=""><p class="char-gallery__label">Original</p></div>
+</div>
+<p class="char-gallery__section-title">Chibi & Mascot</p>
+<div class="char-gallery">
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/TigerZ Gaming Chibi (Transparent).png" alt=""><p class="char-gallery__label">Gaming · Trans</p></div>
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/TigerZ Gaming Chibi.png" alt=""><p class="char-gallery__label">Gaming · Original</p></div>
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/TigerZ TigerBoo (Game Mascot NETA Mascot).png" alt=""><p class="char-gallery__label">TigerBoo</p></div>
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/TigerZ TigerBoo (Game Mascot NETA Mascot) (Transparent).png" alt=""><p class="char-gallery__label">TigerBoo · Trans</p></div>
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/TigerZ TigerBoo (Game Mascot NETA Mascot) (Transparent) (Seperate).png" alt=""><p class="char-gallery__label">TigerBoo · Separate</p></div>
+</div>
+<p class="char-gallery__section-title">Sketch Set</p>
+<div class="char-gallery">
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/TigerZ Sketch Set.png" alt=""><p class="char-gallery__label">Full Set</p></div>
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/TigerZ Sketch Set (Clean BG).png" alt=""><p class="char-gallery__label">Clean BG</p></div>
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/TigerZ Sketch Set Background.png" alt=""><p class="char-gallery__label">With BG</p></div>
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/TigerZ Sketch Set Background (Transparent).png" alt=""><p class="char-gallery__label">BG Transparent</p></div>
+</div>
+<p class="char-gallery__section-title">Scenes</p>
+<div class="char-gallery">
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/Summer Walk (with Tito TigerZ).png" alt=""><p class="char-gallery__label">Summer Walk</p></div>
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/HBD Celebration (with Tito and TigerZ).png" alt=""><p class="char-gallery__label">HBD</p></div>
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/Chinese Opera Style Outfit Design (with Tito TigerZ).png" alt=""><p class="char-gallery__label">Opera Style</p></div>
+</div>
+</div>
+</section>
+
+<!-- Frank -->
+<section class="char-section" id="frank">
+<div class="container">
+<div class="char-hero">
+<img src="assets/images/by-TSURU/Frank Stand (Transparent).png" alt="Frank" class="char-hero__img">
+<div>
+<span class="char-hero__tag">橘色老虎</span>
+<h2 class="char-hero__name">Frank</h2>
+<p class="char-hero__species">表情包之王</p>
+<p class="char-hero__desc">橘色老虎，表情最丰富的角色。Drawing、NOOOO、Table Crack、Do Not Want 都是经典。</p>
+</div>
+</div>
+<p class="char-gallery__section-title">Avatar</p>
+<div class="char-gallery">
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/Frank Avatar (Transparent).png" alt=""><p class="char-gallery__label">Transparent</p></div>
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/Frank Avatar.png" alt=""><p class="char-gallery__label">Original</p></div>
+</div>
+<p class="char-gallery__section-title">Stand</p>
+<div class="char-gallery">
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/Frank Stand (Transparent).png" alt=""><p class="char-gallery__label">Transparent</p></div>
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/Frank Stand.png" alt=""><p class="char-gallery__label">Original</p></div>
+</div>
+<p class="char-gallery__section-title">Meme & Expressions</p>
+<div class="meme-grid">
+<div class="meme-item"><img src="assets/images/by-TSURU/Frank Drawing Chibi (Transparent).png" alt=""><p class="meme-item__cap">Drawing · Trans</p></div>
+<div class="meme-item"><img src="assets/images/by-TSURU/Frank Drawing Chibi.png" alt=""><p class="meme-item__cap">Drawing</p></div>
+<div class="meme-item"><img src="assets/images/by-TSURU/Frank NOOOO (Transparent).png" alt=""><p class="meme-item__cap">NOOOO</p></div>
+<div class="meme-item"><img src="assets/images/by-TSURU/Frank Do Not Want to Draw (Transparent).png" alt=""><p class="meme-item__cap">Do Not Want</p></div>
+<div class="meme-item"><img src="assets/images/by-TSURU/Frank Table Crack (Transparent).png" alt=""><p class="meme-item__cap">Table Crack</p></div>
+</div>
+<p class="char-gallery__section-title">Sketch Set</p>
+<div class="char-gallery">
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/Frank Sketch Set.png" alt=""><p class="char-gallery__label">Full Set</p></div>
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/Frank Sketch Set (Clean BG).png" alt=""><p class="char-gallery__label">Clean BG</p></div>
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/Frank Sketch Set Background.png" alt=""><p class="char-gallery__label">With BG</p></div>
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/Frank Sketch Set Background (Transparent).png" alt=""><p class="char-gallery__label">BG Transparent</p></div>
+</div>
+<p class="char-gallery__section-title">Scenes</p>
+<div class="char-gallery">
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/Kayu Photo Corner (Kayu Plushi with Tito TigerZ Frank and himself).png" alt=""><p class="char-gallery__label">Photo Corner</p></div>
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/Kayu Photo Corner (Kayu Plushi with Tito TigerZ Frank and himself) (Transparent).png" alt=""><p class="char-gallery__label">Photo Corner · Trans</p></div>
+</div>
+</div>
+</section>
+
+<!-- Kayu -->
+<section class="char-section" id="kayu">
+<div class="container">
+<div class="char-hero">
+<img src="assets/images/by-TSURU/Kayu Stand (Transparent).png" alt="Kayu" class="char-hero__img">
+<div>
+<span class="char-hero__tag">白色熊</span>
+<h2 class="char-hero__name">Kayu</h2>
+<p class="char-hero__species">条纹尾巴 · Photo Corner 记录者</p>
+<p class="char-hero__desc">白色熊。Yeah! Chibi 元气担当，Tail-draw 展示标志性条纹尾巴，Photo Corner 记录全员日常。</p>
+</div>
+</div>
+<p class="char-gallery__section-title">Avatar</p>
+<div class="char-gallery">
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/Kayu Avatar (Transparent).png" alt=""><p class="char-gallery__label">Transparent</p></div>
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/Kayu Avatar.png" alt=""><p class="char-gallery__label">Original</p></div>
+</div>
+<p class="char-gallery__section-title">Stand</p>
+<div class="char-gallery">
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/Kayu Stand (Transparent).png" alt=""><p class="char-gallery__label">Transparent</p></div>
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/Kayu Stand.png" alt=""><p class="char-gallery__label">Original</p></div>
+</div>
+<p class="char-gallery__section-title">Chibi</p>
+<div class="char-gallery">
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/Kayu Yeah! Chibi (Transparent).png" alt=""><p class="char-gallery__label">Yeah! · Trans</p></div>
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/Kayu Yeah! Chibi.png" alt=""><p class="char-gallery__label">Yeah! · Original</p></div>
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/Kayu Tail-draw (Transparent).png" alt=""><p class="char-gallery__label">Tail-draw · Trans</p></div>
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/Kayu Tail-draw.png" alt=""><p class="char-gallery__label">Tail-draw</p></div>
+</div>
+<p class="char-gallery__section-title">Sketch Set</p>
+<div class="char-gallery">
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/Kayu Sketch Set.png" alt=""><p class="char-gallery__label">Full Set</p></div>
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/Kayu Sketch Set (Clean BG).png" alt=""><p class="char-gallery__label">Clean BG</p></div>
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/Kayu Sketch Set Background.png" alt=""><p class="char-gallery__label">With BG</p></div>
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/Kayu Sketch Set Background (Transparent).png" alt=""><p class="char-gallery__label">BG Transparent</p></div>
+</div>
+<p class="char-gallery__section-title">Scenes</p>
+<div class="char-gallery">
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/Kayu Photo Corner (Kayu Plushi with Tito TigerZ Frank and himself).png" alt=""><p class="char-gallery__label">Photo Corner</p></div>
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/Saturday Photo (with Tito TigerZ Kayu).jpg" alt=""><p class="char-gallery__label">Saturday</p></div>
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/Saturday Photo Smile (with Tito TigerZ Kayu).jpg" alt=""><p class="char-gallery__label">Saturday Smile</p></div>
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/Selfie Photo (with Kayu & Frank) (filter).png" alt=""><p class="char-gallery__label">Selfie</p></div>
+</div>
+</div>
+</section>
+
+<!-- TON -->
+<section class="char-section" id="ton">
+<div class="container">
+<div class="char-hero">
+<img src="assets/images/by-TSURU/TON Stand (Transparent).png" alt="TON" class="char-hero__img">
+<div>
+<span class="char-hero__tag">棕狼 · 吉他手</span>
+<h2 class="char-hero__name">TON</h2>
+<p class="char-hero__species">With Zacian · Pet: Diandian</p>
+<p class="char-hero__desc">棕狼，弹吉他。Playing Guitar 是标志性画面，Walking Chibi 展示日常。宠物猫 Diandian 常驻身边。</p>
+</div>
+</div>
+<p class="char-gallery__section-title">Stand</p>
+<div class="char-gallery">
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/TON Stand (Transparent).png" alt=""><p class="char-gallery__label">Transparent</p></div>
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/TON Stand.png" alt=""><p class="char-gallery__label">Original</p></div>
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/TON Stand with Zacian (Transparent).png" alt=""><p class="char-gallery__label">+ Zacian · Trans</p></div>
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/TON Stand with Zacian.png" alt=""><p class="char-gallery__label">+ Zacian</p></div>
+</div>
+<p class="char-gallery__section-title">Playing Guitar</p>
+<div class="char-gallery">
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/TON Playing Guitar (Transparent).png" alt=""><p class="char-gallery__label">Transparent</p></div>
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/TON Playing Guitar.png" alt=""><p class="char-gallery__label">Original</p></div>
+</div>
+<p class="char-gallery__section-title">Chibi</p>
+<div class="char-gallery">
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/TON Walking Chibi (Transparent).png" alt=""><p class="char-gallery__label">Walking · Trans</p></div>
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/TON Walking Chibi.png" alt=""><p class="char-gallery__label">Walking</p></div>
+</div>
+<p class="char-gallery__section-title">With Diandian</p>
+<div class="char-gallery">
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/TON with Diandian (Pet Cat) (Transparent).png" alt=""><p class="char-gallery__label">Transparent</p></div>
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/TON with Diandian (Pet Cat).png" alt=""><p class="char-gallery__label">Original</p></div>
+</div>
+<p class="char-gallery__section-title">Sketch Set</p>
+<div class="char-gallery">
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/TON Sketch Set.png" alt=""><p class="char-gallery__label">Full Set</p></div>
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/TON Sketch Set (Clean BG).png" alt=""><p class="char-gallery__label">Clean BG</p></div>
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/TON Sketch Set with Zacian (Clean BG).png" alt=""><p class="char-gallery__label">+ Zacian Clean</p></div>
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/TON Sketch Set with Zacian.png" alt=""><p class="char-gallery__label">+ Zacian</p></div>
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/TON Sketch Set Background.png" alt=""><p class="char-gallery__label">With BG</p></div>
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/TON Sketch Set Background (Transparent).png" alt=""><p class="char-gallery__label">BG Transparent</p></div>
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/TON Line Sketch.png" alt=""><p class="char-gallery__label">Line Sketch</p></div>
+</div>
+<p class="char-gallery__section-title">Scenes</p>
+<div class="char-gallery">
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/Doraemon! Photo (with Tito TigerZ TON).png" alt=""><p class="char-gallery__label">Doraemon Photo</p></div>
+</div>
+</div>
+</section>
+
+<!-- TSURU -->
+<section class="char-section" id="tsuru">
+<div class="container">
+<div class="char-hero">
+<img src="assets/images/by-TSURU/Little Comic (with Tito TigerZ Frank Kayu and TSURU herself).png" alt="TSURU" class="char-hero__img">
+<div>
+<span class="char-hero__tag">创作者</span>
+<h2 class="char-hero__name">TSURU汀</h2>
+<p class="char-hero__species">画师</p>
+<p class="char-hero__desc">所有角色的创作者。Little Comic 中本人登场，与 Tito、TigerZ、Frank、Kayu 同框。</p>
+</div>
+</div>
+<p class="char-gallery__section-title">Comic & Photo</p>
+<div class="char-gallery">
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/Little Comic (with Tito TigerZ Frank Kayu and TSURU herself).png" alt=""><p class="char-gallery__label">Little Comic</p></div>
+<div class="char-gallery__item"><img src="assets/images/by-TSURU/Yummy! Photo Drawn (filter).jpg" alt=""><p class="char-gallery__label">Yummy! Photo</p></div>
+</div>
+</div>
+</section>
+
+<footer class="footer">
+<div class="container footer__inner">
+<div><p class="footer__brand">☕ Tito's Cafe · 头头咖啡屋</p></div>
+<div><p class="footer__heading">页面</p><ul class="footer__links"><li><a href="index.html">首页</a></li><li><a href="characters.html">角色</a></li><li><a href="shop.html">周边</a></li><li><a href="gallery.html">画廊</a></li></ul></div>
+<div><p class="footer__heading">关于</p><ul class="footer__links"><li><a href="about.html">关于</a></li></ul></div>
+</div>
+<div class="container footer__bottom"><span>© Tito's Cafe</span></div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

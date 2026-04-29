@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>周边 | Tito's Cafe</title>
+<link rel="stylesheet" href="css/style.css">
+<style>
+.shop-filters{display:flex;gap:var(--space-xs);justify-content:center;flex-wrap:wrap;margin-bottom:var(--space-sm)}
+.shop-filters button{background:transparent;border:1px solid var(--color-light-roast);padding:6px 16px;border-radius:var(--radius-pill);font-family:var(--font-ui);font-size:0.8rem;color:var(--color-medium-roast);cursor:pointer;transition:all var(--transition-fast)}
+.shop-filters button:hover,.shop-filters button.active{background:var(--color-medium-roast);color:#fff;border-color:var(--color-medium-roast)}
+.shop-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:var(--space-md)}
+.shop-grid .card__image{aspect-ratio:1}
+#toast{position:fixed;bottom:32px;left:50%;transform:translateX(-50%) translateY(100px);background:var(--color-espresso);color:var(--color-cream);padding:var(--space-sm) var(--space-md);border-radius:var(--radius-pill);font-family:var(--font-ui);font-size:0.9rem;box-shadow:var(--shadow-strong);opacity:0;transition:all 0.4s cubic-bezier(0.25,0.46,0.45,0.94);z-index:300;pointer-events:none}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+<div class="container nav__inner">
+<a href="index.html" class="nav__brand"><span class="nav__brand-icon">☕</span><span>头头咖啡屋<span style="display:block;font-size:0.7rem;letter-spacing:0.15em;color:var(--color-medium-roast);opacity:0.8;margin-top:-2px">TITO'S CAFE</span></span></a>
+<button class="nav__toggle" aria-label="菜单" aria-expanded="false">☰</button>
+<ul class="nav__menu">
+<li><a href="index.html" class="nav__link">首页</a></li>
+<li><a href="characters.html" class="nav__link">角色</a></li>
+<li><a href="shop.html" class="nav__link">周边</a></li>
+<li><a href="gallery.html" class="nav__link">画廊</a></li>
+<li><a href="about.html" class="nav__link">关于</a></li>
+</ul>
+</div>
+</nav>
+
+<section class="section section--compact" style="padding-top:var(--space-xl)">
+<div class="container text-center">
+<div class="section-header">
+<span class="section-header__tag">Shop</span>
+<h1 class="section-header__title">周边</h1>
+</div>
+</div>
+</section>
+
+<section class="section section--compact">
+<div class="container">
+
+<p style="text-align:center;font-size:0.85rem;color:var(--color-text-muted);margin-bottom:var(--space-xs)">按角色</p>
+<div class="shop-filters" id="charFilters">
+<button class="active" onclick="filterShop('char','all',this)">全部</button>
+<button onclick="filterShop('char','tito',this)">Tito</button>
+<button onclick="filterShop('char','tigerz',this)">TigerZ</button>
+<button onclick="filterShop('char','frank',this)">Frank</button>
+<button onclick="filterShop('char','kayu',this)">Kayu</button>
+<button onclick="filterShop('char','ton',this)">TON</button>
+<button onclick="filterShop('char','allchar',this)">全员</button>
+</div>
+
+<p style="text-align:center;font-size:0.85rem;color:var(--color-text-muted);margin-bottom:var(--space-xs)">按品类</p>
+<div class="shop-filters" id="typeFilters">
+<button class="active" onclick="filterShop('type','all',this)">全部</button>
+<button onclick="filterShop('type','stand',this)">立牌</button>
+<button onclick="filterShop('type','plush',this)">毛绒</button>
+<button onclick="filterShop('type','badge',this)">徽章</button>
+<button onclick="filterShop('type','sticker',this)">贴纸</button>
+<button onclick="filterShop('type','paper',this)">纸品</button>
+</div>
+
+<div class="shop-grid" id="shopGrid">
+
+<div class="card" data-char="tito" data-type="stand"><img src="assets/images/by-TSURU/Tito Stand (Transparent).png" alt="" class="card__image card__image--contain"><div class="card__body"><h3 class="card__title">Tito 立牌</h3></div><div class="card__footer"><span class="card__price">¥48</span><button class="btn btn--small btn--primary" onclick="toast()">+</button></div></div>
+<div class="card" data-char="tigerz" data-type="stand"><img src="assets/images/by-TSURU/TigerZ Stand (Transparent).png" alt="" class="card__image card__image--contain"><div class="card__body"><h3 class="card__title">TigerZ 立牌</h3></div><div class="card__footer"><span class="card__price">¥48</span><button class="btn btn--small btn--primary" onclick="toast()">+</button></div></div>
+<div class="card" data-char="frank" data-type="stand"><img src="assets/images/by-TSURU/Frank Stand (Transparent).png" alt="" class="card__image card__image--contain"><div class="card__body"><h3 class="card__title">Frank 立牌</h3></div><div class="card__footer"><span class="card__price">¥48</span><button class="btn btn--small btn--primary" onclick="toast()">+</button></div></div>
+<div class="card" data-char="kayu" data-type="stand"><img src="assets/images/by-TSURU/Kayu Stand (Transparent).png" alt="" class="card__image card__image--contain"><div class="card__body"><h3 class="card__title">Kayu 立牌</h3></div><div class="card__footer"><span class="card__price">¥48</span><button class="btn btn--small btn--primary" onclick="toast()">+</button></div></div>
+<div class="card" data-char="ton" data-type="stand"><img src="assets/images/by-TSURU/TON Stand (Transparent).png" alt="" class="card__image card__image--contain"><div class="card__body"><h3 class="card__title">TON 立牌</h3></div><div class="card__footer"><span class="card__price">¥48</span><button class="btn btn--small btn--primary" onclick="toast()">+</button></div></div>
+<div class="card" data-char="tigerz" data-type="plush"><img src="assets/images/by-TSURU/TigerZ TigerBoo (Game Mascot NETA Mascot) (Transparent).png" alt="" class="card__image card__image--contain"><div class="card__body"><h3 class="card__title">TigerBoo 挂件</h3></div><div class="card__footer"><span class="card__price">¥58</span><button class="btn btn--small btn--primary" onclick="toast()">+</button></div></div>
+<div class="card" data-char="allchar" data-type="badge"><img src="assets/images/by-TSURU/Tito Avatar (Transparent).png" alt="" class="card__image card__image--contain"><div class="card__body"><h3 class="card__title">角色徽章组（5枚）</h3></div><div class="card__footer"><span class="card__price">¥68</span><button class="btn btn--small btn--primary" onclick="toast()">+</button></div></div>
+<div class="card" data-char="tito" data-type="sticker"><img src="assets/images/by-TSURU/Tito Strike Chibi (Transparent).png" alt="" class="card__image card__image--contain"><div class="card__body"><h3 class="card__title">Tito Strike 贴纸</h3></div><div class="card__footer"><span class="card__price">¥18</span><button class="btn btn--small btn--primary" onclick="toast()">+</button></div></div>
+<div class="card" data-char="tigerz" data-type="sticker"><img src="assets/images/by-TSURU/TigerZ Gaming Chibi (Transparent).png" alt="" class="card__image card__image--contain"><div class="card__body"><h3 class="card__title">TigerZ Gaming 贴纸</h3></div><div class="card__footer"><span class="card__price">¥18</span><button class="btn btn--small btn--primary" onclick="toast()">+</button></div></div>
+<div class="card" data-char="frank" data-type="sticker"><img src="assets/images/by-TSURU/Frank Drawing Chibi (Transparent).png" alt="" class="card__image card__image--contain"><div class="card__body"><h3 class="card__title">Frank 表情贴纸组</h3></div><div class="card__footer"><span class="card__price">¥28</span><button class="btn btn--small btn--primary" onclick="toast()">+</button></div></div>
+<div class="card" data-char="kayu" data-type="sticker"><img src="assets/images/by-TSURU/Kayu Yeah! Chibi (Transparent).png" alt="" class="card__image card__image--contain"><div class="card__body"><h3 class="card__title">Kayu Yeah! 贴纸</h3></div><div class="card__footer"><span class="card__price">¥18</span><button class="btn btn--small btn--primary" onclick="toast()">+</button></div></div>
+<div class="card" data-char="ton" data-type="sticker"><img src="assets/images/by-TSURU/TON Walking Chibi (Transparent).png" alt="" class="card__image card__image--contain"><div class="card__body"><h3 class="card__title">TON Walking 贴纸</h3></div><div class="card__footer"><span class="card__price">¥18</span><button class="btn btn--small btn--primary" onclick="toast()">+</button></div></div>
+<div class="card" data-char="allchar" data-type="sticker"><img src="assets/images/by-TSURU/Flowers (with Tito TigerZ) (Transparency).png" alt="" class="card__image card__image--contain"><div class="card__body"><h3 class="card__title">花束场景贴纸</h3></div><div class="card__footer"><span class="card__price">¥18</span><button class="btn btn--small btn--primary" onclick="toast()">+</button></div></div>
+<div class="card" data-char="allchar" data-type="paper"><img src="assets/images/by-TSURU/Summer Walk (with Tito TigerZ).png" alt="" class="card__image card__image--contain"><div class="card__body"><h3 class="card__title">场景明信片组 A</h3></div><div class="card__footer"><span class="card__price">¥28</span><button class="btn btn--small btn--primary" onclick="toast()">+</button></div></div>
+<div class="card" data-char="allchar" data-type="paper"><img src="assets/images/by-TSURU/Saturday Photo Smile (with Tito TigerZ Kayu).jpg" alt="" class="card__image card__image--contain"><div class="card__body"><h3 class="card__title">场景明信片组 B</h3></div><div class="card__footer"><span class="card__price">¥28</span><button class="btn btn--small btn--primary" onclick="toast()">+</button></div></div>
+<div class="card" data-char="allchar" data-type="paper"><img src="assets/images/by-TSURU/Little Comic (with Tito TigerZ Frank Kayu and TSURU herself).png" alt="" class="card__image card__image--contain"><div class="card__body"><h3 class="card__title">Little Comic 复制画</h3></div><div class="card__footer"><span class="card__price">¥38</span><button class="btn btn--small btn--primary" onclick="toast()">+</button></div></div>
+<div class="card" data-char="allchar" data-type="paper"><img src="assets/images/by-TSURU/Tito Sketch Set (Clean BG).png" alt="" class="card__image card__image--contain"><div class="card__body"><h3 class="card__title">角色草稿集画册</h3></div><div class="card__footer"><span class="card__price">¥42</span><button class="btn btn--small btn--primary" onclick="toast()">+</button></div></div>
+
+</div>
+</div>
+</section>
+
+<div id="toast">已加入购物车</div>
+
+<script>
+let activeChar='all',activeType='all';
+function toast(){const t=document.getElementById('toast');t.style.opacity='1';t.style.transform='translateX(-50%) translateY(0)';setTimeout(()=>{t.style.opacity='0';t.style.transform='translateX(-50%) translateY(100px)';},2000);}
+function filterShop(dim,val,btn){if(dim==='char'){activeChar=val;document.querySelectorAll('#charFilters button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}else{activeType=val;document.querySelectorAll('#typeFilters button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}document.querySelectorAll('#shopGrid .card').forEach(card=>{const c=card.dataset.char,t=card.dataset.type;const charMatch=activeChar==='all'||activeChar===c;const typeMatch=activeType==='all'||activeType===t;card.style.display=charMatch&&typeMatch?'':'none';});}
+</script>
+<script src="js/main.js"></script>
+
+<footer class="footer">
+<div class="container footer__inner">
+<div><p class="footer__brand">☕ Tito's Cafe · 头头咖啡屋</p></div>
+<div><p class="footer__heading">页面</p><ul class="footer__links"><li><a href="index.html">首页</a></li><li><a href="characters.html">角色</a></li><li><a href="shop.html">周边</a></li><li><a href="gallery.html">画廊</a></li></ul></div>
+<div><p class="footer__heading">关于</p><ul class="footer__links"><li><a href="about.html">关于</a></li></ul></div>
+</div>
+<div class="container footer__bottom"><span>© Tito's Cafe</span></div>
+</footer>
+
+</body>
+</html>

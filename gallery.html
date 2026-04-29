@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>画廊 | Tito's Cafe</title>
+<link rel="stylesheet" href="css/style.css">
+<style>
+.gallery-tabs{display:flex;gap:var(--space-xs);justify-content:center;flex-wrap:wrap;margin-bottom:var(--space-lg);position:sticky;top:72px;z-index:90;background:var(--color-cream);padding:var(--space-sm) 0}
+.gallery-tabs button{background:transparent;border:1px solid var(--color-light-roast);padding:8px 20px;border-radius:var(--radius-pill);font-family:var(--font-ui);font-size:0.85rem;color:var(--color-medium-roast);cursor:pointer;transition:all var(--transition-fast)}
+.gallery-tabs button:hover,.gallery-tabs button.active{background:var(--color-medium-roast);color:#fff;border-color:var(--color-medium-roast)}
+.gallery-section{display:none}
+.gallery-section.active{display:block}
+.gallery-masonry{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:var(--space-sm)}
+.gallery-masonry__item{position:relative;border-radius:var(--radius-md);overflow:hidden;aspect-ratio:1;background:var(--color-milk);cursor:pointer}
+.gallery-masonry__item--wide{grid-column:span 2;aspect-ratio:2/1}
+.gallery-masonry__item--tall{grid-row:span 2}
+.gallery-masonry__item img{width:100%;height:100%;object-fit:cover;transition:transform var(--transition-medium)}
+.gallery-masonry__item:hover img{transform:scale(1.06)}
+.gallery-masonry__overlay{position:absolute;inset:0;background:linear-gradient(transparent 50%,rgba(61,50,41,0.7));display:flex;flex-direction:column;justify-content:flex-end;padding:var(--space-sm);opacity:0;transition:opacity var(--transition-fast)}
+.gallery-masonry__item:hover .gallery-masonry__overlay{opacity:1}
+.gallery-masonry__name{color:#fff;font-size:0.95rem}
+.gallery-masonry__meta{color:rgba(255,255,255,0.8);font-size:0.75rem}
+.compare-pair{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-sm);margin-bottom:var(--space-sm)}
+.compare-pair__item{background:var(--color-milk);border-radius:var(--radius-md);overflow:hidden;aspect-ratio:1;cursor:pointer}
+.compare-pair__item img{width:100%;height:100%;object-fit:cover}
+.compare-label{text-align:center;font-size:0.75rem;color:var(--color-text-muted);margin-top:4px}
+@media(max-width:768px){.gallery-masonry{grid-template-columns:repeat(2,1fr)}.gallery-masonry__item--wide{grid-column:span 2}.gallery-tabs{top:0;position:relative}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+<div class="container nav__inner">
+<a href="index.html" class="nav__brand"><span class="nav__brand-icon">☕</span><span>头头咖啡屋<span style="display:block;font-size:0.7rem;letter-spacing:0.15em;color:var(--color-medium-roast);opacity:0.8;margin-top:-2px">TITO'S CAFE</span></span></a>
+<button class="nav__toggle" aria-label="菜单" aria-expanded="false">☰</button>
+<ul class="nav__menu">
+<li><a href="index.html" class="nav__link">首页</a></li>
+<li><a href="characters.html" class="nav__link">角色</a></li>
+<li><a href="shop.html" class="nav__link">周边</a></li>
+<li><a href="gallery.html" class="nav__link">画廊</a></li>
+<li><a href="about.html" class="nav__link">关于</a></li>
+</ul>
+</div>
+</nav>
+
+<section class="section section--compact" style="padding-top:var(--space-xl)">
+<div class="container text-center">
+<div class="section-header">
+<span class="section-header__tag">Gallery</span>
+<h1 class="section-header__title">画廊</h1>
+</div>
+</div>
+</section>
+
+<div class="container">
+<div class="gallery-tabs">
+<button class="active" onclick="showTab('stands',this)">立绘 & 头像</button>
+<button onclick="showTab('chibi',this)">Q版 & 表情</button>
+<button onclick="showTab('scenes',this)">场景 & 合影</button>
+<button onclick="showTab('process',this)">创作过程</button>
+</div>
+</div>
+
+<section class="section section--compact">
+<div class="container">
+
+<!-- Stands & Avatars -->
+<div class="gallery-section active" id="stands">
+<div class="gallery-masonry">
+<div class="gallery-masonry__item"><img src="assets/images/by-TSURU/Tito Stand (Transparent).png" alt=""><div class="gallery-masonry__overlay"><p class="gallery-masonry__name">Tito Stand</p><p class="gallery-masonry__meta">Transparent</p></div></div>
+<div class="gallery-masonry__item"><img src="assets/images/by-TSURU/Tito Stand.png" alt=""><div class="gallery-masonry__overlay"><p class="gallery-masonry__name">Tito Stand</p><p class="gallery-masonry__meta">Original</p></div></div>
+<div class="gallery-masonry__item"><img src="assets/images/by-TSURU/Tito Avatar (Transparent).png" alt=""><div class="gallery-masonry__overlay"><p class="gallery-masonry__name">Tito Avatar</p><p class="gallery-masonry__meta">Transparent</p></div></div>
+<div class="gallery-masonry__item"><img src="assets/images/by-TSURU/Tito Avatar.png" alt=""><div class="gallery-masonry__overlay"><p class="gallery-masonry__name">Tito Avatar</p><p class="gallery-masonry__meta">Original</p></div></div>
+<div class="gallery-masonry__item"><img src="assets/images/by-TSURU/TigerZ Stand (Transparent).png" alt=""><div class="gallery-masonry__overlay"><p class="gallery-masonry__name">TigerZ Stand</p><p class="gallery-masonry__meta">Transparent</p></div></div>
+<div class="gallery-masonry__item"><img src="assets/images/by-TSURU/TigerZ Stand.png" alt=""><div class="gallery-masonry__overlay"><p class="gallery-masonry__name">TigerZ Stand</p><p class="gallery-masonry__meta">Original</p></div></div>
+<div class="gallery-masonry__item"><img src="assets/images/by-TSURU/TigerZ Avatar (Transparent).png" alt=""><div class="gallery-masonry__overlay"><p class="gallery-masonry__name">TigerZ Avatar</p><p class="gallery-masonry__meta">Transparent</p></div></div>
+<div class="gallery-masonry__item"><img src="assets/images/by-TSURU/TigerZ Avatar.png" alt=""><div class="gallery-masonry__overlay"><p class="gallery-masonry__name">TigerZ Avatar</p><p class="gallery-masonry__meta">Original</p></div></div>
+<div class="gallery-masonry__item"><img src="assets/images/by-TSURU/Frank Stand (Transparent).png" alt=""><div class="gallery-masonry__overlay"><p class="gallery-masonry__name">Frank Stand</p><p class="gallery-masonry__meta">Transparent</p></div></div>
+<div class="gallery-masonry__item"><img src="assets/images/by-TSURU/Frank Stand.png" alt=""><div class="gallery-masonry__overlay"><p class="gallery-masonry__name">Frank Stand</p><p class="gallery-masonry__meta">Original</p></div></div>
+<div class="gallery-masonry__item"><img src="assets/images/by-TSURU/Frank Avatar (Transparent).png" alt=""><div class="gallery-masonry__overlay"><p class="gallery-masonry__name">Frank Avatar</p><p class="gallery-masonry__meta">Transparent</p></div></div>
+<div class="gallery-masonry__item"><img src="assets/images/by-TSURU/Frank Avatar.png" alt=""><div class="gallery-masonry__overlay"><p class="gallery-masonry__name">Frank Avatar</p><p class="gallery-masonry__meta">Original</p></div></div>
+<div class="gallery-masonry__item"><img src="assets/images/by-TSURU/Kayu Stand (Transparent).png" alt=""><div class="gallery-masonry__overlay"><p class="gallery-masonry__name">Kayu Stand</p><p class="gallery-masonry__meta">Transparent</p></div></div>
+<div class="gallery-masonry__item"><img src="assets/images/by-TSURU/Kayu Stand.png" alt=""><div class="gallery-masonry__overlay"><p class="gallery-masonry__name">Kayu Stand</p><p class="gallery-masonry__meta">Original</p></div></div>
+<div class="gallery-masonry__item"><img src="assets/images/by-TSURU/Kayu Avatar (Transparent).png" alt=""><div class="gallery-masonry__overlay"><p class="gallery-masonry__name">Kayu Avatar</p><p class="gallery-masonry__meta">Transparent</p></div></div>
+<div class="gallery-masonry__item"><img src="assets/images/by-TSURU/Kayu Avatar.png" alt=""><div class="gallery-masonry__overlay"><p class="gallery-masonry__name">Kayu Avatar</p><p class="gallery-masonry__meta">Original</p></div></div>
+<div class="gallery-masonry__item"><img src="assets/images/by-TSURU/TON Stand (Transparent).png" alt=""><div class="gallery-masonry__overlay"><p class="gallery-masonry__name">TON Stand</p><p class="gallery-masonry__meta">Transparent</p></div></div>
+<div class="gallery-masonry__item"><img src="assets/images/by-TSURU/TON Stand.png" alt=""><div class="gallery-masonry__overlay"><p class="gallery-masonry__name">TON Stand</p><p class="gallery-masonry__meta">Original</p></div></div>
+<div class="gallery-masonry__item"><img src="assets/images/by-TSURU/TON Stand with Zacian (Transparent).png" alt=""><div class="gallery-masonry__overlay"><p class="gallery-masonry__name">TON + Zacian</p><p class="gallery-masonry__meta">Transparent</p></div></div>
+<div class="gallery-masonry__item"><img src="assets/images/by-TSURU/TON Stand with Zacian.png" alt=""><div class="gallery-masonry__overlay"><p class="gallery-masonry__name">TON + Zacian</p><p class="gallery-masonry__meta">Original</p></div></div>
+</div>
+</div>
+
+<!-- Chibi & Memes -->
+<div class="gallery-section" id="chibi">
+<div class="gallery-masonry">
+<div class="gallery-masonry__item"><img src="assets/images/by-TSURU/Tito Strike Chibi (Transparent).png" alt=""><div class="gallery-masonry__overlay"><p class="gallery-masonry__name">Tito Strike</p><p class="gallery-masonry__meta">Transparent</p></div></div>
+<div class="gallery-masonry__item"><img src="assets/images/by-TSURU/Tito Strike Chibi.png" alt=""><div class="gallery-masonry__overlay"><p class="gallery-masonry__name">Tito Strike</p><p class="gallery-masonry__meta">Original</p></div></div>
+<div class="gallery-masonry__item"><img src="assets/images/by-TSURU/Tito Strike Chibi (Blue BG).png" alt=""><div class="gallery-masonry__overlay"><p class="gallery-masonry__name">Tito Strike</p><p class="gallery-masonry__meta">Blue BG</p></div></div>
+<div class="gallery-masonry__item"><img src="assets/images/by-TSURU/Tito in Palm (Transparent).png" alt=""><div class="gallery-masonry__overlay"><p class="gallery-masonry__name">Tito in Palm</p><p class="gallery-masonry__meta">Transparent</p></div></div>
+<div class="gallery-masonry__item"><img src="assets/images/by-TSURU/TigerZ Gaming Chibi (Transparent).png" alt=""><div class="gallery-masonry__overlay"><p class="gallery-masonry__name">TigerZ Gaming</p><p class="gallery-masonry__meta">Transparent</p></div></div>
+<div class="gallery-masonry__item"><img src="assets/images/by-TSURU/TigerZ Gaming Chibi.png" alt=""><div class="gallery-masonry__overlay"><p class="gallery-masonry__name">TigerZ Gaming</p><p class="gallery-masonry__meta">Original</p></div></div>
+<div class="gallery-masonry__item"><img src="assets/images/by-TSURU/TigerZ TigerBoo (Game Mascot NETA Mascot).png" alt=""><div class="gallery-masonry__overlay"><p class="gallery-masonry__name">TigerBoo</p><p class="gallery-masonry__meta">Mascot</p></div></div>
+<div class="gallery-masonry__item"><img src="assets/images/by-TSURU/TigerZ TigerBoo (Game Mascot NETA Mascot) (Transparent).png" alt=""><div class="gallery-masonry__overlay"><p class="gallery-masonry__name">TigerBoo</p><p class="gallery-masonry__meta">Transparent</p></div></div>
+<div class="gallery-masonry__item"><img src="assets/images/by-TSURU/TigerZ TigerBoo (Game Mascot NETA Mascot) (Transparent) (Seperate).png" alt=""><div class="gallery-masonry__overlay"><p class="gallery-masonry__name">TigerBoo</p><p class="gallery-masonry__meta">Separate</p></div></div>
+<div class="gallery-masonry__item"><img src="assets/images/by-TSURU/Frank Drawing Chibi (Transparent).png" alt=""><div class="gallery-masonry__overlay"><p class="gallery-masonry__name">Frank Drawing</p><p class="gallery-masonry__meta">Transparent</p></div></div>
+<div class="gallery-masonry__item"><img src="assets/images/by-TSURU/Frank Drawing Chibi.png" alt=""><div class="gallery-masonry__overlay"><p class="gallery-masonry__name">Frank Drawing</p><p class="gallery-masonry__meta">Original</p></div></div>
+<div class="gallery-masonry__item"><img src="assets/images/by-TSURU/Frank NOOOO (Transparent).png" alt=""><div class="gallery-masonry__overlay"><p class="gallery-masonry__name">Frank NOOOO</p><p class="gallery-masonry__meta">Meme</p></div></div>
+<div class="gallery-masonry__item"><img src="assets/images/by-TSURU/Frank Do Not Want to Draw (Transparent).png" alt=""><div class="gallery-masonry__overlay"><p class="gallery-masonry__name">Frank Do Not Want</p><p class="gallery-masonry__meta">Meme</p></div></div>
+<div class="gallery-masonry__item"><img src="assets/images/by-TSURU/Frank Table Crack (Transparent).png" alt=""><div class="gallery-masonry__overlay"><p class="gallery-masonry__name">Frank Table Crack</p><p class="gallery-masonry__meta">Scene</p></div></div>
+<div class="gallery-masonry__item"><img src="assets/images/by-TSURU/Kayu Yeah! Chibi (Transparent).png" alt=""><div class="gallery-masonry__overlay"><p class="gallery-masonry__name">Kayu Yeah!</p><p class="gallery-masonry__meta">Transparent</p></div></div>
+<div class="gallery-masonry__item"><img src="assets/images/by-TSURU/Kayu Yeah! Chibi.png" alt=""><div class="gallery-masonry__overlay"><p class="gallery-masonry__name">Kayu Yeah!</p><p class="gallery-masonry__meta">Original</p></div></div>
+<div class="gallery-masonry__item"><img src="assets/images/by-TSURU/Kayu Tail-draw (Transparent).png" alt=""><div class="gallery-masonry__overlay"><p class="gallery-masonry__name">Kayu Tail-draw</p><p class="gallery-masonry__meta">Transparent</p></div></div>
+<div class="gallery-masonry__item"><img src="assets/images/by-TSURU/Kayu Tail-draw.png" alt=""><div class="gallery-masonry__overlay"><p class="gallery-masonry__name">Kayu Tail-draw</p><p class="gallery-masonry__meta">Original</p></div></div>
+<div class="gallery-masonry__item"><img src="assets/images/by-TSURU/TON Walking Chibi (Transparent).png" alt=""><div class="gallery-masonry__overlay"><p class="gallery-masonry__name">TON Walking</p><p class="gallery-masonry__meta">Transparent</p></div></div>
+<div class="gallery-masonry__item"><img src="assets/images/by-TSURU/TON Walking Chibi.png" alt=""><div class="gallery-masonry__overlay"><p class="gallery-masonry__name">TON Walking</p><p class="gallery-masonry__meta">Original</p></div></div>
+</div>
+</div>
+
+<!-- Scenes -->
+<div class="gallery-section" id="scenes">
+<div class="gallery-masonry">
+<div class="gallery-masonry__item gallery-masonry__item--wide"><img src="assets/images/by-TSURU/Summer Walk (with Tito TigerZ).png" alt=""><div class="gallery-masonry__overlay"><p class="gallery-masonry__name">Summer Walk</p><p class="gallery-masonry__meta">Tito · TigerZ</p></div></div>
+<div class="gallery-masonry__item gallery-masonry__item--wide"><img src="assets/images/by-TSURU/Summer Walk (with Tito TigerZ) (Transparent).png" alt=""><div class="gallery-masonry__overlay"><p class="gallery-masonry__name">Summer Walk · Transparent</p><p class="gallery-masonry__meta">Tito · TigerZ</p></div></div>
+<div class="gallery-masonry__item gallery-masonry__item--wide"><img src="assets/images/by-TSURU/Summer Walk (with Tito TigerZ) (Trans. no Stickers).png" alt=""><div class="gallery-masonry__overlay"><p class="gallery-masonry__name">Summer Walk · No Stickers</p><p class="gallery-masonry__meta">Tito · TigerZ</p></div></div>
+<div class="gallery-masonry__item gallery-masonry__item--wide"><img src="assets/images/by-TSURU/HBD Celebration (with Tito and TigerZ).png" alt=""><div class="gallery-masonry__overlay"><p class="gallery-masonry__name">HBD Celebration</p><p class="gallery-masonry__meta">Tito · TigerZ</p></div></div>
+<div class="gallery-masonry__item gallery-masonry__item--wide"><img src="assets/images/by-TSURU/Chinese Opera Style Outfit Design (with Tito TigerZ).png" alt=""><div class="gallery-masonry__overlay"><p class="gallery-masonry__name">Chinese Opera Style</p><p class="gallery-masonry__meta">Tito · TigerZ</p></div></div>
+<div class="gallery-masonry__item gallery-masonry__item--wide"><img src="assets/images/by-TSURU/Saturday Photo (with Tito TigerZ Kayu).jpg" alt=""><div class="gallery-masonry__overlay"><p class="gallery-masonry__name">Saturday Photo</p><p class="gallery-masonry__meta">Tito · TigerZ · Kayu</p></div></div>
+<div class="gallery-masonry__item gallery-masonry__item--wide"><img src="assets/images/by-TSURU/Saturday Photo Smile (with Tito TigerZ Kayu).jpg" alt=""><div class="gallery-masonry__overlay"><p class="gallery-masonry__name">Saturday Smile</p><p class="gallery-masonry__meta">Tito · TigerZ · Kayu</p></div></div>
+<div class="gallery-masonry__item"><img src="assets/images/by-TSURU/Selfie Photo (with Kayu & Frank) (filter).png" alt=""><div class="gallery-masonry__overlay"><p class="gallery-masonry__name">Selfie</p><p class="gallery-masonry__meta">Kayu · Frank</p></div></div>
+<div class="gallery-masonry__item gallery-masonry__item--wide"><img src="assets/images/by-TSURU/Kayu Photo Corner (Kayu Plushi with Tito TigerZ Frank and himself).png" alt=""><div class="gallery-masonry__overlay"><p class="gallery-masonry__name">Photo Corner</p><p class="gallery-masonry__meta">Kayu · Tito · TigerZ · Frank</p></div></div>
+<div class="gallery-masonry__item gallery-masonry__item--wide"><img src="assets/images/by-TSURU/Kayu Photo Corner (Kayu Plushi with Tito TigerZ Frank and himself) (Transparent).png" alt=""><div class="gallery-masonry__overlay"><p class="gallery-masonry__name">Photo Corner · Transparent</p><p class="gallery-masonry__meta">Kayu · Tito · TigerZ · Frank</p></div></div>
+<div class="gallery-masonry__item gallery-masonry__item--wide"><img src="assets/images/by-TSURU/Doraemon! Photo (with Tito TigerZ TON).png" alt=""><div class="gallery-masonry__overlay"><p class="gallery-masonry__name">Doraemon! Photo</p><p class="gallery-masonry__meta">Tito · TigerZ · TON</p></div></div>
+<div class="gallery-masonry__item gallery-masonry__item--wide"><img src="assets/images/by-TSURU/Little Comic (with Tito TigerZ Frank Kayu and TSURU herself).png" alt=""><div class="gallery-masonry__overlay"><p class="gallery-masonry__name">Little Comic</p><p class="gallery-masonry__meta">All + TSURU</p></div></div>
+<div class="gallery-masonry__item"><img src="assets/images/by-TSURU/Yummy! Photo Drawn (filter).jpg" alt=""><div class="gallery-masonry__overlay"><p class="gallery-masonry__name">Yummy!</p><p class="gallery-masonry__meta">TSURU</p></div></div>
+<div class="gallery-masonry__item"><img src="assets/images/by-TSURU/TON with Diandian (Pet Cat).png" alt=""><div class="gallery-masonry__overlay"><p class="gallery-masonry__name">TON + Diandian</p><p class="gallery-masonry__meta">Pet Cat</p></div></div>
+<div class="gallery-masonry__item"><img src="assets/images/by-TSURU/TON with Diandian (Pet Cat) (Transparent).png" alt=""><div class="gallery-masonry__overlay"><p class="gallery-masonry__name">TON + Diandian · Trans</p><p class="gallery-masonry__meta">Pet Cat</p></div></div>
+<div class="gallery-masonry__item"><img src="assets/images/by-TSURU/Flowers (with Tito TigerZ) (Transparency).png" alt=""><div class="gallery-masonry__overlay"><p class="gallery-masonry__name">Flowers</p><p class="gallery-masonry__meta">Sticker · Tito · TigerZ</p></div></div>
+</div>
+</div>
+
+<!-- Process -->
+<div class="gallery-section" id="process">
+<p style="text-align:center;color:var(--color-text-muted);margin-bottom:var(--space-md)">Sketch Set 各版本对比：完整版 / 干净背景 / 带背景 / 背景透明</p>
+
+<h3 style="margin:var(--space-md) 0 var(--space-sm);font-size:1.1rem">Tito</h3>
+<div class="compare-pair">
+<div><div class="compare-pair__item"><img src="assets/images/by-TSURU/Tito Sketch Set.png" alt=""></div><p class="compare-label">Full Set</p></div>
+<div><div class="compare-pair__item"><img src="assets/images/by-TSURU/Tito Sketch Set (Clean BG).png" alt=""></div><p class="compare-label">Clean BG</p></div>
+</div>
+<div class="compare-pair">
+<div><div class="compare-pair__item"><img src="assets/images/by-TSURU/Tito Sketch Set Background.png" alt=""></div><p class="compare-label">With BG</p></div>
+<div><div class="compare-pair__item"><img src="assets/images/by-TSURU/Tito Sketch Set Background (Transparent).png" alt=""></div><p class="compare-label">BG Transparent</p></div>
+</div>
+
+<h3 style="margin:var(--space-md) 0 var(--space-sm);font-size:1.1rem">TigerZ</h3>
+<div class="compare-pair">
+<div><div class="compare-pair__item"><img src="assets/images/by-TSURU/TigerZ Sketch Set.png" alt=""></div><p class="compare-label">Full Set</p></div>
+<div><div class="compare-pair__item"><img src="assets/images/by-TSURU/TigerZ Sketch Set (Clean BG).png" alt=""></div><p class="compare-label">Clean BG</p></div>
+</div>
+<div class="compare-pair">
+<div><div class="compare-pair__item"><img src="assets/images/by-TSURU/TigerZ Sketch Set Background.png" alt=""></div><p class="compare-label">With BG</p></div>
+<div><div class="compare-pair__item"><img src="assets/images/by-TSURU/TigerZ Sketch Set Background (Transparent).png" alt=""></div><p class="compare-label">BG Transparent</p></div>
+</div>
+
+<h3 style="margin:var(--space-md) 0 var(--space-sm);font-size:1.1rem">Frank</h3>
+<div class="compare-pair">
+<div><div class="compare-pair__item"><img src="assets/images/by-TSURU/Frank Sketch Set.png" alt=""></div><p class="compare-label">Full Set</p></div>
+<div><div class="compare-pair__item"><img src="assets/images/by-TSURU/Frank Sketch Set (Clean BG).png" alt=""></div><p class="compare-label">Clean BG</p></div>
+</div>
+<div class="compare-pair">
+<div><div class="compare-pair__item"><img src="assets/images/by-TSURU/Frank Sketch Set Background.png" alt=""></div><p class="compare-label">With BG</p></div>
+<div><div class="compare-pair__item"><img src="assets/images/by-TSURU/Frank Sketch Set Background (Transparent).png" alt=""></div><p class="compare-label">BG Transparent</p></div>
+</div>
+
+<h3 style="margin:var(--space-md) 0 var(--space-sm);font-size:1.1rem">Kayu</h3>
+<div class="compare-pair">
+<div><div class="compare-pair__item"><img src="assets/images/by-TSURU/Kayu Sketch Set.png" alt=""></div><p class="compare-label">Full Set</p></div>
+<div><div class="compare-pair__item"><img src="assets/images/by-TSURU/Kayu Sketch Set (Clean BG).png" alt=""></div><p class="compare-label">Clean BG</p></div>
+</div>
+<div class="compare-pair">
+<div><div class="compare-pair__item"><img src="assets/images/by-TSURU/Kayu Sketch Set Background.png" alt=""></div><p class="compare-label">With BG</p></div>
+<div><div class="compare-pair__item"><img src="assets/images/by-TSURU/Kayu Sketch Set Background (Transparent).png" alt=""></div><p class="compare-label">BG Transparent</p></div>
+</div>
+
+<h3 style="margin:var(--space-md) 0 var(--space-sm);font-size:1.1rem">TON</h3>
+<div class="compare-pair">
+<div><div class="compare-pair__item"><img src="assets/images/by-TSURU/TON Sketch Set.png" alt=""></div><p class="compare-label">Full Set</p></div>
+<div><div class="compare-pair__item"><img src="assets/images/by-TSURU/TON Sketch Set (Clean BG).png" alt=""></div><p class="compare-label">Clean BG</p></div>
+</div>
+<div class="compare-pair">
+<div><div class="compare-pair__item"><img src="assets/images/by-TSURU/TON Sketch Set with Zacian.png" alt=""></div><p class="compare-label">+ Zacian</p></div>
+<div><div class="compare-pair__item"><img src="assets/images/by-TSURU/TON Sketch Set with Zacian (Clean BG).png" alt=""></div><p class="compare-label">+ Zacian Clean</p></div>
+</div>
+<div class="compare-pair">
+<div><div class="compare-pair__item"><img src="assets/images/by-TSURU/TON Sketch Set Background.png" alt=""></div><p class="compare-label">With BG</p></div>
+<div><div class="compare-pair__item"><img src="assets/images/by-TSURU/TON Sketch Set Background (Transparent).png" alt=""></div><p class="compare-label">BG Transparent</p></div>
+</div>
+<div class="compare-pair">
+<div><div class="compare-pair__item"><img src="assets/images/by-TSURU/TON Line Sketch.png" alt=""></div><p class="compare-label">Line Sketch</p></div>
+<div><div class="compare-pair__item"><img src="assets/images/by-TSURU/TON Playing Guitar.png" alt=""></div><p class="compare-label">Playing Guitar · Original</p></div>
+</div>
+</div>
+
+</div>
+</section>
+
+<div class="lightbox" role="dialog" aria-label="图片预览" aria-modal="true"><div class="lightbox__content"><button class="lightbox__close" aria-label="关闭">×</button><img src="" alt="" class="lightbox__img"></div></div>
+
+<footer class="footer">
+<div class="container footer__inner">
+<div><p class="footer__brand">☕ Tito's Cafe · 头头咖啡屋</p></div>
+<div><p class="footer__heading">页面</p><ul class="footer__links"><li><a href="index.html">首页</a></li><li><a href="characters.html">角色</a></li><li><a href="shop.html">周边</a></li><li><a href="gallery.html">画廊</a></li></ul></div>
+<div><p class="footer__heading">关于</p><ul class="footer__links"><li><a href="about.html">关于</a></li></ul></div>
+</div>
+<div class="container footer__bottom"><span>© Tito's Cafe</span></div>
+</footer>
+
+<script>
+function showTab(id,btn){document.querySelectorAll('.gallery-section').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.gallery-tabs button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}
+document.addEventListener('DOMContentLoaded',()=>{
+const hash=window.location.hash.slice(1);
+if(hash&&['stands','chibi','scenes','process'].includes(hash)){const btn=document.querySelector(`.gallery-tabs button[onclick*="'${hash}'"]`);if(btn)showTab(hash,btn);}
+const lightbox=document.querySelector('.lightbox'),img=lightbox.querySelector('.lightbox__img'),close=lightbox.querySelector('.lightbox__close');
+function closeLB(){lightbox.classList.remove('lightbox--open');document.body.style.overflow='';}
+document.querySelectorAll('.gallery-masonry__item, .compare-pair__item').forEach(item=>{item.addEventListener('click',()=>{const s=item.querySelector('img');if(s){img.src=s.src;img.alt=s.alt;lightbox.classList.add('lightbox--open');document.body.style.overflow='hidden';}});});
+close?.addEventListener('click',closeLB);lightbox.addEventListener('click',e=>{if(e.target===lightbox)closeLB();});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLB();});
+});
+</script>
+<script src="js/main.js"></script>
+</body>
+</html>
